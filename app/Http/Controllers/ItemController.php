@@ -16,6 +16,7 @@ use App\Models\Item;
 use App\Models\ItemPartCTeacher;
 use App\Models\Level;
 use App\Models\PartCTeacher;
+use App\Models\PartE;
 use App\Models\Section;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -190,6 +191,8 @@ class ItemController extends Controller
         $sectionId = $group->section_id;
         Section::calculate($sectionId);
         $section = (new Section)->findOrFail($sectionId);
+        $application = Section::findApplicationBySectionId($section->id);
+        PartE::calculate($application->id);
         $examId = $section->exam_id;
         return redirect('admin/exam/' . $examId);
     }
@@ -368,6 +371,8 @@ class ItemController extends Controller
         $section = (new Section)->findOrFail($sectionId);
         Section::calculate($sectionId);
         $examId = $section->exam_id;
+        $application = Section::findApplicationBySectionId($section->id);
+        PartE::calculate($application->id);
         return redirect('admin/exam/' . $examId);
     }
 

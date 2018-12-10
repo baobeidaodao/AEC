@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Exam;
+use App\Models\PartE;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -97,6 +98,8 @@ class SectionController extends Controller
         ]);
         Section::check($section->id);
         Section::calculate($section->id);
+        $application = Section::findApplicationBySectionId($section->id);
+        PartE::calculate($application->id);
         return redirect('admin/exam/' . $request->exam_id);
     }
 
@@ -180,6 +183,8 @@ class SectionController extends Controller
             'exam_time' => $request->exam_time,
         ])->save();
         Section::calculate($section->id);
+        $application = Section::findApplicationBySectionId($section->id);
+        PartE::calculate($application->id);
         Section::check($section->id);
         return redirect('admin/exam/' . $request->exam_id);
     }

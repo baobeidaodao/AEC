@@ -70,4 +70,12 @@ class Section extends Model
         $section->save();
     }
 
+    public static function findApplicationBySectionId($sectionId)
+    {
+        $section = Section::find($sectionId);
+        $exam = Exam::find($section->exam_id);
+        $application = Application::find($exam->application_id);
+        return $application;
+    }
+
 }

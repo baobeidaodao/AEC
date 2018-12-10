@@ -368,96 +368,24 @@ class Group extends Model
                         }
                         break;
                     case 'PPID':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 15;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 20;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 30;
-                        }
                         break;
                     case 'PID':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 15;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 20;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 30;
-                        }
                         break;
                     case 'G1':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 15;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 20;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 30;
-                        }
                         break;
                     case 'G2':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 25;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 35;
-                        }
                         break;
                     case 'G3':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 25;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 35;
-                        }
                         break;
                     case 'G4':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 30;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 40;
-                        }
                         break;
                     case 'G5':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 30;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 40;
-                        }
                         break;
                     case 'G6':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 35;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 40;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 50;
-                        }
                         break;
                     case 'G7':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 35;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 40;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 50;
-                        }
                         break;
                     case 'G8':
-                        if ($count == 1) {
-                            $minute = 35;
-                        } else if ($count == 2) {
-                            $minute = 40;
-                        } else if ($count == 3) {
-                            $minute = 50;
-                        } else if ($count == 4) {
-                            $minute = 60;
-                        }
                         break;
                     case 'INTF':
                         break;
@@ -472,103 +400,22 @@ class Group extends Model
                     case 'SS':
                         break;
                     case 'R2C':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 40;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 45;
-                        }
                         break;
                     case 'R2V1':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R2V2':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R3C':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 40;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 45;
-                        }
                         break;
                     case 'R3V1':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R3V2':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R4C':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 40;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 45;
-                        }
                         break;
                     case 'R4V1':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R4V2':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     default:
                         break;
@@ -577,18 +424,8 @@ class Group extends Model
             case 'CA':
                 switch ($level) {
                     case 'DC1':
-                        if (1 <= $count && $count <= 8) {
-                            $minute = 30;
-                        } else if (9 <= $count && $count <= 16) {
-                            $minute = 45;
-                        }
                         break;
                     case 'DC2':
-                        if (1 <= $count && $count <= 8) {
-                            $minute = 30;
-                        } else if (9 <= $count && $count <= 16) {
-                            $minute = 45;
-                        }
                         break;
                     case 'PPID':
                         if (1 <= $count && $count <= 2) {
@@ -654,33 +491,10 @@ class Group extends Model
                         }
                         break;
                     case 'G6':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 35;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 40;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 50;
-                        }
                         break;
                     case 'G7':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 35;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 40;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 50;
-                        }
                         break;
                     case 'G8':
-                        if ($count == 1) {
-                            $minute = 35;
-                        } else if ($count == 2) {
-                            $minute = 40;
-                        } else if ($count == 3) {
-                            $minute = 50;
-                        } else if ($count == 4) {
-                            $minute = 60;
-                        }
                         break;
                     case 'INTF':
                         break;
@@ -800,81 +614,22 @@ class Group extends Model
             case 'PC':
                 switch ($level) {
                     case 'DC1':
-                        if (1 <= $count && $count <= 8) {
-                            $minute = 30;
-                        } else if (9 <= $count && $count <= 16) {
-                            $minute = 45;
-                        }
                         break;
                     case 'DC2':
-                        if (1 <= $count && $count <= 8) {
-                            $minute = 30;
-                        } else if (9 <= $count && $count <= 16) {
-                            $minute = 45;
-                        }
                         break;
                     case 'PPID':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 15;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 20;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 30;
-                        }
                         break;
                     case 'PID':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 15;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 20;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 30;
-                        }
                         break;
                     case 'G1':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 15;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 20;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 30;
-                        }
                         break;
                     case 'G2':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 25;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 35;
-                        }
                         break;
                     case 'G3':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 25;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 35;
-                        }
                         break;
                     case 'G4':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 30;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 40;
-                        }
                         break;
                     case 'G5':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 30;
-                        } else if (5 <= $count && $count <= 8) {
-                            $minute = 40;
-                        }
                         break;
                     case 'G6':
                         if (1 <= $count && $count <= 2) {
@@ -918,103 +673,21 @@ class Group extends Model
                     case 'SS':
                         break;
                     case 'R2C':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 40;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 45;
-                        }
-                        break;
                     case 'R2V1':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R2V2':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R3C':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 40;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 45;
-                        }
                         break;
                     case 'R3V1':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R3V2':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R4C':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 25;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 40;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 45;
-                        }
                         break;
                     case 'R4V1':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     case 'R4V2':
-                        if (1 <= $count && $count <= 2) {
-                            $minute = 20;
-                        } else if (3 <= $count && $count <= 4) {
-                            $minute = 35;
-                        } else if (5 <= $count && $count <= 6) {
-                            $minute = 50;
-                        } else if (7 <= $count && $count <= 8) {
-                            $minute = 60;
-                        }
                         break;
                     default:
                         break;
@@ -1129,6 +802,15 @@ class Group extends Model
                 break;
         }
         return $minute;
+    }
+
+    public static function findApplicationByGroupId($groupId)
+    {
+        $group = Group::find($groupId);
+        $section = Section::find($group->section_id);
+        $exam = Exam::find($section->exam_id);
+        $application = Application::find($exam->application_id);
+        return $application;
     }
 
 }

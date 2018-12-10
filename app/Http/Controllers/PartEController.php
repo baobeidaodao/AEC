@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\ExamType;
+use App\Models\Level;
 use App\Models\PartE;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -94,6 +96,10 @@ class PartEController extends Controller
             }
         }
         $data['application'] = $application;
+        $levelList = Level::all()->toArray();
+        $data['levelList'] = $levelList;
+        $examTypeList = ExamType::all()->toArray();
+        $data['examTypeList'] = $examTypeList;
         return view('part_e.show', $data);
     }
 
@@ -117,6 +123,10 @@ class PartEController extends Controller
             }
         }
         $data['application'] = $application;
+        $levelList = Level::all()->toArray();
+        $data['levelList'] = $levelList;
+        $examTypeList = ExamType::all()->toArray();
+        $data['examTypeList'] = $examTypeList;
         return view('part_e.edit', $data);
     }
 

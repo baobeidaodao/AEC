@@ -18,126 +18,23 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>Ex</th>
-                        <th>DCP</th>
-                        <th>SPA</th>
+                        @foreach($examTypeList as $examType)
+                            <th>{{$examType['code'] or ''}}</th>
+                        @endforeach
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>DC_1_2</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>PPID</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>PID</th>
-                        <th>{{$partE['ex_pid'] or ''}}</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>G1</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>G2</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>G3</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>G4</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>G5</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>G6</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>G7</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>G8</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>INTF</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>INT</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>ADVF</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>ADVF_M</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>ADV1</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>ADV1_M</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>ADV2</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>ADV2_M</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+                    @foreach($levelList as $level)
+                        <tr>
+                            <th>{{$level['code'] or ''}}</th>
+                            @foreach($examTypeList as $examType)
+                                <th>
+                                    <?php $attribute = strtolower($examType['code']) . '_' . strtolower($level['code']) ?>
+                                    {{$partE[$attribute] or ''}}
+                                </th>
+                            @endforeach
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

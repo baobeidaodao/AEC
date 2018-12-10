@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\Exam;
 use App\Models\Item;
+use App\Models\PartE;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -89,6 +90,7 @@ class ExamController extends Controller
 
     public function show($id)
     {
+        PartE::calculate(1);
         $exam = Exam::with([
             'application' => function ($query) {
                 $query->with([

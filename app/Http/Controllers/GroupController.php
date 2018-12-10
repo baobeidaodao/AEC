@@ -13,6 +13,7 @@ use App\Models\Exam;
 use App\Models\ExamType;
 use App\Models\Group;
 use App\Models\Level;
+use App\Models\PartE;
 use App\Models\Rest;
 use App\Models\Section;
 use Illuminate\Http\Request;
@@ -128,6 +129,8 @@ class GroupController extends Controller
             'rest_id' => $request->rest_id,
         ]);
         Section::calculate($request->section_id);
+        $application = Section::findApplicationBySectionId($request->section_id);
+        PartE::calculate($application->id);
         Group::check($group->id);
         $section = (new Section)->findOrFail($request->section_id);
         $examId = $section->exam_id;
@@ -238,6 +241,8 @@ class GroupController extends Controller
             'rest_id' => $request->rest_id,
         ])->save();
         Section::calculate($request->section_id);
+        $application = Section::findApplicationBySectionId($request->section_id);
+        PartE::calculate($application->id);
         Group::check($group->id);
         $section = (new Section)->findOrFail($request->section_id);
         $examId = $section->exam_id;

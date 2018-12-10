@@ -10,6 +10,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Schema;
 
 class PartE extends Model
 {
@@ -45,8 +46,28 @@ class PartE extends Model
         $partE->save();
     }
 
-    public static function calculate()
+    public static function calculate($applicationId)
     {
-
+        $partE = PartE::where('application_id', '=', $applicationId)->first();
+        $columnArray = Schema::getColumnListing('part_e');
+        $groupList = Group::with(['level', 'examType', 'itemList'])
+            ->join('section', 'section.id', '=', 'group.section_id')
+            ->join('exam', 'exam.id', '=', 'section.exam_id')
+            ->where('exam.application_id', '=', $applicationId)
+            ->get();
+        foreach ($groupList as $group) {
+            $attribute = strtolower($group->examType->code) . '_' . strtolower($group->level->code);
+            if (!in_array($attribute, $columnArray)) {
+                continue;
+            }
+            $count = count($group->itemList);
+            $attributeCount = $attribute . 'Count';
+            if (!isset($$attributeCount)) {
+                $$attributeCount = 0;
+            }
+            $$attributeCount = $$attributeCount + $count;
+            $partE->$attribute = $$attributeCount;
+        }
+        $partE->save();
     }
 }
