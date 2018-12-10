@@ -63,8 +63,10 @@
 
         @if(isset($application) && !empty($application) && isset($application['id']) && !empty($application['id']))
             <a class="btn btn-sm"><i class="fe fe-chevrons-right"></i></a>
-            @if(isset($exam) && !empty($exam) && isset($exam['id']) && !empty($exam['id']))
-                    <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') btn-success @else btn-outline-success @endif">Exam</a>
+            @if(isset($application['exam']) && !empty($application['exam']) && isset($application['exam']['id']) && !empty($application['exam']['id']))
+                <a href="{{url('/admin/exam/' . $application['exam']['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') btn-success @else btn-outline-success @endif">Exam</a>
+            @elseif(isset($exam) && !empty($exam) && isset($exam['id']) && !empty($exam['id'])))
+            <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') btn-success @else btn-outline-success @endif">Exam</a>
             @else
                 <a href="{{url('/admin/exam/create?application_id=' . $application['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') btn-info @else btn-outline-info @endif">Exam</a>
             @endif
