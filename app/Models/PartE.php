@@ -45,4 +45,8 @@ class PartE extends Model
         $partE->save();
     }
 
+    public static function calculate()
+    {
+
+    }
 }

@@ -57,7 +57,6 @@
             <div class="form-group">
                 <label class="form-label">Rest</label>
                 <select name="rest_id" class="form-control custom-select" title="">
-                    <option value=""></option>
                     @foreach($restList as $rest)
                         <option value="{{$rest['id'] or ''}}" @if($group['rest_id'] == $rest['id']) selected @endif>{{$rest['name'] or ''}}</option>
                     @endforeach

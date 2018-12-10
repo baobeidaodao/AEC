@@ -74,7 +74,7 @@ class Group extends Model
         $level = $group->level->code;
         $type = $group->examType->code;
         $count = count($group->itemList);
-        $rest = $group->rest->minute;
+        $rest = isset($group->rest->minute) ? intval($group->rest->minute) : 0;
         $minute = Group::minute($type, $level, $count) + $rest;
         $startTime = $group->exam_time;
         $finishTime = date('Y-m-d H:i:s', strtotime('+' . intval($minute) . ' minute', strtotime($startTime)));
