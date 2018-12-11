@@ -50,4 +50,140 @@ class Exam extends Model
         $exam->save();
     }
 
+    public static function exportData($id)
+    {
+        $data = [];
+        $head = [
+            0 => 'Office Use Only',
+            1 => 'Level Code',
+            2 => 'Exam Type',
+            3 => 'Number',
+            4 => 'Candidate ID No',
+            5 => 'Given Name',
+            6 => 'Family Name',
+            7 => 'Member',
+            8 => 'Date of Birth',
+            9 => 'Syllabus M/F',
+            10 => 'Reasonable Adjustment',
+            11 => 'Teacher 1',
+            12 => 'Teacher 2',
+            13 => 'Teacher 3',
+            14 => 'Teacher 4',
+            15 => 'Teacher 5',
+            16 => 'Teacher 6',
+            17 => 'Office Use Only',
+        ];
+        $body = [
+            0 => '',
+            1 => '',
+            2 => '',
+            3 => '',
+            4 => '',
+            5 => '',
+            6 => '',
+            7 => 'No',
+            8 => '',
+            9 => '',
+            10 => '',
+            11 => '',
+            12 => '',
+            13 => '',
+            14 => '',
+            15 => '',
+            16 => '',
+            17 => '',
+        ];
+        $exam = Exam::with(['sectionList' => function ($query) {
+            $query->with([
+                'groupList' => function ($query) {
+                    $query->with(['level', 'examType', 'rest', 'itemList' => function ($query) {
+                        $query->with(array_merge(Item::WITH, ['itemPartCTeacherList' => function ($query) {
+                            $query->with(['partCTeacher',]);
+                        },]));
+                    },]);
+                },
+            ]);
+        },])->find($id);
+        if (!$exam) {
+            return $data;
+        } else {
+            $exam = $exam->toArray();
+        }
+        if (isset($exam['section_list']) && is_array($exam['section_list']) && !empty($exam['section_list'])) {
+            $sectionList = $exam['section_list'];
+            foreach ($sectionList as $section) {
+                $sheetName = 'section_' . $section['id'];
+                $data[$sheetName] = [];
+                $data[$sheetName][] = $head;
+                if (isset($section['group_list']) && is_array($section['group_list']) && !empty($section['group_list'])) {
+                    $groupList = $section['group_list'];
+                    foreach ($groupList as $group) {
+                        if (isset($group['item_list']) && is_array($group['item_list']) && !empty($group['item_list'])) {
+                            $itemList = $group['item_list'];
+                            foreach ($itemList as $index => $item) {
+                                $record = $body;
+                                if ($index == 0) {
+                                    $record[0] = date('Hi', strtotime($group['exam_time']));
+                                }
+                                $record[1] = $group['level']['code'];
+                                $record[2] = $group['exam_type']['code'];
+                                $record[3] = $item['number'];
+                                $record[4] = $item['student_number'];
+                                $record[5] = $item['given_name'];
+                                $record[6] = $item['family_name'];
+                                $record[8] = date('d/m/Y', strtotime($item['birth_date']));
+                                if ($item['sex'] == 1) {
+                                    $record[9] = 'M';
+                                } else {
+                                    $record[9] = 'F';
+                                }
+                                $numberArray = [];
+                                if (isset($item['item_part_c_teacher_list']) && !empty($item['item_part_c_teacher_list']) && is_array($item['item_part_c_teacher_list'])) {
+                                    $itemPartCTeacherList = $item['item_part_c_teacher_list'];
+                                    foreach ($itemPartCTeacherList as $itemPartCTeacher) {
+                                        if (isset($itemPartCTeacher['part_c_teacher']) && !empty($itemPartCTeacher['part_c_teacher']) && is_array($itemPartCTeacher['part_c_teacher'])) {
+                                            $partCTeacher = $itemPartCTeacher['part_c_teacher'];
+                                            $numberArray[] = $partCTeacher['number'];
+                                        }
+                                    }
+                                }
+                                if (in_array(1, $numberArray)) {
+                                    $record[11] = '√';
+                                }
+                                if (in_array(2, $numberArray)) {
+                                    $record[12] = '√';
+                                }
+                                if (in_array(3, $numberArray)) {
+                                    $record[13] = '√';
+                                }
+                                if (in_array(4, $numberArray)) {
+                                    $record[14] = '√';
+                                }
+                                if (in_array(5, $numberArray)) {
+                                    $record[15] = '√';
+                                }
+                                if (in_array(6, $numberArray)) {
+                                    $record[16] = '√';
+                                }
+                                // dd($record);
+                                $data[$sheetName][] = $record;
+                            }
+                        }
+                        $data[$sheetName][] = $body;
+                        if (isset($group['rest']['name']) && in_array($group['rest']['name'], ['Break', 'Lunch', 'Finish',])) {
+                            $record = $body;
+                            $record[0] = date('Hi', strtotime('-' . intval($group['rest']['minute']) . ' minute', strtotime($group['finish_time'])));
+                            $record[4] = $group['rest']['name'];
+                            $data[$sheetName][] = $record;
+                        }
+                        if (isset($group['rest']['name']) && in_array($group['rest']['name'], ['Break', 'Lunch',])) {
+                            $data[$sheetName][] = $body;
+                        }
+                    }
+                }
+            }
+        }
+        return $data;
+    }
+
 }
