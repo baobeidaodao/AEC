@@ -29,7 +29,7 @@ class ExamController extends Controller
             'sectionList' => function ($query) {
                 $query->with([
                     'groupList' => function ($query) {
-                        $query->with(['level', 'examType', 'itemList' => function ($query) {
+                        $query->with(['level', 'examType', 'rest', 'itemList' => function ($query) {
                             $query->with(Item::WITH);
                         },]);
                     },
@@ -102,7 +102,7 @@ class ExamController extends Controller
             'sectionList' => function ($query) {
                 $query->with([
                     'groupList' => function ($query) {
-                        $query->with(['level', 'examType', 'itemList' => function ($query) {
+                        $query->with(['level', 'examType', 'rest', 'itemList' => function ($query) {
                             $query->with(array_merge(Item::WITH, ['itemPartCTeacherList' => function ($query) {
                                 $query->with(['partCTeacher']);
                             }]));

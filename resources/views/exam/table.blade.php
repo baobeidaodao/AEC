@@ -70,7 +70,7 @@
                                 @foreach($group['item_list'] as $item)
                                     <tr>
                                         {{--<td>{{$item['id'] or ''}}</td>--}}
-                                        <td>{{date('Hi', strtotime($group['exam_time']))}}</td>
+                                        <td>@if($loop->iteration==1){{date('Hi', strtotime($group['exam_time']))}}@endif</td>
                                         <td>{{$group['level']['code'] or ''}}</td>
                                         <td>{{$group['exam_type']['code'] or ''}}</td>
                                         <td>{{$item['number'] or ''}}</td>
@@ -103,11 +103,11 @@
                             @if(isset($group['rest_id']) && !empty($group['rest_id']) && $group['rest_id']!=0)
                                 <tr>
                                     {{--<td></td>--}}
-                                    <td>@if($group['rest_id']==2) Break @elseif($group['rest_id']==3) Lunch @endif</td>
+                                    <td>{{date('Hi', strtotime('-' . intval($group['rest']['minute']) . ' minute', strtotime($group['finish_time'])))}}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
+                                    <td>{{$group['rest']['name'] or ''}}</td>
                                     <td></td>
                                     <td></td>
                                     {{--<td></td>--}}
