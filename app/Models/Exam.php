@@ -50,7 +50,7 @@ class Exam extends Model
         $exam->save();
     }
 
-    public static function exportData($id)
+    public static function export($id)
     {
         $data = [];
         $head = [

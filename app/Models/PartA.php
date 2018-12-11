@@ -49,4 +49,31 @@ class PartA extends Model
         }
         $partA->save();
     }
+
+    public static function export($id)
+    {
+        $data = [];
+        $head = [
+            0 => 'Name Of School',
+            1 => 'School ID',
+            2 => 'Email',
+            3 => 'Tel',
+        ];
+        $data['part_a'][] = $head;
+        $partA = PartA::find($id);
+        if (!$partA) {
+            return $data;
+        } else {
+            $partA = $partA->toArray();
+        }
+        $record = [
+            0 => $partA['school_name'],
+            1 => $partA['school_code'],
+            2 => $partA['email'],
+            3 => $partA['tel'],
+        ];
+        $data['part_a'][] = $record;
+        return $data;
+    }
+
 }

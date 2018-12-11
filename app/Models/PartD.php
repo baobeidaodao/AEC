@@ -65,4 +65,43 @@ class PartD extends Model
         $partD->save();
     }
 
+    public static function export($id)
+    {
+        $data = [];
+        $head = [
+            0 => 'Name of Applicant',
+            1 => 'Membership ID',
+            2 => 'Please identify yourself as one of the following:',
+            3 => 'Delivery/Correspondence Address',
+            4 => 'Postcode',
+            5 => 'Tel',
+            6 => 'Fax',
+            7 => 'Email',
+            8 => 'Impossible Dates for Delivery',
+            9 => 'I am happy for a neighbour to receive my delivery',
+        ];
+        $data['part_d'][0] = $head;
+        $partD = PartD::with(['identity',])->find($id);
+        if (!$partD) {
+            return $data;
+        } else {
+            $partD = $partD->toArray();
+        }
+        $record = [];
+        $record[0] = $partD['applicant_name'];
+        $record[1] = $partD['membership_id'];
+        $record[2] = $partD['identity']['name'];
+        $record[3] = $partD['address_1'];
+        $record[4] = $partD['post_code'];
+        $record[5] = $partD['tel'];
+        $record[6] = $partD['fax'];
+        $record[7] = $partD['email'];
+        $record[8] = $partD['delivery_date'];
+        $record[9] = ($partD['neighbour'] == 1) ? '√' : '';
+        $data['part_d'][1] = $record;
+        $data['part_d'][2] = ['', '', '', $partD['address_2']];
+        $data['part_d'][3] = ['', '', '', $partD['address_3']];
+        return $data;
+    }
+
 }

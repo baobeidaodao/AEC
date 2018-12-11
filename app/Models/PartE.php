@@ -126,4 +126,215 @@ class PartE extends Model
         }
         $partE->save();
     }
+
+    public static function export($id)
+    {
+        $data = [];
+        $head = [
+            0 => '',
+            1 => 'Examinations',
+            2 => 'Demonstration / Presentation Classes / Class Awards',
+            3 => 'Solo Performance Awards',
+        ];
+        $data['part_e'][] = $head;
+        $partE = PartE::find($id);
+        if (!$partE) {
+            return $data;
+        } else {
+            $partE = $partE->toArray();
+        }
+        $data['part_e'][] = [
+            0 => 'Demonstration Class L1/2',
+            1 => '',
+            2 => $partE['dc_dc1'] + $partE['dc_dc2'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Pre-Primary in Dance',
+            1 => '',
+            2 => $partE['ca_ppid'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Primary in Dance',
+            1 => $partE['ex_pid'],
+            2 => $partE['ca_pid'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Grade 1',
+            1 => $partE['ex_g1'],
+            2 => $partE['ca_g1'],
+            3 => $partE['spa_g1'],
+        ];
+        $data['part_e'][] = [
+            0 => 'Grade 2',
+            1 => $partE['ex_g2'],
+            2 => $partE['ca_g2'],
+            3 => $partE['spa_g2'],
+        ];
+        $data['part_e'][] = [
+            0 => 'Grade 3',
+            1 => $partE['ex_g3'],
+            2 => $partE['ca_g3'],
+            3 => $partE['spa_g3'],
+        ];
+        $data['part_e'][] = [
+            0 => 'Grade 4',
+            1 => $partE['ex_g4'],
+            2 => $partE['ca_g4'],
+            3 => $partE['spa_g4'],
+        ];
+        $data['part_e'][] = [
+            0 => 'Grade 5',
+            1 => $partE['ex_g5'],
+            2 => $partE['ca_g5'],
+            3 => $partE['spa_g5'],
+        ];
+        $data['part_e'][] = [
+            0 => 'Grade 6',
+            1 => $partE['ex_g6'],
+            2 => $partE['pc_g6'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Grade 7',
+            1 => $partE['ex_g7'],
+            2 => $partE['pc_g7'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Grade 8',
+            1 => $partE['ex_g8'],
+            2 => $partE['pc_g8'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Intermediate Foundation',
+            1 => $partE['ex_intf'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Intermediate',
+            1 => $partE['ex_int'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Advanced Foundation',
+            1 => $partE['ex_advf'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Adv F (Member)',
+            1 => $partE['ex_advf_m'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Advanced 1',
+            1 => $partE['ex_adv1'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Adv 1 (Member)',
+            1 => $partE['ex_adv1_m'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Advanced 2',
+            1 => $partE['ex_adv2'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Adv 2 (Member)',
+            1 => $partE['ex_adv2_m'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Solo Seal Award',
+            1 => $partE['ex_ss'],
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Classical Ballet Repertoire Level 2',
+            1 => '',
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 2 Class',
+            1 => $partE['ex_r2c'],
+            2 => $partE['ca_r2c'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 2 Variation 1',
+            1 => $partE['ex_r2v1'],
+            2 => $partE['ca_r2v1'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 2 Variation 2',
+            1 => $partE['ex_r2v2'],
+            2 => $partE['ca_r2v2'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Classical Ballet Repertoire Level 3',
+            1 => '',
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 3 Class',
+            1 => $partE['ex_r3c'],
+            2 => $partE['ca_r3c'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 3 Variation 1',
+            1 => $partE['ex_r3v1'],
+            2 => $partE['ca_r3v1'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 3 Variation 2',
+            1 => $partE['ex_r3v2'],
+            2 => $partE['ca_r3v2'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Classical Ballet Repertoire Level 4',
+            1 => '',
+            2 => '',
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 4 Class',
+            1 => $partE['ex_r4c'],
+            2 => $partE['ca_r4c'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 4 Variation 1',
+            1 => $partE['ex_r4v1'],
+            2 => $partE['ca_r4v1'],
+            3 => '',
+        ];
+        $data['part_e'][] = [
+            0 => 'Discovering Repertoire Level 4 Variation 2',
+            1 => $partE['ex_r4v2'],
+            2 => $partE['ca_r4v2'],
+            3 => '',
+        ];
+        return $data;
+    }
 }

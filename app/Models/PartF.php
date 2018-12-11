@@ -47,4 +47,22 @@ class PartF extends Model
         $partF->save();
     }
 
+    public static function export($id)
+    {
+        $data = [];
+        $head = [
+            0 => 'Applicant Name',
+        ];
+        $data['part_f'][] = $head;
+        $partF = PartF::find($id);
+        if (!$partF) {
+            return $data;
+        } else {
+            $partF = $partF->toArray();
+        }
+        $data['part_f'][] = [
+            0 => $partF['applicant_name'],
+        ];
+        return $data;
+    }
 }

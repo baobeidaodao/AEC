@@ -62,4 +62,35 @@ class PartB extends Model
         $partB->save();
     }
 
+    public static function export($id)
+    {
+        $data = [];
+        $head = [
+            0 => 'Your country of examination?',
+            1 => 'Name And Address of Examination Studio',
+            2 => 'Postcode',
+            3 => 'Tel',
+            4 => 'Examination Day Contact Tel',
+        ];
+        $data['part_b'][] = $head;
+        $partB = PartB::with(['country', ])->find($id);
+        if (!$partB) {
+            return $data;
+        } else {
+            $partB = $partB->toArray();
+        }
+        $record = [
+            0 => $partB['country']['name'],
+            1 => $partB['studio_name'],
+            2 => $partB['post_code'],
+            3 => $partB['tel'],
+            4 => $partB['examination_day_contact_tel'],
+        ];
+        $data['part_b'][] = $record;
+        $data['part_b'][] = ['', $partB['address_1']];
+        $data['part_b'][] = ['', $partB['address_2']];
+        $data['part_b'][] = ['', $partB['address_3']];
+        return $data;
+    }
+
 }

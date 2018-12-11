@@ -68,4 +68,36 @@ class PartC extends Model
         return $check;
     }
 
+    public static function export($id)
+    {
+        $data = [];
+        $head = [
+            0 => '',
+            1 => 'Membership ID',
+            2 => 'Given Name',
+            3 => 'Family Name',
+        ];
+        $data['part_c'][0] = $head;
+        $data['part_c'][1] = ['1',];
+        $data['part_c'][2] = ['2',];
+        $data['part_c'][3] = ['3',];
+        $data['part_c'][4] = ['4',];
+        $data['part_c'][5] = ['5',];
+        $data['part_c'][6] = ['6',];
+        $partC = PartC::with(['partCTeacherList',])->find($id);
+        if (!$partC) {
+            return $data;
+        } else {
+            $partC = $partC->toArray();
+        }
+        if (isset($partC['part_c_teacher_list']) && !empty($partC['part_c_teacher_list']) && is_array($partC['part_c_teacher_list'])) {
+            $partCTeacherList = $partC['part_c_teacher_list'];
+            foreach ($partCTeacherList as $partCTeacher) {
+                $data['part_c'][$partCTeacher['number']][1] = $partCTeacher['membership_id'];
+                $data['part_c'][$partCTeacher['number']][2] = $partCTeacher['given_name'];
+                $data['part_c'][$partCTeacher['number']][3] = $partCTeacher['family_name'];
+            }
+        }
+        return $data;
+    }
 }
