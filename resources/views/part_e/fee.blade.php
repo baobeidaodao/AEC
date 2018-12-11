@@ -20,6 +20,8 @@
                         <th></th>
                         @foreach($examTypeList as $examType)
                             <th>{{$examType['code'] or ''}}</th>
+                            <th>Fee</th>
+                            <th>Total</th>
                         @endforeach
                     </tr>
                     </thead>
@@ -31,6 +33,16 @@
                                 <th>
                                     <?php $attribute = strtolower($examType['code']) . '_' . strtolower($level['code']) ?>
                                     {{$partE[$attribute] or ''}}
+                                </th>
+                                <th>
+                                    @if(isset(\App\Models\PartE::FEE[$attribute]))
+                                        {{\App\Models\PartE::FEE[$attribute]}}
+                                    @endif
+                                </th>
+                                <th>
+                                    @if(isset(\App\Models\PartE::FEE[$attribute]) && isset($partE[$attribute]))
+                                        {{intval(\App\Models\PartE::FEE[$attribute]) * intval($partE[$attribute])}}
+                                    @endif
                                 </th>
                             @endforeach
                         </tr>
