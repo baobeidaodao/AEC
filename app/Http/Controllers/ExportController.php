@@ -22,6 +22,27 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ExportController extends Controller
 {
+    const SECTION_MAP = [
+        'B' => 0,
+        'D' => 1,
+        'F' => 2,
+        'H' => 3,
+        'I' => 4,
+        'J' => 5,
+        'K' => 6,
+        'M' => 7,
+        'O' => 8,
+        'P' => 9,
+        'R' => 10,
+        'T' => 11,
+        'U' => 12,
+        'V' => 13,
+        'W' => 14,
+        'X' => 15,
+        'Y' => 16,
+        'Z' => 17,
+    ];
+
     public function export($id)
     {
         $data = [];
@@ -29,6 +50,10 @@ class ExportController extends Controller
             ->where('id', '=', $id)
             ->first()
             ->toArray();
+
+        $exam = $application['exam'];
+        $examData = Exam::export($exam['id']);
+        $data = array_merge($data, $examData);
 
         $partA = $application['part_a'];
         $partAData = PartA::export($partA['id']);
@@ -54,19 +79,39 @@ class ExportController extends Controller
         $partFData = PartF::export($partF['id']);
         $data = array_merge($data, $partFData);
 
-        $exam = $application['exam'];
-        $examData = Exam::export($exam['id']);
-        $data = array_merge($data, $examData);
-
         $fileName = $id;
-        Excel::create($fileName, function ($excel) use ($data) {
-            foreach ($data as $sheetName => $cellData) {
-                $excel->sheet($sheetName, function ($sheet) use ($cellData) {
-                    $sheet->rows($cellData);
-                });
+
+        $aec = resource_path('excel/aec.xlsx');
+        $aec_ = resource_path('excel/aec_.xlsx');
+        $part = resource_path('excel/part.xlsx');
+        $exam = resource_path('excel/exam.xlsx');
+
+        Excel::load($aec_, function ($excel) use ($data) {
+            foreach ($data as $sheetName => $sheetData) {
+                if (in_array($sheetName, ['section_1', 'section_2', 'section_3', 'section_4', 'section_5', 'section_6', 'section_7',])) {
+                    $excel->sheet($sheetName, function ($sheet) use ($sheetData) {
+                        foreach ($sheetData as $index => $rowData) {
+                            if ($index >= 1) {
+                                $row = intval($index + 1);
+                                foreach (self::SECTION_MAP as $column => $item) {
+                                    $cellName = $column . $row;
+                                    $cellValue = $rowData[$item];
+                                    $sheet->cell($cellName, function ($cell) use ($cellValue) {
+                                        $cell->setValue($cellValue);
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }
+                if (in_array($sheetName, ['part_a', 'part_a', 'part_b', 'part_c', 'part_d', 'part_e', 'part_f',])) {
+                    $excel->sheet($sheetName, function ($sheet) use ($sheetData) {
+                        $sheet->rows($sheetData);
+                    });
+                }
             }
-            // ob_end_clean();
         })->export('xlsx');
 
     }
+
 }
