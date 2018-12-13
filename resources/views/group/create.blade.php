@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'POST', 'route'=> 'group.store']) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">Section ID</label>
                 <input name="section_id" class="form-control" placeholder="Exam ID" value="{{ $section['id'] or '' }}" readonly/>
             </div>

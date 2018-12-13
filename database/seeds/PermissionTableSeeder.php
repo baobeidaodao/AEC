@@ -47,7 +47,7 @@ class PermissionTableSeeder extends Seeder
 
         // 创建相应的初始权限
         $permissionArray = [];
-        $permissionArray[] = ['name' => 'login', 'display_name' => '登录平台', 'description' => '登录平台',];
+        $permissionArray[] = ['name' => 'admin', 'display_name' => '超级管理员', 'description' => '超级管理员',];
         $permissionArray[] = ['name' => 'view_role', 'display_name' => '查看角色', 'description' => '查看角色',];
         $permissionArray[] = ['name' => 'create_role', 'display_name' => '创建角色', 'description' => '创建角色',];
         $permissionArray[] = ['name' => 'edit_role', 'display_name' => '编辑角色', 'description' => '编辑角色',];

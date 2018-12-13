@@ -19,7 +19,7 @@ $oldPartCTeacherId = old('part_c_teacher_id');
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'POST', 'route'=> 'item.store']) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">Group ID</label>
                 <input name="group_id" class="form-control" placeholder="Group ID" value="{{ $group['id'] or '' }}" readonly/>
             </div>

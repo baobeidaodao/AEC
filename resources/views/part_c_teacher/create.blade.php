@@ -18,11 +18,11 @@
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'POST', 'route'=> 'part_c_teacher.store']) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">Application ID</label>
                 <input name="application_id" class="form-control" placeholder="Application ID" value="{{ $application['id'] or '' }}" readonly/>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">Part C ID</label>
                 <input name="part_c_id" class="form-control" placeholder="Part C ID" value="{{ $partC['id'] or '' }}" readonly/>
             </div>

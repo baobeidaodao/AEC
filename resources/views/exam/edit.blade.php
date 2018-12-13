@@ -13,12 +13,12 @@
     @include('application.nav')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Exam</h3>
+            <h3 class="card-title">AEC2</h3>
             <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-sm btn-outline-danger btn-icon ml-auto"><i class="fe fe-x"></i></a>
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'patch', 'route' => ['exam.update', $exam['id']], ]) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">ID</label>
                 <input name="id" class="form-control" placeholder="ID" value="{{ $exam['id'] or '' }}" readonly/>
             </div>

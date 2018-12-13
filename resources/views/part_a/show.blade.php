@@ -18,15 +18,15 @@
         </div>
         <div class="card-body">
             <form>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">ID</label>
                     <input class="form-control" placeholder="ID" value="{{ $partA['id'] or '' }}" readonly/>
                 </div>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">Application ID</label>
                     <input class="form-control" placeholder="AEC" value="{{ $partA['application']['id'] or '' }}" readonly/>
                 </div>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">School ID</label>
                     <input class="form-control" placeholder="School ID" value="{{ $partA['school_id'] or '' }}" readonly/>
                 </div>

@@ -13,12 +13,13 @@
     @include('application.nav')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto">Exam</a></h3>
+            <h3 class="card-title"><a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn @if($exam['check']==1) btn-outline-success @else btn-outline-danger @endif btn-sm btn-icon ml-auto">AEC2</a></h3>
+            <div class="ml-auto">Total Hours : {{$exam['totalHours'] or ''}}</div>
             <div class="btn-list ml-auto">
-                <a href="{{url('/admin/section/create?exam_id=')}}{{$exam['id'] or ''}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i></a>
-                <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto"><i class="fe fe-eye"></i></a>
-                <a href="{{url('/admin/exam/' . $exam['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto"><i class="fe fe-edit"></i></a>
-                <a href="{{url('/admin/application/')}}" class="btn btn-outline-danger btn-sm btn-icon ml-auto"><i class="fe fe-x"></i></a>
+                <a href="{{url('/admin/section/create?exam_id=')}}{{$exam['id'] or ''}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>添加考试日 Section</a>
+                <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto" hidden><i class="fe fe-eye"></i></a>
+                <a href="{{url('/admin/exam/' . $exam['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto" hidden><i class="fe fe-edit"></i></a>
+                <a href="{{url('/admin/application/')}}" class="btn btn-outline-danger btn-sm btn-icon ml-auto" hidden><i class="fe fe-x"></i></a>
             </div>
         </div>
     </div>

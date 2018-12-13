@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
+use App\Models\Studio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -58,6 +59,11 @@ class SchoolController extends Controller
         $data = [];
         $data['active'] = $this->active;
         $data['school'] = $school;
+        $studioList = Studio::with(['school', 'country'])
+            ->where('school_id', '=', $school['id'])
+            ->get()
+            ->toArray();
+        $data['studioList'] = $studioList;
         return view('school.show', $data);
     }
 
@@ -72,6 +78,11 @@ class SchoolController extends Controller
         $data = [];
         $data['active'] = $this->active;
         $data['school'] = $school;
+        $studioList = Studio::with(['school', 'country'])
+            ->where('school_id', '=', $school['id'])
+            ->get()
+            ->toArray();
+        $data['studioList'] = $studioList;
         return view('school.edit', $data);
     }
 

@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             <form>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">ID</label>
                     <input class="form-control" placeholder="ID" value="{{ $user['id'] or '' }}" readonly/>
                 </div>

@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'patch', 'route' => ['application.update', $application['id']], ]) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">ID</label>
                 <input name="id" class="form-control" placeholder="ID" value="{{ $application['id'] or '' }}" readonly/>
             </div>

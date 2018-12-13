@@ -12,7 +12,9 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Part C Teacher</h3>
-                <a href="{{url('/admin/part_c_teacher/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm btn-icon  ml-auto"><i class="fe fe-plus"></i></a>
+                @if(count($partC['part_c_teacher_list'])<6)
+                    <a href="{{url('/admin/part_c_teacher/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm btn-icon  ml-auto"><i class="fe fe-plus"></i></a>
+                @endif
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap">

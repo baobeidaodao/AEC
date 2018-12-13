@@ -25,4 +25,13 @@ class Permission extends EntrustPermission
         'description',
     ];
 
+    public static function userHasPermission($userId, $permission = '')
+    {
+        $count = (new Permission)->leftJoin('permission_role', 'permissions.id', '=', 'permission_role.permission_id')
+            ->leftJoin('role_user', 'permission_role.role_id', '=', 'role_user.role_id')
+            ->where('role_user.user_id', '=', $userId)
+            ->where('permissions.name', '=', $permission)
+            ->count();
+        return $count > 0 ? true : false;
+    }
 }

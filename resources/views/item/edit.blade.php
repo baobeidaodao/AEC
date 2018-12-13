@@ -18,11 +18,11 @@
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'patch', 'route' => ['item.update', $item['id']], ]) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">ID</label>
                 <input name="id" class="form-control" placeholder="ID" value="{{ $item['id'] or '' }}" readonly/>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">Group ID</label>
                 <input name="group_id" class="form-control" placeholder="Group ID" value="{{ $item['group']['id'] or '' }}" readonly/>
             </div>

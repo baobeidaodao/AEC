@@ -18,15 +18,15 @@
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'patch', 'route' => ['part_c_teacher.update', $partCTeacher['id']], ]) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">ID</label>
                 <input name="id" class="form-control" placeholder="ID" value="{{ $partCTeacher['id'] or '' }}" readonly/>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">Application ID</label>
                 <input name="application_id" class="form-control" placeholder="Application ID" value="{{  $application['id'] or '' }}" readonly/>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">Part C ID</label>
                 <input name="part_c_id" class="form-control" placeholder="Part C ID" value="{{ $partCTeacher['part_c_id'] or '' }}" readonly/>
             </div>

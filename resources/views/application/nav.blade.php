@@ -10,7 +10,7 @@
 <div class="card">
     <div class="card-body">
         @if(isset($application) && !empty($application) && isset($application['id']) && !empty($application['id']))
-            <a href="{{url('/admin/application/')}}" class="btn btn-sm @if(isset($nav) && $nav=='application') btn-success @else btn-outline-success @endif">Application</a>
+            <a href="{{url('/admin/application/')}}" class="btn btn-sm @if(isset($nav) && $nav=='application') btn-success @else btn-outline-success @endif">Application {{$application['id'] or ''}}</a>
             <a class="btn btn-sm"><i class="fe fe-chevrons-right"></i></a>
             @if(isset($application['part_a']) && !empty($application['part_a']) && isset($application['part_a']['id']) && !empty($application['part_a']['id']))
                 <a href="{{url('/admin/part_a/' . $application['part_a']['id'] . '/edit')}}"
@@ -64,11 +64,11 @@
         @if(isset($application) && !empty($application) && isset($application['id']) && !empty($application['id']))
             <a class="btn btn-sm"><i class="fe fe-chevrons-right"></i></a>
             @if(isset($application['exam']) && !empty($application['exam']) && isset($application['exam']['id']) && !empty($application['exam']['id']))
-                <a href="{{url('/admin/exam/' . $application['exam']['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') btn-success @else btn-outline-success @endif">Exam</a>
+                <a href="{{url('/admin/exam/' . $application['exam']['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') @if($application['exam']['check']==1) btn-success @else btn-danger @endif @else @if($application['exam']['check']==1) btn-outline-success @else btn-outline-danger @endif @endif">AEC2</a>
             @elseif(isset($exam) && !empty($exam) && isset($exam['id']) && !empty($exam['id'])))
-            <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') btn-success @else btn-outline-success @endif">Exam</a>
+            <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') @if($exam['check']==1) btn-success @else btn-danger @endif @else @if($exam['check']==1) btn-outline-success @else btn-outline-danger @endif @endif">AEC2</a>
             @else
-                <a href="{{url('/admin/exam/create?application_id=' . $application['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') btn-info @else btn-outline-info @endif">Exam</a>
+                <a href="{{url('/admin/exam/create?application_id=' . $application['id'])}}" class="btn btn-sm @if(isset($nav) && $nav=='exam') btn-info @else btn-outline-info @endif">AEC2</a>
             @endif
         @endif
 

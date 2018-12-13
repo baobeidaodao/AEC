@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             <form>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">ID</label>
                     <input class="form-control" placeholder="ID" value="{{ $school['id'] or '' }}" readonly/>
                 </div>
@@ -40,4 +40,5 @@
             </form>
         </div>
     </div>
+    @include('school.studio')
 @endsection

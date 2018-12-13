@@ -118,6 +118,8 @@ class ExamController extends Controller
             $exam = [];
         }
         // dd($exam);
+        $totalHours = Exam::totalHours($exam);
+        $exam['totalHours'] = $totalHours;
         $applicationId = $exam['application_id'];
         $application = Application::with(Application::WITH)->find($applicationId);
         if ($application) {

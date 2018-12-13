@@ -18,11 +18,11 @@
         </div>
         <div class="card-body">
             <form>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">ID</label>
                     <input class="form-control" placeholder="ID" value="{{ $section['id'] or '' }}" readonly/>
                 </div>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">Exam ID</label>
                     <input class="form-control" placeholder="Exam ID" value="{{ $section['exam']['id'] or '' }}" readonly/>
                 </div>

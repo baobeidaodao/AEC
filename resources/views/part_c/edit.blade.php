@@ -20,7 +20,7 @@
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'patch', 'route' => ['part_c.update', $partC['id']], ]) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">ID</label>
                 <input name="id" class="form-control" placeholder="ID" value="{{ $partC['id'] or '' }}" readonly/>
             </div>

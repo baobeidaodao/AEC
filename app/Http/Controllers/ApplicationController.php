@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Aec;
 use App\Models\Application;
+use App\Models\Permission;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +23,14 @@ class ApplicationController extends Controller
 
     public function index()
     {
-        $applicationList = Application::with(['aec', 'user', 'partA', 'partB', 'partC', 'partD', 'partE', 'partF', 'exam',])->get()->toArray();
+        $applicationList = Application::with(['aec', 'user', 'partA', 'partB', 'partC', 'partD', 'partE', 'partF', 'exam',])
+            ->where(function ($query) {
+                $userId = Auth::id();
+                if (!Permission::userHasPermission($userId, 'admin')) {
+                    $query->where('created_user_id', '=', $userId);
+                }
+            })
+            ->get()->toArray();
         $data = [];
         $data['active'] = $this->active;
         $data['nav'] = $this->nav;

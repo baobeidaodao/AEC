@@ -18,11 +18,11 @@
         </div>
         <div class="card-body">
             <form>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">ID</label>
                     <input class="form-control" placeholder="ID" value="{{ $partB['id'] or '' }}" readonly/>
                 </div>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">Application ID</label>
                     <input class="form-control" placeholder="Application ID" value="{{ $partB['application']['id'] or '' }}" readonly/>
                 </div>
@@ -30,7 +30,7 @@
                     <label class="form-label">Country</label>
                     <input class="form-control" placeholder="Country" value="{{ $partB['country']['name'] or '' }}" readonly/>
                 </div>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label class="form-label">Studio ID</label>
                     <input class="form-control" placeholder="Studio ID" value="{{ $partB['studio_id'] or '' }}" readonly/>
                 </div>

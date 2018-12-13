@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'patch', 'route' => ['school.update', $school['id']], ]) !!}
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label class="form-label">ID</label>
                 <input name="id" class="form-control" placeholder="ID" value="{{ $school['id'] or '' }}" readonly/>
             </div>
@@ -43,4 +43,5 @@
             {!! Form::close() !!}
         </div>
     </div>
+    @include('school.studio')
 @endsection

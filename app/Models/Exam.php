@@ -186,4 +186,23 @@ class Exam extends Model
         return $data;
     }
 
+    public static function totalHours($exam)
+    {
+        $second = 0;
+        $minute = 0;
+        $hour = 0;
+        if (isset($exam['section_list'])) {
+            foreach ($exam['section_list'] as $section) {
+                if (isset($section['group_list'])) {
+                    foreach ($section['group_list'] as $group) {
+                        $second = $second + strtotime($group['finish_time']) - strtotime($group['exam_time']);
+                    }
+                }
+            }
+            $minute = intval(intval($second / 60) % 60);
+            $hour = intval($second / 60 / 60);
+        }
+        return $hour . 'HOUR' . $minute . 'MIN';
+    }
+
 }

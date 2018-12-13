@@ -33,7 +33,9 @@
                             <th>Part</th>
                             <th>Check</th>
                             <th>Operation</th>
+                            @permission('admin')
                             <th>Export</th>
+                            @endpermission
                         </tr>
                         </thead>
                         <tbody>
@@ -91,9 +93,9 @@
                                         @endif
                                         @if(isset($application['exam']) && !empty($application['exam']) && isset($application['exam']['id']) && !empty($application['exam']['id']))
                                             <a href="{{url('/admin/exam/' . $application['exam']['id'])}}"
-                                               class="btn @if(isset($application['exam']['check']) && $application['exam']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm"><i class="fe fe-grid"></i></a>
+                                               class="btn @if(isset($application['exam']['check']) && $application['exam']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm">AEC2</a>
                                         @else
-                                            <a href="{{url('/admin/exam/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm"><i class="fe fe-grid"></i></a>
+                                            <a href="{{url('/admin/exam/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm">AEC2</a>
                                         @endif
                                     </div>
                                 </td>
@@ -112,6 +114,7 @@
                                         {!! Form::open(['id' => 'delete'.$application['id'], 'method' => 'delete', 'route' => ['application.destroy', $application['id']], ]) !!}{!! Form::close() !!}
                                     </div>
                                 </td>
+                                @permission('admin')
                                 <td>
                                     @if(isset($application['check']) && $application['check'] == 1)
                                         <a href="{{url('/admin/export/' . $application['id'])}}" class="btn btn-outline-success btn-sm btn-icon"><i class="fe fe-download"></i></a>
@@ -119,6 +122,7 @@
                                         <a href="javascript:void(0)" class="btn btn-outline-dark btn-sm btn-icon"><i class="fe fe-download"></i></a>
                                     @endif
                                 </td>
+                                @endpermission
                             </tr>
                         @endforeach
                         </tbody>

@@ -51,29 +51,43 @@
             </div>
             <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                    @role('admin')
                     <li class="nav-item">
-                        <a href="{{url('/index')}}" class="nav-link @if(!isset($active) || $active == 'index') active @endif"><i class="fe fe-home"></i>Index</a>
+                        <a href="{{url('/index')}}" class="nav-link @if(!isset($active) || $active == 'index') active @endif"><i class="fe fe-home"></i>Index 首页</a>
                     </li>
+                    @endrole
+                    @permission('admin')
                     <li class="nav-item">
-                        <a href="{{url('/admin/user')}}" class="nav-link @if(isset($active) && $active == 'user') active @endif"><i class="fe fe-users"></i>User</a>
+                        <a href="{{url('/admin/user')}}" class="nav-link @if(isset($active) && $active == 'user') active @endif"><i class="fe fe-users"></i>User 用户</a>
                     </li>
+                    @endpermission
+                    @permission('admin')
                     <li class="nav-item">
-                        <a href="{{url('/admin/school')}}" class="nav-link @if(isset($active) && $active == 'school') active @endif"><i class="fe fe-book-open"></i>School</a>
+                        <a href="{{url('/admin/school')}}" class="nav-link @if(isset($active) && $active == 'school') active @endif"><i class="fe fe-book-open"></i>School 注册学校</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{url('/admin/studio')}}" class="nav-link @if(isset($active) && $active == 'studio') active @endif"><i class="fe fe-home"></i>Studio</a>
+                    @endpermission
+                    @permission('admin')
+                    <li class="nav-item" hidden>
+                        <a href="{{url('/admin/studio')}}" class="nav-link @if(isset($active) && $active == 'studio') active @endif"><i class="fe fe-home"></i>Studio 考场地点</a>
                     </li>
+                    @endpermission
+                    @permission('admin')
                     <li class="nav-item">
-                        <a href="{{url('/admin/teacher')}}" class="nav-link @if(isset($active) && $active == 'teacher') active @endif"><i class="fe fe-users"></i>Teacher</a>
+                        <a href="{{url('/admin/teacher')}}" class="nav-link @if(isset($active) && $active == 'teacher') active @endif"><i class="fe fe-users"></i>Teacher 注册教师</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{url('/admin/student')}}" class="nav-link @if(isset($active) && $active == 'student') active @endif"><i class="fe fe-users"></i>Student</a>
+                    @endpermission
+                    @permission('admin')
+                    <li class="nav-item" hidden>
+                        <a href="{{url('/admin/student')}}" class="nav-link @if(isset($active) && $active == 'student') active @endif"><i class="fe fe-users"></i>Student 学生</a>
                     </li>
+                    @endpermission
+                    @permission('admin')
                     <li class="nav-item">
-                        <a href="{{url('/admin/applicant')}}" class="nav-link @if(isset($active) && $active == 'applicant') active @endif"><i class="fe fe-users"></i>Applicant</a>
+                        <a href="{{url('/admin/applicant')}}" class="nav-link @if(isset($active) && $active == 'applicant') active @endif"><i class="fe fe-users"></i>Applicant 申请人信息</a>
                     </li>
+                    @endpermission
                     <li class="nav-item">
-                        <a href="{{url('/admin/application')}}" class="nav-link @if(isset($active) && $active == 'application') active @endif"><i class="fe fe-grid"></i>Application</a>
+                        <a href="{{url('/admin/application')}}" class="nav-link @if(isset($active) && $active == 'application') active @endif"><i class="fe fe-grid"></i>Application 申请</a>
                     </li>
                 </ul>
             </div>

@@ -72,7 +72,7 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('register') }}" hidden>Register</a>
                     @endauth
                 </div>
             @endif
@@ -82,7 +82,7 @@
                     AEC
                 </div>
 
-                <div class="links">
+                <div class="links" hidden>
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
