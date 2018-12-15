@@ -18,7 +18,8 @@
             todayHighlight: 1,
             startView: '{{$startView or 2}}',
             minView: 2,
-            forceParse: 0
+            forceParse: 0,
+            keyboardNavigation: true,
         });
     });
 </script>

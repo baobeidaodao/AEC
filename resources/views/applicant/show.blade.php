@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Delivery Date</label>
-                    <input class="form-control" placeholder="Delivery Date" value="{{ $applicant['delivery_date'] or '' }}" readonly/>
+                    <input class="form-control" placeholder="Delivery Date" value="{{date('Y-m-d', strtotime($applicant['delivery_date']))}}" readonly/>
                 </div>
                 <div class="form-group">
                     <div class="form-label">Neighbour</div>

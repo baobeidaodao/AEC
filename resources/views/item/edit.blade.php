@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Item</h3>
-            <a href="{{url('/admin/item/?group_id=' . $group['id'])}}" class="btn btn-sm btn-outline-danger btn-icon ml-auto"><i class="fe fe-x"></i></a>
+            <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-sm btn-outline-danger btn-icon ml-auto"><i class="fe fe-x"></i></a>
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'patch', 'route' => ['item.update', $item['id']], ]) !!}
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Birth Date</label>
-                @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => $item['student']['birth_date'], ])
+                @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => date('Y-m-d', strtotime($item['student']['birth_date'])), 'format'=>'yyyy-mm-dd'])
             </div>
             <div class="form-group">
                 <div class="form-label">Sex</div>

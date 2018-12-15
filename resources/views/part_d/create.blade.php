@@ -72,7 +72,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Delivery Date</label>
-                @include('public.datetime_picker', ['id' => 'deliveryDate', 'name' => 'delivery_date', 'placeholder' => 'Delivery Date', 'value' => old('delivery_date'), 'format' => 'yyyy-mm-dd hh:ii:ss', ])
+                @include('public.datetime_picker', ['id' => 'deliveryDate', 'name' => 'delivery_date', 'placeholder' => 'Delivery Date', 'value' => old('delivery_date'), 'format' => 'yyyy-mm-dd', ])
             </div>
             <div class="form-group">
                 <div class="form-label">Neighbour</div>

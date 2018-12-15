@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Item</h3>
-            <a href="{{url('/admin/item/?group_id=' . $group['id'])}}" class="btn btn-sm btn-outline-danger btn-icon ml-auto"><i class="fe fe-x"></i></a>
+            <a href="{{url('/admin/exam/' . $exam['id'])}}" class="btn btn-sm btn-outline-danger btn-icon ml-auto"><i class="fe fe-x"></i></a>
         </div>
         <div class="card-body">
             <form>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Birth Date</label>
-                    <input class="form-control" placeholder="Birth Date" value="{{ $item['student']['birth_date'] or '' }}" readonly/>
+                    <input class="form-control" placeholder="Birth Date" value="{{ date('y-m-d', strtotime($item['student']['birth_date']))}}" readonly/>
                 </div>
                 <div class="form-group">
                     <div class="form-label">Sex</div>

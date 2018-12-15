@@ -93,8 +93,8 @@ class SectionController extends Controller
         $section = (new Section)->create([
             'exam_id' => $request->exam_id,
             'number' => $request->number,
-            'exam_time' => $request->exam_time,
-            'finish_time' => $request->exam_time,
+            'exam_time' => date('Y-m-d ') . $request->exam_time . ':00',
+            'finish_time' => date('Y-m-d ') . $request->exam_time . ':00',
         ]);
         Section::check($section->id);
         Section::calculate($section->id);
@@ -180,7 +180,7 @@ class SectionController extends Controller
         $section->fill([
             'exam_id' => $request->exam_id,
             'number' => $request->number,
-            'exam_time' => $request->exam_time,
+            'exam_time' => date('Y-m-d ') . $request->exam_time . ':00',
         ])->save();
         Section::calculate($section->id);
         $application = Section::findApplicationBySectionId($section->id);

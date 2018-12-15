@@ -41,7 +41,7 @@ $oldPartCTeacherId = old('part_c_teacher_id');
             </div>
             <div class="form-group">
                 <label class="form-label">Birth Date</label>
-                @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => old('birth_date'), ])
+                @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => old('birth_date'), 'format'=>'yyyy-mm-dd',])
             </div>
             <div class="form-group">
                 <div class="form-label">Sex</div>

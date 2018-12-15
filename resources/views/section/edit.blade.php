@@ -32,7 +32,8 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Exam Time</label>
-                @include('public.datetime_picker', ['id' => 'examTime', 'name' => 'exam_time', 'placeholder' => 'exam_time', 'value' => $section['exam_time'], 'format' => 'yyyy-mm-dd hh:ii:ss', 'startView' => 0])
+                {{--@include('public.datetime_picker', ['id' => 'examTime', 'name' => 'exam_time', 'placeholder' => 'exam_time', 'value' => date('H:i', strtotime($section['exam_time'])), 'format' => 'hh:ii', 'startView' => 0])--}}
+                @include('public.datetime_picker', ['id' => 'examTime', 'name' => 'exam_time', 'placeholder' => 'exam_time', 'value' => $section['exam_time'], 'format' => 'hh:ii', 'startView' => 0])
             </div>
             <div class="form-footer text-center">
                 <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save</button>

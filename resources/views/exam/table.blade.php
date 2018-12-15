@@ -71,7 +71,7 @@
                                         <td>{{$item['student']['number'] or ''}}</td>
                                         <td>{{$item['student']['given_name'] or ''}}</td>
                                         <td>{{$item['student']['family_name'] or ''}}</td>
-                                        <td>{{$item['student']['birth_date']}}</td>
+                                        <td>{{date('Y-m-d', strtotime($item['student']['birth_date']))}}</td>
                                         <td>@if($item['student']['sex'] == 1) M @else F @endif</td>
                                         <td>
                                             @foreach($item['item_part_c_teacher_list'] as $itemPartCTeacher)
