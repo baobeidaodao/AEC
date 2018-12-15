@@ -11,11 +11,11 @@
 
 @section('container')
     @include('application.nav')
-    <div class="card">
+    <div class="card" hidden>
         <div class="card-header">
             <h3 class="card-title">Part C</h3>
             <div class="btn-list ml-auto">
-                <a href="{{url('/admin/application')}}/{{$application['id'] or ''}}" class="btn btn-sm btn-outline-danger btn-icon"><i class="fe fe-x"></i></a>
+                <a href="{{url('/admin/application')}}" class="btn btn-sm btn-outline-danger btn-icon"><i class="fe fe-x"></i></a>
             </div>
         </div>
         <div class="card-body">

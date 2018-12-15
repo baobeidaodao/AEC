@@ -111,8 +111,12 @@ class PartDController extends Controller
             'delivery_date' => $request->delivery_date,
             'neighbour' => $request->neighbour,
         ]);
-        PartD::check($partD->id);
-        return redirect('admin/part_d/' . $partD->id);
+        $partD = PartD::check($partD->id);
+        if ($partD->check == 1) {
+            return redirect('/admin/part_e/create?application_id=' . $request->application_id);
+        } else {
+            return redirect('admin/part_d/' . $partD->id);
+        }
     }
 
     public function show($id)
@@ -210,7 +214,8 @@ class PartDController extends Controller
             'neighbour' => $request->neighbour,
         ])->save();
         PartD::check($partD->id);
-        return redirect('admin/part_d/' . $partD->id);
+        // return redirect('admin/part_d/' . $partD->id);
+        return redirect('admin/application/');
     }
 
     public function destroy($id)

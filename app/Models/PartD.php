@@ -63,6 +63,7 @@ class PartD extends Model
             $partD->check = self::CHECK_INVALID;
         }
         $partD->save();
+        return $partD;
     }
 
     public static function export($id)

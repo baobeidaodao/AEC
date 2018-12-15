@@ -118,8 +118,12 @@ class PartBController extends Controller
             'tel' => $request->tel,
             'examination_day_contact_tel' => $request->examination_day_contact_tel,
         ]);
-        PartB::check($partB->id);
-        return redirect('admin/part_b/' . $partB->id);
+        $partB = PartB::check($partB->id);
+        if ($partB->check == 1) {
+            return redirect('/admin/part_c/create?application_id=' . $request->application_id);
+        } else {
+            return redirect('admin/part_b/' . $partB->id);
+        }
     }
 
     public function show($id)
@@ -221,7 +225,8 @@ class PartBController extends Controller
             'examination_day_contact_tel' => $request->examination_day_contact_tel,
         ])->save();
         PartB::check($partB->id);
-        return redirect('admin/part_b/' . $partB->id);
+        // return redirect('admin/part_b/' . $partB->id);
+        return redirect('admin/application/');
     }
 
     public function destroy($id)

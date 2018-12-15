@@ -100,8 +100,12 @@ class PartAController extends Controller
             'email' => $request->email,
             'tel' => $request->tel,
         ]);
-        PartA::check($partA->id);
-        return redirect('admin/part_a/' . $partA->id);
+        $partA = PartA::check($partA->id);
+        if ($partA->check == 1) {
+            return redirect('/admin/part_b/create?application_id=' . $request->application_id);
+        } else {
+            return redirect('admin/part_a/' . $partA->id);
+        }
     }
 
     public function show($id)
@@ -188,7 +192,8 @@ class PartAController extends Controller
             'tel' => $request->tel,
         ])->save();
         PartA::check($partA->id);
-        return redirect('admin/part_a/' . $partA->id);
+        // return redirect('admin/part_a/' . $partA->id);
+        return redirect('admin/application/');
     }
 
     public function destroy($id)

@@ -60,6 +60,7 @@ class PartB extends Model
             $partB->check = self::CHECK_INVALID;
         }
         $partB->save();
+        return $partB;
     }
 
     public static function export($id)

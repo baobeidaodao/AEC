@@ -54,7 +54,7 @@
                                     {{ $application['created_at'] or '' }}
                                 </td>
                                 <td>
-                                    <div class="btn-list text-center">
+                                    <div class="btn-list">
                                         @if(isset($application['part_a']) && !empty($application['part_a']) && isset($application['part_a']['id']) && !empty($application['part_a']['id']))
                                             <a href="{{url('/admin/part_a/' . $application['part_a']['id'] . '/edit')}}"
                                                class="btn @if(isset($application['part_a']['check']) && $application['part_a']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm">A</a>
@@ -64,38 +64,50 @@
                                         @if(isset($application['part_b']) && !empty($application['part_b']) && isset($application['part_b']['id']) && !empty($application['part_b']['id']))
                                             <a href="{{url('/admin/part_b/' . $application['part_b']['id'] . '/edit')}}"
                                                class="btn @if(isset($application['part_b']['check']) && $application['part_b']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm">B</a>
-                                        @else
+                                        @elseif(isset($application['part_a']) && !empty($application['part_a']) && isset($application['part_a']['check']) && $application['part_a']['check'] == 1)
                                             <a href="{{url('/admin/part_b/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm">B</a>
+                                        @else
+                                            <a href="javascript:void(0);" class="btn btn-outline-dark btn-sm">B</a>
                                         @endif
                                         @if(isset($application['part_c']) && !empty($application['part_c']) && isset($application['part_c']['id']) && !empty($application['part_c']['id']))
                                             <a href="{{url('/admin/part_c/' . $application['part_c']['id'] . '/edit')}}"
                                                class="btn @if(isset($application['part_c']['check']) && $application['part_c']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm">C</a>
-                                        @else
+                                        @elseif(isset($application['part_b']) && !empty($application['part_b']) && isset($application['part_b']['check']) && $application['part_b']['check'] == 1)
                                             <a href="{{url('/admin/part_c/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm">C</a>
+                                        @else
+                                            <a href="javascript:void(0);" class="btn btn-outline-dark btn-sm">C</a>
                                         @endif
                                         @if(isset($application['part_d']) && !empty($application['part_d']) && isset($application['part_d']['id']) && !empty($application['part_d']['id']))
                                             <a href="{{url('/admin/part_d/' . $application['part_d']['id'] . '/edit')}}"
                                                class="btn @if(isset($application['part_d']['check']) && $application['part_d']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm">D</a>
-                                        @else
+                                        @elseif(isset($application['part_c']) && !empty($application['part_c']) && isset($application['part_c']['check']) && $application['part_c']['check'] == 1)
                                             <a href="{{url('/admin/part_d/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm">D</a>
+                                        @else
+                                            <a href="javascript:void(0);" class="btn btn-outline-dark btn-sm">D</a>
                                         @endif
                                         @if(isset($application['part_e']) && !empty($application['part_e']) && isset($application['part_e']['id']) && !empty($application['part_e']['id']))
                                             <a href="{{url('/admin/part_e/' . $application['part_e']['id'] . '/edit')}}"
                                                class="btn @if(isset($application['part_e']['check']) && $application['part_e']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm">E</a>
-                                        @else
+                                        @elseif(isset($application['part_d']) && !empty($application['part_d']) && isset($application['part_d']['check']) && $application['part_d']['check'] == 1)
                                             <a href="{{url('/admin/part_e/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm">E</a>
+                                        @else
+                                            <a href="javascript:void(0);" class="btn btn-outline-dark btn-sm">E</a>
                                         @endif
                                         @if(isset($application['part_f']) && !empty($application['part_f']) && isset($application['part_f']['id']) && !empty($application['part_f']['id']))
                                             <a href="{{url('/admin/part_f/' . $application['part_f']['id'] . '/edit')}}"
                                                class="btn @if(isset($application['part_f']['check']) && $application['part_f']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm">F</a>
-                                        @else
+                                        @elseif(isset($application['part_e']) && !empty($application['part_e']) && isset($application['part_e']['check']) && $application['part_e']['check'] == 1)
                                             <a href="{{url('/admin/part_f/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm">F</a>
+                                        @else
+                                            <a href="javascript:void(0);" class="btn btn-outline-dark btn-sm">E</a>
                                         @endif
                                         @if(isset($application['exam']) && !empty($application['exam']) && isset($application['exam']['id']) && !empty($application['exam']['id']))
                                             <a href="{{url('/admin/exam/' . $application['exam']['id'])}}"
                                                class="btn @if(isset($application['exam']['check']) && $application['exam']['check'] == 1) btn-outline-success @else btn-outline-danger @endif btn-sm">AEC2</a>
-                                        @else
+                                        @elseif(isset($application['part_f']) && !empty($application['part_f']) && isset($application['part_f']['check']) && $application['part_f']['check'] == 1)
                                             <a href="{{url('/admin/exam/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm">AEC2</a>
+                                        @else
+                                            <a href="javascript:void(0);" class="btn btn-outline-dark btn-sm">AEC2</a>
                                         @endif
                                     </div>
                                 </td>
@@ -107,7 +119,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="btn-list text-center">
+                                    <div class="btn-list">
                                         <a href="{{url('/admin/application/' . $application['id'])}}" class="btn btn-outline-success btn-sm btn-icon"><i class="fe fe-eye"></i></a>
                                         <a href="{{url('/admin/application/' . $application['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon"><i class="fe fe-edit"></i></a>
                                         <a href="javascript:void(0)" onclick="$('#delete{{$application['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon"><i class="fe fe-trash-2"></i></a>

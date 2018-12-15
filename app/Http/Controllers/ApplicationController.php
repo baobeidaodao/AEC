@@ -30,7 +30,8 @@ class ApplicationController extends Controller
                     $query->where('created_user_id', '=', $userId);
                 }
             })
-            ->get()->toArray();
+            ->get()
+            ->toArray();
         $data = [];
         $data['active'] = $this->active;
         $data['nav'] = $this->nav;

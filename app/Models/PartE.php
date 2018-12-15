@@ -100,6 +100,7 @@ class PartE extends Model
             $partE->check = self::CHECK_INVALID;
         }
         $partE->save();
+        return $partE;
     }
 
     public static function calculate($applicationId)

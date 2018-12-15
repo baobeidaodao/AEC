@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Part B</h3>
-                    <a href="{{url('/admin/application')}}/{{$application['id'] or ''}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i></a>
+                    <a href="{{url('/admin/application')}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap">
@@ -61,7 +61,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="btn-list text-center">
+                                    <div class="btn-list">
                                         <a href="{{url('/admin/part_b/' . $partB['id'])}}" class="btn btn-outline-success btn-sm btn-icon"><i class="fe fe-eye"></i></a>
                                         <a href="{{url('/admin/part_b/' . $partB['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon"><i class="fe fe-edit"></i></a>
                                         <a href="javascript:void(0)" onclick="$('#delete{{$partB['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon"><i class="fe fe-trash-2"></i></a>

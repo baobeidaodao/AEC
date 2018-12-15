@@ -73,7 +73,8 @@ class ExamController extends Controller
         $data['active'] = $this->active;
         $data['nav'] = $this->nav;
         $data['application'] = $application;
-        return view('exam.create', $data);
+        // return view('exam.create', $data);
+        return $this->store($request);
     }
 
     public function store(Request $request)

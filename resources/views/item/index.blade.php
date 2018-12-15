@@ -80,7 +80,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="btn-list text-center">
+                                    <div class="btn-list">
                                         <a href="{{url('/admin/item/' . $item['id'])}}" class="btn btn-outline-success btn-sm btn-icon"><i class="fe fe-eye"></i></a>
                                         <a href="{{url('/admin/item/' . $item['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon"><i class="fe fe-edit"></i></a>
                                         <a href="javascript:void(0)" onclick="$('#delete{{$item['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon"><i class="fe fe-trash-2"></i></a>

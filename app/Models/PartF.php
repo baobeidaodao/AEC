@@ -45,6 +45,7 @@ class PartF extends Model
             $partF->check = self::CHECK_INVALID;
         }
         $partF->save();
+        return $partF;
     }
 
     public static function export($id)

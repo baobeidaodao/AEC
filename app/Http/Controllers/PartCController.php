@@ -12,6 +12,7 @@ use App\Models\Application;
 use App\Models\PartC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class PartCController extends Controller
@@ -59,7 +60,8 @@ class PartCController extends Controller
         $data['active'] = $this->active;
         $data['nav'] = $this->nav;
         $data['application'] = $application;
-        return view('part_c.create', $data);
+        // return view('part_c.create', $data);
+        return $this->store($request);
     }
 
     public function store(Request $request)

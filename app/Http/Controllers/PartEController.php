@@ -61,7 +61,8 @@ class PartEController extends Controller
         $data['active'] = $this->active;
         $data['nav'] = $this->nav;
         $data['application'] = $application;
-        return view('part_e.create', $data);
+        // return view('part_e.create', $data);
+        return $this->store($request);
     }
 
     public function store(Request $request)
@@ -72,8 +73,12 @@ class PartEController extends Controller
         $partE = (new PartE)->create([
             'application_id' => $request->application_id,
         ]);
-        PartE::check($partE->id);
-        return redirect('admin/part_e/' . $partE->id);
+        $partE = PartE::check($partE->id);
+        if ($partE->check == 1) {
+            return redirect('/admin/part_f/create?application_id=' . $request->application_id);
+        } else {
+            return redirect('admin/part_e/' . $partE->id);
+        }
     }
 
     public function show($id)
@@ -140,7 +145,8 @@ class PartEController extends Controller
             'application_id' => $request->application_id,
         ])->save();
         PartE::check($partE->id);
-        return redirect('admin/part_e/' . $partE->id);
+        // return redirect('admin/part_e/' . $partE->id);
+        return redirect('admin/application/');
     }
 
     public function destroy($id)

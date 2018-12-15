@@ -73,8 +73,12 @@ class PartFController extends Controller
             'applicant_id' => $request->applicant_id,
             'applicant_name' => $request->applicant_name,
         ]);
-        PartF::check($partF->id);
-        return redirect('admin/part_f/' . $partF->id);
+        $partF = PartF::check($partF->id);
+        if ($partF->check == 1) {
+            return redirect('/admin/exam/create?application_id=' . $request->application_id);
+        } else {
+            return redirect('admin/part_f/' . $partF->id);
+        }
     }
 
     public function show($id)
@@ -136,7 +140,8 @@ class PartFController extends Controller
             'applicant_name' => $request->applicant_name,
         ])->save();
         PartF::check($partF->id);
-        return redirect('admin/part_f/' . $partF->id);
+        // return redirect('admin/part_f/' . $partF->id);
+        return redirect('admin/application/');
     }
 
     public function destroy($id)

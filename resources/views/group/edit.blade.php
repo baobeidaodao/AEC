@@ -63,7 +63,7 @@
                 </select>
             </div>
             <div class="form-footer text-center">
-                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i></button>
+                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save</button>
             </div>
             {!! Form::close() !!}
         </div>

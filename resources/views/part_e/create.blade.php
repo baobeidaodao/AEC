@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Part E</h3>
-            <a href="{{url('/admin/application')}}/{{$application['id'] or ''}}" class="btn btn-sm btn-outline-danger btn-icon ml-auto"><i class="fe fe-x"></i></a>
+            <a href="{{url('/admin/application')}}" class="btn btn-sm btn-outline-danger btn-icon ml-auto"><i class="fe fe-x"></i></a>
         </div>
         <div class="card-body">
             {!! Form::open(['method' => 'POST', 'route'=> 'part_e.store']) !!}
@@ -23,7 +23,7 @@
                 <input name="application_id" class="form-control" placeholder="Application ID" value="{{ $application['id'] or '' }}" readonly/>
             </div>
             <div class="form-footer text-center">
-                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i></button>
+                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save & Next</button>
             </div>
             {!! Form::close() !!}
         </div>
