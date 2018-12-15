@@ -94,11 +94,11 @@
                             @endif
                             @if(isset($group['rest_id']) && !empty($group['rest_id']) && $group['rest_id']!=0)
                                 <tr>
-                                    <td>{{date('Hi', strtotime('-' . intval($group['rest']['minute']) . ' minute', strtotime($group['finish_time'])))}}</td>
+                                    <td>@if($group['rest']['name']!='No'){{date('Hi', strtotime('-' . intval($group['rest']['minute']) . ' minute', strtotime($group['finish_time'])))}}@endif</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>{{$group['rest']['name'] or ''}}</td>
+                                    <td>@if($group['rest']['name']!='No'){{$group['rest']['name'] or ''}}@endif</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
