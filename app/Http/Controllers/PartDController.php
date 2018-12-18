@@ -70,15 +70,15 @@ class PartDController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required',
-            'identity_id' => 'required',
-            'address_1' => 'required',
-            'post_code' => 'required',
-            'tel' => 'required',
-            'fax' => 'required',
-            'email' => 'required',
-            'delivery_date' => 'required',
-            'neighbour' => 'required',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
+            'identity_id' => 'required|max:255',
+            'address_1' => 'required|max:255',
+            'post_code' => 'required|max:255',
+            'tel' => 'required|max:255',
+            'fax' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'delivery_date' => 'required|max:255',
+            'neighbour' => 'required|max:255',
         ])->validate();
         $applicant = (new Applicant)->updateOrCreate([
             'name' => $request->applicant_name,
@@ -171,15 +171,15 @@ class PartDController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required',
-            'identity_id' => 'required',
-            'address_1' => 'required',
-            'post_code' => 'required',
-            'tel' => 'required',
-            'fax' => 'required',
-            'email' => 'required',
-            'delivery_date' => 'required',
-            'neighbour' => 'required',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
+            'identity_id' => 'required|max:255',
+            'address_1' => 'required|max:255',
+            'post_code' => 'required|max:255',
+            'tel' => 'required|max:255',
+            'fax' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'delivery_date' => 'required|max:255',
+            'neighbour' => 'required|max:255',
         ])->validate();
         $applicant = (new Applicant)->updateOrCreate([
             'name' => $request->applicant_name,

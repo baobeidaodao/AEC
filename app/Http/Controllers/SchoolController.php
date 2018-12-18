@@ -37,7 +37,7 @@ class SchoolController extends Controller
     {
         Validator::make($request->all(), [
             'name' => 'required|unique:school|max:255',
-            'email' => 'required|unique:school|max:255',
+            'email' => 'required|email|unique:school|max:255',
         ])->validate();
         $school = (new School)->create([
             'name' => $request->name,
@@ -90,7 +90,7 @@ class SchoolController extends Controller
     {
         Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'email' => 'required|max:255',
+            'email' => 'required|email|max:255',
         ])->validate();
         $school = (new School)->findOrFail($id);
         $school->fill([

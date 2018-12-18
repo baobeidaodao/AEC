@@ -66,7 +66,7 @@ class PartFController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
         ])->validate();
         $partF = (new PartF)->create([
             'application_id' => $request->application_id,
@@ -131,7 +131,7 @@ class PartFController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
         ])->validate();
         $partF = (new PartF)->findOrFail($id);
         $partF->fill([

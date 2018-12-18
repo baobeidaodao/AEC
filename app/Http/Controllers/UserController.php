@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         Validator::make($request->all(), [
             'name' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users|max:255',
+            'email' => 'required|email|unique:users|max:255',
         ])->validate();
         $user = (new User)->create([
             'name' => $request->name,
@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'email' => 'required|max:255',
+            'email' => 'required|email|max:255',
         ])->validate();
         $user = (new User)->findOrFail($id);
         $user->fill([

@@ -87,8 +87,8 @@ class SectionController extends Controller
     {
         Validator::make($request->all(), [
             'exam_id' => 'required',
-            'number' => 'required',
-            'exam_time' => 'required',
+            'number' => 'required|max:255',
+            'exam_time' => 'required|max:255',
         ])->validate();
         $section = (new Section)->create([
             'exam_id' => $request->exam_id,
@@ -173,8 +173,8 @@ class SectionController extends Controller
     {
         Validator::make($request->all(), [
             'exam_id' => 'required',
-            'number' => 'required',
-            'exam_time' => 'required',
+            'number' => 'required|max:255',
+            'exam_time' => 'required|max:255',
         ])->validate();
         $section = (new Section)->findOrFail($id);
         $section->fill([

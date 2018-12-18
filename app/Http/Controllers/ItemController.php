@@ -134,13 +134,13 @@ class ItemController extends Controller
     {
         Validator::make($request->all(), [
             'group_id' => 'required',
-            'number' => 'required',
-            'student_number' => 'required',
-            'given_name' => 'required',
-            'family_name' => 'required',
-            'birth_date' => 'required',
-            'sex' => 'required',
-            'part_c_teacher_id' => 'required',
+            'number' => 'required|max:255',
+            'student_number' => 'required|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
+            'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
+            'birth_date' => 'required|max:255',
+            'sex' => 'required|max:255',
+            'part_c_teacher_id' => 'required|max:255',
         ])->validate();
         if (isset($request->student_number) && !empty($request->student_number)) {
             $student = Student::where('number', '=', $request->student_number)->first();
@@ -312,13 +312,13 @@ class ItemController extends Controller
     {
         Validator::make($request->all(), [
             'group_id' => 'required',
-            'number' => 'required',
-            'student_number' => 'required',
-            'given_name' => 'required',
-            'family_name' => 'required',
-            'birth_date' => 'required',
-            'sex' => 'required',
-            'part_c_teacher_id' => 'required',
+            'number' => 'required|max:255',
+            'student_number' => 'required|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
+            'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
+            'birth_date' => 'required|max:255',
+            'sex' => 'required|max:255',
+            'part_c_teacher_id' => 'required|max:255',
         ])->validate();
         if (isset($request->student_number) && !empty($request->student_number)) {
             $student = Student::where('number', '=', $request->student_number)->first();

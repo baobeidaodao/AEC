@@ -68,9 +68,9 @@ class PartAController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'school_code' => 'required',
-            'school_name' => 'required',
-            'email' => 'required',
+            'school_code' => 'required|max:255',
+            'school_name' => 'required|max:255',
+            'email' => 'required|email|max:255',
             'tel' => 'required',
         ])->validate();
         if (isset($request->school_code) && !empty($request->school_code)) {
@@ -158,10 +158,10 @@ class PartAController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'school_code' => 'required',
-            'school_name' => 'required',
-            'email' => 'required',
-            'tel' => 'required',
+            'school_code' => 'required|max:255',
+            'school_name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'tel' => 'required|max:255',
         ])->validate();
         if (isset($request->school_code) && !empty($request->school_code)) {
             $school = School::where('code', '=', $request->school_code)->first();

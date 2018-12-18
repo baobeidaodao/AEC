@@ -69,9 +69,9 @@ class PartCTeacherController extends Controller
     {
         Validator::make($request->all(), [
             'part_c_id' => 'required',
-            'membership_id' => 'required',
-            'given_name' => 'required',
-            'family_name' => 'required',
+            'membership_id' => 'required|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
+            'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
         ],[
             'part_c_id.required' => 'please create part C first!'
         ])->validate();
@@ -147,9 +147,9 @@ class PartCTeacherController extends Controller
     {
         Validator::make($request->all(), [
             'part_c_id' => 'required',
-            'membership_id' => 'required',
-            'given_name' => 'required',
-            'family_name' => 'required',
+            'membership_id' => 'required|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
+            'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
         ],[
             'part_c_id.required' => 'please create part C first!'
         ])->validate();

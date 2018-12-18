@@ -115,10 +115,10 @@ class GroupController extends Controller
     {
         Validator::make($request->all(), [
             'section_id' => 'required',
-            'number' => 'required',
-            'level_id' => 'required',
-            'exam_type_id' => 'required',
-            'rest_id' => 'required',
+            'number' => 'required|max:255',
+            'level_id' => 'required|max:255',
+            'exam_type_id' => 'required|max:255',
+            'rest_id' => 'required|max:255',
         ])->validate();
         $group = (new Group)->create([
             'section_id' => $request->section_id,
@@ -227,9 +227,9 @@ class GroupController extends Controller
     {
         Validator::make($request->all(), [
             'section_id' => 'required',
-            'number' => 'required',
-            'level_id' => 'required',
-            'exam_type_id' => 'required',
+            'number' => 'required|max:255',
+            'level_id' => 'required|max:255',
+            'exam_type_id' => 'required|max:255',
         ])->validate();
         $group = (new Group)->findOrFail($id);
         $group->fill([

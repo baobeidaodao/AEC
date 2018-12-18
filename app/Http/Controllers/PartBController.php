@@ -75,12 +75,12 @@ class PartBController extends Controller
         Validator::make($request->all(), [
             'application_id' => 'required',
             'school_id' => 'required',
-            'studio_name' => 'required',
-            'country_id' => 'required',
-            'address_1' => 'required',
-            'post_code' => 'required',
-            'tel' => 'required',
-            'examination_day_contact_tel' => 'required',
+            'studio_name' => 'required|max:255',
+            'country_id' => 'required|max:255',
+            'address_1' => 'required|max:255',
+            'post_code' => 'required|max:255',
+            'tel' => 'required|max:255',
+            'examination_day_contact_tel' => 'required|max:255',
         ], [
             'school_id.required' => 'please finish part A first!',
         ])->validate();
@@ -182,12 +182,12 @@ class PartBController extends Controller
         Validator::make($request->all(), [
             'application_id' => 'required',
             'school_id' => 'required',
-            'studio_name' => 'required',
-            'country_id' => 'required',
-            'address_1' => 'required',
-            'post_code' => 'required',
-            'tel' => 'required',
-            'examination_day_contact_tel' => 'required',
+            'studio_name' => 'required|max:255',
+            'country_id' => 'required|max:255',
+            'address_1' => 'required|max:255',
+            'post_code' => 'required|max:255',
+            'tel' => 'required|max:255',
+            'examination_day_contact_tel' => 'required|max:255',
         ])->validate();
         $applicationId = Input::get('application_id');
         $application = Application::with(Application::WITH)->find($applicationId);
