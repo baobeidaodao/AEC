@@ -54,7 +54,7 @@ class PartD extends Model
             && isset($partD->address_1) && !empty($partD->address_1)
             && isset($partD->post_code) && !empty($partD->post_code)
             && isset($partD->tel) && !empty($partD->tel)
-            && isset($partD->fax) && !empty($partD->fax)
+            //&& isset($partD->fax) && !empty($partD->fax)
             && isset($partD->email) && !empty($partD->email)
             && isset($partD->delivery_date) && !empty($partD->delivery_date)
         ) {

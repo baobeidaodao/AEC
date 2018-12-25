@@ -74,6 +74,7 @@ class PartFController extends Controller
             'applicant_name' => $request->applicant_name,
         ]);
         $partF = PartF::check($partF->id);
+        Application::check($request->application_id);
         if ($partF->check == 1) {
             return redirect('/admin/exam/create?application_id=' . $request->application_id);
         } else {
@@ -140,6 +141,7 @@ class PartFController extends Controller
             'applicant_name' => $request->applicant_name,
         ])->save();
         PartF::check($partF->id);
+        Application::check($request->application_id);
         // return redirect('admin/part_f/' . $partF->id);
         return redirect('admin/application/');
     }

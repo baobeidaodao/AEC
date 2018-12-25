@@ -101,6 +101,7 @@ class PartAController extends Controller
             'tel' => $request->tel,
         ]);
         $partA = PartA::check($partA->id);
+        Application::check($request->application_id);
         if ($partA->check == 1) {
             return redirect('/admin/part_b/create?application_id=' . $request->application_id);
         } else {
@@ -192,6 +193,7 @@ class PartAController extends Controller
             'tel' => $request->tel,
         ])->save();
         PartA::check($partA->id);
+        Application::check($request->application_id);
         // return redirect('admin/part_a/' . $partA->id);
         return redirect('admin/application/');
     }

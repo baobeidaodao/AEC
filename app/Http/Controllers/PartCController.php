@@ -73,6 +73,7 @@ class PartCController extends Controller
             'application_id' => $request->application_id,
         ]);
         PartC::check($partC->id);
+        Application::check($request->application_id);
         return redirect('admin/part_c/' . $partC->id . '/edit');
     }
 
@@ -132,6 +133,7 @@ class PartCController extends Controller
             'application_id' => $request->application_id,
         ])->save();
         PartC::check($partC->id);
+        Application::check($request->application_id);
         return redirect('admin/part_c/' . $partC->id);
     }
 

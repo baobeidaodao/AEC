@@ -74,6 +74,7 @@ class PartEController extends Controller
             'application_id' => $request->application_id,
         ]);
         $partE = PartE::check($partE->id);
+        Application::check($request->application_id);
         if ($partE->check == 1) {
             return redirect('/admin/part_f/create?application_id=' . $request->application_id);
         } else {
@@ -145,6 +146,7 @@ class PartEController extends Controller
             'application_id' => $request->application_id,
         ])->save();
         PartE::check($partE->id);
+        Application::check($request->application_id);
         // return redirect('admin/part_e/' . $partE->id);
         return redirect('admin/application/');
     }

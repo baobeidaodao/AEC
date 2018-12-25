@@ -34,7 +34,7 @@
                 <input name="family_name" class="form-control" placeholder="Family Name" value="{{ $student['family_name'] or '' }}"/>
             </div>
             <div class="form-group">
-                <label class="form-label">Birth Date</label>
+                <label class="form-label">Birth Date 日期格式：d/m/Y (30/10/2016)</label>
                 @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => date('d/m/Y', strtotime($student['birth_date'])), 'format' => 'dd/mm/yyyy', ])
             </div>
             <div class="form-group">

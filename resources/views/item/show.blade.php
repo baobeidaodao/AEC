@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Birth Date</label>
-                    <input class="form-control" placeholder="Birth Date" value="{{ date('y-m-d', strtotime($item['student']['birth_date']))}}" readonly/>
+                    <input class="form-control" placeholder="Birth Date" value="{{ date('d/m/Y', strtotime($item['student']['birth_date']))}}" readonly/>
                 </div>
                 <div class="form-group">
                     <div class="form-label">Sex</div>

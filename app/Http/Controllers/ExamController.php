@@ -86,6 +86,7 @@ class ExamController extends Controller
             'application_id' => $request->application_id,
         ]);
         Exam::check($exam->id);
+        Application::check($request->application_id);
         return redirect('admin/exam/' . $exam->id);
     }
 
@@ -169,6 +170,7 @@ class ExamController extends Controller
             'application_id' => $request->application_id,
         ])->save();
         Exam::check($exam->id);
+        Application::check($request->application_id);
         return redirect('admin/exam/' . $id);
     }
 

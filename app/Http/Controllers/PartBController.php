@@ -119,6 +119,7 @@ class PartBController extends Controller
             'examination_day_contact_tel' => $request->examination_day_contact_tel,
         ]);
         $partB = PartB::check($partB->id);
+        Application::check($request->application_id);
         if ($partB->check == 1) {
             return redirect('/admin/part_c/create?application_id=' . $request->application_id);
         } else {
@@ -225,6 +226,7 @@ class PartBController extends Controller
             'examination_day_contact_tel' => $request->examination_day_contact_tel,
         ])->save();
         PartB::check($partB->id);
+        Application::check($request->application_id);
         // return redirect('admin/part_b/' . $partB->id);
         return redirect('admin/application/');
     }

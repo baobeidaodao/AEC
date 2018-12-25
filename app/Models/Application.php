@@ -23,6 +23,9 @@ class Application extends Model
 
     const WITH = ['aec', 'user', 'partA', 'partB', 'partC', 'partD', 'partE', 'partF', 'exam',];
 
+    const CHECK_VALID = 1;
+    const CHECK_INVALID = 0;
+
     public function aec()
     {
         return $this->hasOne(Aec::class, 'id', 'aec_id');
@@ -68,4 +71,28 @@ class Application extends Model
         return $this->hasOne(Exam::class, 'application_id', 'id');
     }
 
+    public static function check($id)
+    {
+        $application = Application::with(self::WITH)->find($id);
+        if (!isset($application) || empty($application)) {
+            return null;
+        }
+        if (
+            isset($application->id) && !empty($application->id)
+            && isset($application->aec_id) && !empty($application->aec_id)
+            && isset($application->partA) && isset($application->partA->check) && $application->partA->check == 1
+            && isset($application->partB) && isset($application->partB->check) && $application->partB->check == 1
+            && isset($application->partC) && isset($application->partC->check) && $application->partC->check == 1
+            && isset($application->partD) && isset($application->partD->check) && $application->partD->check == 1
+            && isset($application->partE) && isset($application->partE->check) && $application->partE->check == 1
+            && isset($application->partF) && isset($application->partF->check) && $application->partF->check == 1
+            && isset($application->exam) && isset($application->exam->check) && $application->exam->check == 1
+        ) {
+            $application->check = self::CHECK_VALID;
+        } else {
+            $application->check = self::CHECK_INVALID;
+        }
+        $application->save();
+        return $application;
+    }
 }

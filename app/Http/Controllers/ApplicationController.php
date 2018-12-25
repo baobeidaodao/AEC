@@ -59,6 +59,7 @@ class ApplicationController extends Controller
             'created_user_id' => Auth::user()->id,
             'updated_user_id' => Auth::user()->id,
         ]);
+        Application::check($application->id);
         return redirect('admin/application');
     }
 
@@ -110,6 +111,7 @@ class ApplicationController extends Controller
             'aec_id' => $request->aec_id,
             'updated_user_id' => Auth::user()->id,
         ])->save();
+        Application::check($application->id);
         return redirect('admin/application');
     }
 
