@@ -43,7 +43,7 @@
                 <input name="tel" class="form-control" placeholder="Tel" value="{{ old('tel') }}"/>
             </div>
             <div class="form-footer text-center">
-                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save & Next</button>
+                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存 & Next</button>
             </div>
             {!! Form::close() !!}
         </div>

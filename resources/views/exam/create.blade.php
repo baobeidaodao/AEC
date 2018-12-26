@@ -23,7 +23,7 @@
                 <input name="application_id" class="form-control" placeholder="Application ID" value="{{ $application['id'] or '' }}" readonly/>
             </div>
             <div class="form-footer text-center">
-                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save & Next</button>
+                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存 & Next</button>
             </div>
             {!! Form::close() !!}
         </div>

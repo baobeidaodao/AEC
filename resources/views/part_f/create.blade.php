@@ -31,7 +31,7 @@
                 <input name="applicant_name" class="form-control" placeholder="Applicant Name" value="{{ old('applicant_name') or '' }}"/>
             </div>
             <div class="form-footer text-center">
-                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save & Next</button>
+                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存 & Next</button>
             </div>
             {!! Form::close() !!}
         </div>
