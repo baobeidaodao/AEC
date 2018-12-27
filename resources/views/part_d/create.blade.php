@@ -75,7 +75,7 @@
                 @include('public.datetime_picker', ['id' => 'deliveryDate', 'name' => 'delivery_date', 'placeholder' => 'Delivery Date', 'value' => old('delivery_date'), 'format' => 'yyyy-mm-dd', ])
             </div>
             <div class="form-group">
-                <div class="form-label">Neighbour</div>
+                <div class="form-label">Neighbour (I am happy for a neighbour to receive my delivery. Yes or No?)</div>
                 <div class="custom-controls-stacked">
                     <label class="custom-control custom-radio custom-control-inline">
                         <input type="radio" class="custom-control-input" name="neighbour" value="0" @if(old('neighbour')===0||old('neighbour')==='0') checked @endif>

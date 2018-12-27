@@ -27,7 +27,7 @@
                 <input name="number" class="form-control" placeholder="Number" value="{{ count($exam['section_list']) + 1 }}" readonly/>
             </div>
             <div class="form-group">
-                <label class="form-label">Exam Time</label>
+                <label class="form-label">Exam Time (时间格式：HH:mm ，示例：09:30)</label>
                 {{--<input name="exam_time" class="form-control" placeholder="Exam Time" value="{{ $exam['exam_time'] or '' }}" readonly/>--}}
                 @include('public.datetime_picker', ['id' => 'examTime', 'name' => 'exam_time', 'placeholder' => 'exam_time', 'value' => old('exam_time'), 'format' => 'hh:ii', 'startView' => 0])
             </div>
