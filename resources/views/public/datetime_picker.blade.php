@@ -7,7 +7,8 @@
  */
 ?>
 
-<input id="{{ $id or '' }}" name="{{ $name or '' }}" placeholder="{{ $placeholder or '' }}" class="form-control" type="text" value="{{ $datetime or $value }}" autocomplete="off" disableautocomplete>
+<input id="{{ $id or '' }}" name="{{ $name or '' }}" placeholder="{{ $placeholder or '' }}" class="form-control"
+       type="text" value="{{ $datetime or $value }}" autocomplete="off" disableautocomplete>
 <script>
     $(function () {
         $('#{{ $id or '' }}').datetimepicker({
@@ -20,6 +21,7 @@
             minView: 2,
             forceParse: 0,
             keyboardNavigation: true,
+            bootcssVer: 4,
         });
     });
 </script>
