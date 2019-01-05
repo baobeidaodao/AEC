@@ -86,7 +86,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Delivery Date</label>
-                @include('public.datetime_picker', ['id' => 'deliveryDate', 'name' => 'delivery_date', 'placeholder' => 'Delivery Date', 'value' => date('Y-m-d', strtotime($partD['delivery_date'])), 'datetime' => $partD['delivery_date'], 'format' => 'yyyy-mm-dd', ])
+                @include('public.datetime_picker', ['id' => 'deliveryDate', 'name' => 'delivery_date', 'placeholder' => 'Delivery Date', 'value' => date('Y-m-d', strtotime($partD['delivery_date'])), 'datetime' => isset($partD['delivery_date']) ? $partD['delivery_date'] : '', 'format' => 'yyyy-mm-dd', ])
             </div>
             <div class="form-group">
                 <div class="form-label">Neighbour (I am happy for a neighbour to receive my delivery. Yes or No?)</div>
