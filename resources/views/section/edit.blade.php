@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label class="form-label">Exam Time (时间格式：HH:mm ，示例：09:30)</label>
                 <input name="exam_time" class="form-control" placeholder="Exam Time" type="text"
-                       value="{{$section['exam_time'] or ''}}"/>
+                       value="{{date('H:i', strtotime($section['exam_time'])) or ''}}"/>
                 {{--@include('public.datetime_picker', ['id' => 'examTime', 'name' => 'exam_time', 'placeholder' => 'exam_time', 'value' => date('H:i', strtotime($section['exam_time'])), 'format' => 'hh:ii', 'startView' => 0])--}}
             </div>
             <div class="form-footer text-center">
