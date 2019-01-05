@@ -21,7 +21,7 @@
             minView: 2,
             forceParse: 0,
             keyboardNavigation: true,
-            bootcssVer: 4,
+            bootcssVer: 3,
         });
     });
 </script>
