@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     <script src="{{ url('/') . '/' }}assets/js/vendors/jquery-3.2.1.min.js"></script>
-    <script src="{{ url('/') . '/' }}assets/js/bootstrap-datetimepicker.min.js"></script>
     <script src="{{ url('/') . '/' }}assets/js/require.min.js"></script>
     <script>
         requirejs.config({
@@ -49,6 +48,7 @@
     <script src="{{ url('/') . '/' }}assets/plugins/input-mask/plugin.js"></script>
     <!-- datetime picker -->
     <link href="{{ url('/') . '/' }}assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <script src="{{ url('/') . '/' }}assets/js/bootstrap-datetimepicker.min.js"></script>
     @section('head')
     @show
 </head>
