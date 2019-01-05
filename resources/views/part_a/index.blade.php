@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Part A</h3>
+                    <h3 class="card-title">Part A (Registered School Information)</h3>
                     <a href="{{url('/admin/application')}}" class="btn btn-outline-success btn-sm btn-icon ml-auto"><i class="fe fe-x"></i></a>
                 </div>
                 <div class="table-responsive">
@@ -26,7 +26,7 @@
                             <th>Application Id</th>
                             <th>School ID</th>
                             <th>School Name</th>
-                            <th>School Code</th>
+                            <th>School ID</th>
                             <th>Email</th>
                             <th>Tel</th>
                             <th>Check</th>

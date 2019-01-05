@@ -13,7 +13,7 @@
     @include('application.nav')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Part B</h3>
+            <h3 class="card-title">Part B (Examination Location Information)</h3>
             <a href="{{url('/admin/application')}}" class="btn btn-sm btn-outline-danger btn-icon ml-auto"><i class="fe fe-x"></i></a>
         </div>
         <div class="card-body">
@@ -27,7 +27,7 @@
                 <input name="school_id" class="form-control" placeholder="School ID" value="{{ $school['id'] or '' }}" readonly/>
             </div>
             <div class="form-group">
-                <label class="form-label">School Code</label>
+                <label class="form-label">School ID</label>
                 <input name="school_code" class="form-control" placeholder="School ID" value="{{ $school['code'] or '' }}" readonly/>
             </div>
             <div class="form-group" hidden>

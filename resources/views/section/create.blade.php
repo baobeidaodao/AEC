@@ -23,7 +23,7 @@
                 <input name="exam_id" class="form-control" placeholder="Exam ID" value="{{ $exam['id'] or '' }}" readonly/>
             </div>
             <div class="form-group">
-                <label class="form-label">Number</label>
+                <label class="form-label">Number (考试日)</label>
                 <input name="number" class="form-control" placeholder="Number" value="{{ count($exam['section_list']) + 1 }}" readonly/>
             </div>
             <div class="form-group">
