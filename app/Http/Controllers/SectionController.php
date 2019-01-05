@@ -174,7 +174,7 @@ class SectionController extends Controller
         Validator::make($request->all(), [
             'exam_id' => 'required',
             'number' => 'required|max:255',
-            'exam_time' => 'required|regex:/^[0-2]{1}[0-0]{1}:[0-5]{1}[0-9]{1}$/|max:255',
+            'exam_time' => 'required|regex:/^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$/|max:255',
         ])->validate();
         $section = (new Section)->findOrFail($id);
         $section->fill([
