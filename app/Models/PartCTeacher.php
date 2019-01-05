@@ -43,7 +43,7 @@ class PartCTeacher extends Model
         if (
             isset($partCTeacher->part_c_id) && !empty($partCTeacher->part_c_id)
             && isset($partCTeacher->teacher_id) && !empty($partCTeacher->teacher_id)
-            && isset($partCTeacher->membership_id) && !empty($partCTeacher->membership_id)
+            // && isset($partCTeacher->membership_id) && !empty($partCTeacher->membership_id)
             && isset($partCTeacher->given_name) && !empty($partCTeacher->given_name)
             && isset($partCTeacher->family_name) && !empty($partCTeacher->family_name)
             && isset($partCTeacher->number) && !empty($partCTeacher->number)

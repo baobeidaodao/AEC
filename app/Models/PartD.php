@@ -56,7 +56,7 @@ class PartD extends Model
             && isset($partD->tel) && !empty($partD->tel)
             //&& isset($partD->fax) && !empty($partD->fax)
             && isset($partD->email) && !empty($partD->email)
-            && isset($partD->delivery_date) && !empty($partD->delivery_date)
+            // && isset($partD->delivery_date) && !empty($partD->delivery_date)
         ) {
             $partD->check = self::CHECK_VALID;
         } else {
