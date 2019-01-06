@@ -83,6 +83,75 @@ class Group extends Model
         return $group;
     }
 
+    public static function birthDate($id)
+    {
+        $group = Group::with(['level'])->find($id);
+        $level = $group->level->code;
+        $examDate = '2019-04-01';
+        $examTime = strtotime($examDate);
+        switch ($level) {
+            case 'DC1':
+                $birthTime = strtotime('-' . intval(2.5 * 365) . ' day', $examTime);
+                break;
+            case 'DC2':
+                $birthTime = strtotime('-' . intval(3.5 * 365) . ' day', $examTime);
+                break;
+            case 'PPID':
+                $birthTime = strtotime('-5 year', $examTime);
+                break;
+            case 'PID':
+                $birthTime = strtotime('-6 year', $examTime);
+                break;
+            case 'G1':
+                $birthTime = strtotime('-7 year', $examTime);
+                break;
+            case 'G2':
+                $birthTime = strtotime('-7 year', $examTime);
+                break;
+            case 'G3':
+                $birthTime = strtotime('-7 year', $examTime);
+                break;
+            case 'G4':
+                $birthTime = strtotime('-7 year', $examTime);
+                break;
+            case 'G5':
+                $birthTime = strtotime('-7 year', $examTime);
+                break;
+            case 'G6':
+                $birthTime = strtotime('-11 year', $examTime);
+                break;
+            case 'G7':
+                $birthTime = strtotime('-11 year', $examTime);
+                break;
+            case 'G8':
+                $birthTime = strtotime('-11 year', $examTime);
+                break;
+            case 'INTF':
+                $birthTime = strtotime('-11 year', $examTime);
+                break;
+            case 'INT':
+                $birthTime = strtotime('-12 year', $examTime);
+                break;
+            case 'ADVF':
+                $birthTime = strtotime('-13 year', $examTime);
+                break;
+            case 'ADV1':
+                $birthTime = strtotime('-14 year', $examTime);
+                break;
+            case 'ADV2':
+                $birthTime = strtotime('-15 year', $examTime);
+                break;
+            case 'SS':
+                $birthTime = strtotime('-15 year', $examTime);
+                break;
+            default:
+                $birthTime = $examTime;
+                break;
+        }
+        $birthDate = date('Y-m-d H:i:s', $birthTime);
+        return $birthDate;
+    }
+
     public static function minute($type, $level, $count)
     {
         $minute = 0;

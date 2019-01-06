@@ -22,6 +22,7 @@
             forceParse: 0,
             keyboardNavigation: true,
             bootcssVer: 3,
+            endDate: "{{ $endDate or '' }}"
         });
     });
 </script>

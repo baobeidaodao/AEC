@@ -127,6 +127,8 @@ class ItemController extends Controller
         $data['examTypeList'] = $examTypeList;
         $data['studentList'] = $studentList;
         $data['partCTeacherList'] = $partCTeacherList;
+        $birthDate = Group::birthDate($groupId);
+        $data['birthDate'] = $birthDate;
         return view('item.create', $data);
     }
 
@@ -309,6 +311,8 @@ class ItemController extends Controller
         $data['examTypeList'] = $examTypeList;
         $data['partCTeacherList'] = $partCTeacherList;
         $data['partCTeacherIdList'] = $partCTeacherIdList;
+        $birthDate = Group::birthDate($group['id']);
+        $data['birthDate'] = $birthDate;
         return view('item.edit', $data);
     }
 
