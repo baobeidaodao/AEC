@@ -40,6 +40,19 @@ $oldPartCTeacherId = old('part_c_teacher_id');
                 <input name="family_name" class="form-control" placeholder="Family Name" value="{{ old('family_name') }}"/>
             </div>
             <div class="form-group">
+                <div class="form-label">Member</div>
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" name="member" value="1" @if(old('member')===1||old('member')==='1') checked @endif>
+                        <span class="custom-control-label">Yes</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" name="member" value="0" @if(old('member')===0||old('member')==='0') checked @endif>
+                        <span class="custom-control-label">No</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="form-label">Birth Date</label>
                 @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => old('birth_date'), 'format'=>'dd/mm/yyyy',])
             </div>

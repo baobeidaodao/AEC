@@ -131,6 +131,11 @@ class Exam extends Model
                                 $record[4] = $item['student_number'];
                                 $record[5] = $item['given_name'];
                                 $record[6] = $item['family_name'];
+                                if ($item['member'] == 1) {
+                                    $record[7] = 'YES';
+                                } else {
+                                    $record[7] = 'NO';
+                                }
                                 $record[8] = date('d/m/Y', strtotime($item['birth_date']));
                                 if ($item['sex'] == 1) {
                                     $record[9] = 'M';

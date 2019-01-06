@@ -81,6 +81,12 @@ class PartE extends Model
         'spa_g5' => 400,
     ];
 
+    const MEMBER_LEVEL = [
+        'advf',
+        'adv1',
+        'adv2',
+    ];
+
     public function application()
     {
         return $this->hasOne(Application::class, 'id', 'application_id');
@@ -114,16 +120,41 @@ class PartE extends Model
             ->get();
         foreach ($groupList as $group) {
             $attribute = strtolower($group->examType->code) . '_' . strtolower($group->level->code);
-            if (!in_array($attribute, $columnArray)) {
+            $attributeM = '';
+            if (in_array(strtolower($group->level->code), self::MEMBER_LEVEL)) {
+                $attributeM = $attribute . '_m';
+            }
+            if (!in_array($attribute, $columnArray) || (isset($attributeM) && !in_array($attributeM, $columnArray))) {
                 continue;
             }
-            $count = count($group->itemList);
-            $attributeCount = $attribute . 'Count';
-            if (!isset($$attributeCount)) {
-                $$attributeCount = 0;
+            if (!in_array(strtolower($group->level->code), self::MEMBER_LEVEL)) {
+                $count = count($group->itemList);
+                $attributeCount = $attribute . 'Count';
+                if (!isset($$attributeCount)) {
+                    $$attributeCount = 0;
+                }
+                $$attributeCount = $$attributeCount + $count;
+                $partE->$attribute = $$attributeCount;
+            } else {
+                $itemList = $group->itemList;
+                $attributeCount = $attribute . 'Count';
+                if (!isset($$attributeCount)) {
+                    $$attributeCount = 0;
+                }
+                $attributeMCount = $attributeM . 'Count';
+                if (!isset($$attributeMCount)) {
+                    $$attributeMCount = 0;
+                }
+                foreach ($itemList as $item) {
+                    if (isset($item->member) && $item->member == 1) {
+                        $$attributeMCount = $$attributeMCount + 1;
+                    }else{
+                        $$attributeCount = $$attributeCount + 1;
+                    }
+                }
+                $partE->$attributeM = $$attributeMCount;
+                $partE->$attribute = $$attributeCount;
             }
-            $$attributeCount = $$attributeCount + $count;
-            $partE->$attribute = $$attributeCount;
         }
         $partE->save();
     }

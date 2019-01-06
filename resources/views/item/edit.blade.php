@@ -43,6 +43,19 @@
                 <input name="family_name" class="form-control" placeholder="Family Name" value="{{ $item['student']['family_name'] or '' }}"/>
             </div>
             <div class="form-group">
+                <div class="form-label">Member</div>
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" name="member" value="1" readonly @if($item['student']['member']==1) checked @endif>
+                        <span class="custom-control-label">Yes</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" name="member" value="0" readonly @if($item['student']['member']==0) checked @endif>
+                        <span class="custom-control-label">No</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="form-label">Birth Date 日期格式：d/m/Y (30/10/2016)</label>
                 @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => date('d/m/Y', strtotime($item['student']['birth_date'])), 'format'=>'dd/mm/yyyy'])
             </div>
