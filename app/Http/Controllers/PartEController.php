@@ -106,6 +106,8 @@ class PartEController extends Controller
         $data['levelList'] = $levelList;
         $examTypeList = ExamType::all()->toArray();
         $data['examTypeList'] = $examTypeList;
+        $fees = PartE::fees($id);
+        $data['fees'] = $fees;
         return view('part_e.show', $data);
     }
 
@@ -133,6 +135,8 @@ class PartEController extends Controller
         $data['levelList'] = $levelList;
         $examTypeList = ExamType::all()->toArray();
         $data['examTypeList'] = $examTypeList;
+        $fees = PartE::fees($id);
+        $data['fees'] = $fees;
         return view('part_e.edit', $data);
     }
 

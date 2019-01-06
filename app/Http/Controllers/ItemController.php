@@ -151,6 +151,7 @@ class ItemController extends Controller
                 'number' => $request->student_number,
                 'given_name' => $request->given_name,
                 'family_name' => $request->family_name,
+                'member' => $request->member,
                 'birth_date' => date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request->birth_date))),
                 'sex' => $request->sex,
             ])->save();
@@ -159,6 +160,7 @@ class ItemController extends Controller
                 'number' => $request->student_number,
                 'given_name' => $request->given_name,
                 'family_name' => $request->family_name,
+                'member' => $request->member,
                 'birth_date' => date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request->birth_date))),
                 'sex' => $request->sex,
             ]);
@@ -340,6 +342,7 @@ class ItemController extends Controller
                 'number' => $request->student_number,
                 'given_name' => $request->given_name,
                 'family_name' => $request->family_name,
+                'member' => $request->member,
                 'birth_date' => date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request->birth_date))),
                 'sex' => $request->sex,
             ]);
@@ -353,6 +356,7 @@ class ItemController extends Controller
             'student_number' => $request->student_number,
             'given_name' => $request->given_name,
             'family_name' => $request->family_name,
+            'member' => $request->member,
             'birth_date' => date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request->birth_date))),
             'sex' => $request->sex,
         ])->save();

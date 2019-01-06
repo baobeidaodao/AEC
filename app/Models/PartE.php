@@ -117,6 +117,7 @@ class PartE extends Model
             ->join('section', 'section.id', '=', 'group.section_id')
             ->join('exam', 'exam.id', '=', 'section.exam_id')
             ->where('exam.application_id', '=', $applicationId)
+            ->select(['group.*'])
             ->get();
         foreach ($groupList as $group) {
             $attribute = strtolower($group->examType->code) . '_' . strtolower($group->level->code);
@@ -124,7 +125,7 @@ class PartE extends Model
             if (in_array(strtolower($group->level->code), self::MEMBER_LEVEL)) {
                 $attributeM = $attribute . '_m';
             }
-            if (!in_array($attribute, $columnArray) || (isset($attributeM) && !in_array($attributeM, $columnArray))) {
+            if (!in_array($attribute, $columnArray) || (isset($attributeM) && !empty($attributeM) && !in_array($attributeM, $columnArray))) {
                 continue;
             }
             if (!in_array(strtolower($group->level->code), self::MEMBER_LEVEL)) {
@@ -148,7 +149,7 @@ class PartE extends Model
                 foreach ($itemList as $item) {
                     if (isset($item->member) && $item->member == 1) {
                         $$attributeMCount = $$attributeMCount + 1;
-                    }else{
+                    } else {
                         $$attributeCount = $$attributeCount + 1;
                     }
                 }
@@ -157,6 +158,16 @@ class PartE extends Model
             }
         }
         $partE->save();
+    }
+
+    public static function fees($id)
+    {
+        $partE = PartE::find($id);
+        $fees = 0;
+        foreach (self::FEE as $field => $fee) {
+            $fees = $fees + intval($partE->$field) * $fee;
+        }
+        return $fees;
     }
 
     public static function export($id)
