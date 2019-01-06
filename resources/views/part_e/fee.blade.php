@@ -46,7 +46,7 @@
                                 </th>
                             @endforeach
                         </tr>
-                        @if(in_array(strtolower($level), \App\Models\PartE::MEMBER_LEVEL))
+                        @if(in_array(strtolower($level['code']), \App\Models\PartE::MEMBER_LEVEL))
                             <tr>
                                 <th>{{$level['code'] . '_M'}}</th>
                                 @foreach($examTypeList as $examType)
