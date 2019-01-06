@@ -257,6 +257,13 @@ class GroupController extends Controller
         $examId = $section->exam_id;
         try {
             $group->delete();
+            $groupList = (new Group)->where('section_id', $sectionId)->orderBy('id', 'asc')->get();
+            $i = 1;
+            foreach ($groupList as $item) {
+                $item->number = $i;
+                $item->save();
+                $i++;
+            }
         } catch (\Exception $e) {
             return redirect()->back();
         }
