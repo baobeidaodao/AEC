@@ -87,7 +87,7 @@ class Group extends Model
     {
         $group = Group::with(['level'])->find($id);
         $level = $group->level->code;
-        $examDate = '2019-04-01';
+        $examDate = '2019-03-31';
         $examTime = strtotime($examDate);
         switch ($level) {
             case 'DC1':
