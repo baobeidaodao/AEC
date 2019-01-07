@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Birth Date 日期格式：d/m/Y (30/10/2016)</label>
-                @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => date('d/m/Y', strtotime($item['student']['birth_date'])), 'format'=>'dd/mm/yyyy', 'endDate'=> $birthDate, ])
+                @include('public.datetime_picker', ['id' => 'birthDate', 'name' => 'birth_date', 'placeholder' => 'birth_date', 'value' => date('d/m/Y', strtotime($item['student']['birth_date'])), 'format'=>'dd/mm/yyyy', 'endDate'=> $birthDate, 'readonly' => true,])
             </div>
             <div class="form-group">
                 <div class="form-label">Sex</div>

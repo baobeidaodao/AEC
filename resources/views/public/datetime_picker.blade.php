@@ -8,7 +8,8 @@
 ?>
 
 <input id="{{ $id or '' }}" name="{{ $name or '' }}" placeholder="{{ $placeholder or '' }}" class="form-control"
-       type="text" value="{{ $datetime or $value }}" autocomplete="off" disableautocomplete>
+       type="text" value="{{ $datetime or $value }}" autocomplete="off" disableautocomplete
+       @if(isset($readonly) && $readonly==true) readonly @endif>
 <script>
     $(function () {
         $('#{{ $id or '' }}').datetimepicker({
@@ -22,7 +23,7 @@
             forceParse: 0,
             keyboardNavigation: true,
             bootcssVer: 3,
-            endDate: "{{ $endDate or '' }}"
+            endDate: "{{ $endDate or '' }}",
         });
     });
 </script>
