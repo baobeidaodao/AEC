@@ -86,7 +86,7 @@
                                             @endif
                                             <a href="{{url('/admin/item/' . $item['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto" hidden><i class="fe fe-eye"></i></a>
                                             <a href="{{url('/admin/item/' . $item['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto"><i class="fe fe-edit"></i></a>
-                                            <a href="javascript:void(0)" onclick="$('#deleteItem{{$group['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon ml-auto"><i class="fe fe-trash-2"></i></a>
+                                            <a href="javascript:void(0)" onclick="$('#deleteItem{{$item['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon ml-auto"><i class="fe fe-trash-2"></i></a>
                                             {!! Form::open(['id' => 'deleteItem'.$item['id'], 'method' => 'delete', 'route' => ['item.destroy', $item['id']], ]) !!}{!! Form::close() !!}
                                         </td>
                                     </tr>
