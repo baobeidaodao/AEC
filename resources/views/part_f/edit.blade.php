@@ -34,6 +34,15 @@
                 <label class="form-label">Applicant Name</label>
                 <input name="applicant_name" class="form-control" placeholder="Applicant Name" value="{{ $partF['applicant_name'] or '' }}"/>
             </div>
+            <div class="form-group">
+                <div class="form-label">Agree</div>
+                <div>
+                    <label class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" name="agree" value="1" checked readonly>
+                        <span class="custom-control-label">Agree</span>
+                    </label>
+                </div>
+            </div>
             <div class="form-footer text-center">
                 <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存</button>
             </div>
