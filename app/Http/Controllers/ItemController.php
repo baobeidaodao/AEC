@@ -159,6 +159,14 @@ class ItemController extends Controller
         if (strtotime(str_replace('/', '-', $request->birth_date)) > strtotime($birthDate)) {
             return back()->withErrors('Birth Date exceed limit. Birth Date 超出限定');
         }
+        $group = (new Group)->findOrFail($request->group_id);
+        $sectionId = $group->section_id;
+        $section = (new Section)->findOrFail($sectionId);
+        $examId = $section->exam_id;
+        $studentIdArray = Exam::studentIdArray($examId);
+        if (isset($request->student_number) && !empty($request->student_number) && in_array($request->student_number, $studentIdArray)) {
+            return back()->withErrors('Student ID conflict. Student ID 冲突');
+        }
         if (isset($request->student_number) && !empty($request->student_number)) {
             $student = Student::where('number', '=', $request->student_number)->first();
         }
@@ -207,13 +215,9 @@ class ItemController extends Controller
             ]);
         }
         Item::check($item->id);
-        $group = (new Group)->findOrFail($request->group_id);
-        $sectionId = $group->section_id;
         Section::calculate($sectionId);
-        $section = (new Section)->findOrFail($sectionId);
         $application = Section::findApplicationBySectionId($section->id);
         PartE::calculate($application->id);
-        $examId = $section->exam_id;
         return redirect('admin/exam/' . $examId);
     }
 
@@ -357,6 +361,14 @@ class ItemController extends Controller
         if (strtotime(str_replace('/', '-', $request->birth_date)) > strtotime($birthDate)) {
             return back()->withErrors('Birth Date exceed limit. Birth Date 超出限定');
         }
+        $group = (new Group)->findOrFail($request->group_id);
+        $sectionId = $group->section_id;
+        $section = (new Section)->findOrFail($sectionId);
+        $examId = $section->exam_id;
+        $studentIdArray = Exam::studentIdArray($examId, $id);
+        if (isset($request->student_number) && !empty($request->student_number) && in_array($request->student_number, $studentIdArray)) {
+            return back()->withErrors('Student ID conflict. Student ID 冲突');
+        }
         if (isset($request->student_number) && !empty($request->student_number)) {
             $student = Student::where('number', '=', $request->student_number)->first();
         }
@@ -406,11 +418,7 @@ class ItemController extends Controller
             ]);
         }
         Item::check($item->id);
-        $group = (new Group)->findOrFail($request->group_id);
-        $sectionId = $group->section_id;
-        $section = (new Section)->findOrFail($sectionId);
         Section::calculate($sectionId);
-        $examId = $section->exam_id;
         $application = Section::findApplicationBySectionId($section->id);
         PartE::calculate($application->id);
         return redirect('admin/exam/' . $examId);

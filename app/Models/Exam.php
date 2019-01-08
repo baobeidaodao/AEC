@@ -10,6 +10,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PhpParser\Node\Expr\Isset_;
 
 class Exam extends Model
 {
@@ -48,6 +49,26 @@ class Exam extends Model
             $exam->check = self::CHECK_INVALID;
         }
         $exam->save();
+    }
+
+    public static function studentIdArray($id, $itemId = null)
+    {
+        $idArray = Exam::join('section', 'exam.id', '=', 'section.exam_id')
+            ->join('group', 'section.id', '=', 'group.section_id')
+            ->join('item', 'group.id', '=', 'item.group_id')
+            ->where('exam.id', '=', $id)
+            ->where(function ($query) use ($itemId) {
+                if (isset($itemId) && null != $itemId && !empty($itemId)) {
+                    $query->where('item.id', '!=', $itemId);
+                }
+            })
+            ->pluck('item.student_number');
+        if (isset($idArray) && !empty($idArray)) {
+            $idArray = $idArray->toArray();
+        } else {
+            $idArray = [];
+        }
+        return $idArray;
     }
 
     public static function export($id)

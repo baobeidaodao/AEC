@@ -68,13 +68,19 @@ class PartFController extends Controller
         Validator::make($request->all(), [
             'application_id' => 'required',
             'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
+            'agree' => 'required',
         ], [
             'applicant_name.required' => 'Applicant Name is required. Applicant Name 为必填项',
             'applicant_name.regex' => 'Applicant Name is invalid. Applicant Name 格式错误',
+            'agree.required' => 'Agree is required. Agree 为必填项',
         ])->validate();
         $partD = PartD::where('application_id', '=', $request->application_id)->first();
         if ($request->applicant_name != $partD->applicant_name) {
             return back()->withErrors('Applicant Name must be consistent with Part D. Applicant Name 必须与 Part D 中保持一致');
+        }
+        $agree = Input::get('agree', []);
+        if (!isset($agree[0]) || $agree[0] != 1) {
+            return back()->withErrors('Agree is required. Agree 为必填项');
         }
         $partF = (new PartF)->create([
             'application_id' => $request->application_id,
@@ -141,13 +147,19 @@ class PartFController extends Controller
         Validator::make($request->all(), [
             'application_id' => 'required',
             'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
+            'agree' => 'required',
         ], [
             'applicant_name.required' => 'Applicant Name is required. Applicant Name 为必填项',
             'applicant_name.regex' => 'Applicant Name is invalid. Applicant Name 格式错误',
+            'agree.required' => 'Agree is required. Agree 为必填项',
         ])->validate();
         $partD = PartD::where('application_id', '=', $request->application_id)->first();
         if ($request->applicant_name != $partD->applicant_name) {
             return back()->withErrors('Applicant Name must be consistent with Part D. Applicant Name 必须与 Part D 中保持一致');
+        }
+        $agree = Input::get('agree', []);
+        if (!isset($agree[0]) || $agree[0] != 1) {
+            return back()->withErrors('Agree is required. Agree 为必填项');
         }
         $partF = (new PartF)->findOrFail($id);
         $partF->fill([
