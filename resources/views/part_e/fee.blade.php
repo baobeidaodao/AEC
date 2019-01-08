@@ -11,7 +11,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Fees：count: {{ $fees or 0 }} （此处数据为自动计算得出，申报人无需填写）</h3>
+                <h3 class="card-title">Fees(费用)：count: {{ $fees or 0 }} （此处数据为自动计算得出，申报人无需填写）</h3>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap">

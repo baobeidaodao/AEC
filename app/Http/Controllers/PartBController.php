@@ -83,6 +83,12 @@ class PartBController extends Controller
             'examination_day_contact_tel' => 'required|max:255',
         ], [
             'school_id.required' => 'please finish part A first!',
+            'studio_name.required' => 'Studio Name is required. Studio Name 为必填项',
+            'country_id.required' => 'Country is required. Country 为必填项',
+            'address_1.required' => 'Address is required. Address 为必填项',
+            'post_code.required' => 'Post Code is required. Post Code 为必填项',
+            'tel.required' => 'Tel is required. Tel 为必填项',
+            'examination_day_contact_tel.required' => 'Examination Day Contact Tel is required. Examination Day Contact Tel 为必填项',
         ])->validate();
         $applicationId = Input::get('application_id');
         $application = Application::with(Application::WITH)->find($applicationId);
@@ -189,6 +195,14 @@ class PartBController extends Controller
             'post_code' => 'required|max:255',
             'tel' => 'required|max:255',
             'examination_day_contact_tel' => 'required|max:255',
+        ], [
+            'school_id.required' => 'please finish part A first!',
+            'studio_name.required' => 'Studio Name is required. Studio Name 为必填项',
+            'country_id.required' => 'Country is required. Country 为必填项',
+            'address_1.required' => 'Address is required. Address 为必填项',
+            'post_code.required' => 'Post Code is required. Post Code 为必填项',
+            'tel.required' => 'Tel is required. Tel 为必填项',
+            'examination_day_contact_tel.required' => 'Examination Day Contact Tel is required. Examination Day Contact Tel 为必填项',
         ])->validate();
         $applicationId = Input::get('application_id');
         $application = Application::with(Application::WITH)->find($applicationId);

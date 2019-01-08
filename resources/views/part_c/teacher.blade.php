@@ -11,7 +11,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Part C Teacher</h3>
+                <h3 class="card-title">Part C Teacher 注册教师详细信息</h3>
                 @if(count($partC['part_c_teacher_list'])<6)
                     <a href="{{url('/admin/part_c_teacher/create?application_id=' . $application['id'])}}" class="btn btn-outline-info btn-sm btn-icon  ml-auto"><i class="fe fe-plus"></i></a>
                 @endif

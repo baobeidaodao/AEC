@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Exam Time</label>
-                @include('public.datetime_picker', ['id' => 'examTime', 'name' => 'exam_time', 'placeholder' => 'exam_time', 'value' => $group['exam_time'], 'format' => 'yyyy-mm-dd hh:ii:ss', 'startView' => 0])
+                @include('public.datetime_picker', ['id' => 'examTime', 'name' => 'exam_time', 'placeholder' => 'exam_time', 'value' => $group['exam_time'], 'format' => 'yyyy-mm-dd hh:ii:ss', 'startView' => 0, 'readonly' => true, ])
             </div>
             <div class="form-group">
                 <label class="form-label">Finish Time</label>

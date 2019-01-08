@@ -137,14 +137,28 @@ class ItemController extends Controller
         Validator::make($request->all(), [
             'group_id' => 'required',
             'number' => 'required|max:255',
-            'student_number' => 'required|max:255',
-            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+[A-Za-z\s]*$/|max:255',
+            //'student_number' => 'required|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
             'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
             'member' => 'required|max:255',
-            'birth_date' => 'required|max:255',
+            'birth_date' => 'required|regex:/^[0-3][0-9]\/[0-1][0-9]\/[0-9]{4}$/|max:255',
             'sex' => 'required|max:255',
             'part_c_teacher_id' => 'required|max:255',
+        ], [
+            'given_name.required' => 'Given Name is required. Given Name 为必填项',
+            'given_name.regex' => 'Given Name is invalid. Given Name 格式错误',
+            'family_name.required' => 'Family Name is required. Family Name 为必填项',
+            'family_name.regex' => 'Family Name is invalid. Family Name 格式错误',
+            'member.required' => 'Member is required. Member 为必填项',
+            'birth_date.required' => 'Birth Date is required. Birth Date 为必填项',
+            'birth_date.regex' => 'Birth Date is invalid. Birth Date 格式错误',
+            'sex.required' => 'Sex is required. Sex 为必填项',
+            'part_c_teacher_id.required' => 'Teacher is required. Teacher 为必填项',
         ])->validate();
+        $birthDate = Group::birthDate($request->group_id);
+        if (strtotime(str_replace('/', '-', $request->birth_date)) > strtotime($birthDate)) {
+            return back()->withErrors('Birth Date exceed limit. Birth Date 超出限定');
+        }
         if (isset($request->student_number) && !empty($request->student_number)) {
             $student = Student::where('number', '=', $request->student_number)->first();
         }
@@ -321,14 +335,28 @@ class ItemController extends Controller
         Validator::make($request->all(), [
             'group_id' => 'required',
             'number' => 'required|max:255',
-            'student_number' => 'required|max:255',
-            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+[A-Za-z\s]*$/|max:255',
+            //'student_number' => 'required|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
             'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
             'member' => 'required|max:255',
-            'birth_date' => 'required|max:255',
+            'birth_date' => 'required|regex:/^[0-3][0-9]\/[0-1][0-9]\/[0-9]{4}$/|max:255',
             'sex' => 'required|max:255',
             'part_c_teacher_id' => 'required|max:255',
+        ], [
+            'given_name.required' => 'Given Name is required. Given Name 为必填项',
+            'given_name.regex' => 'Given Name is invalid. Given Name 格式错误',
+            'family_name.required' => 'Family Name is required. Family Name 为必填项',
+            'family_name.regex' => 'Family Name is invalid. Family Name 格式错误',
+            'member.required' => 'Member is required. Member 为必填项',
+            'birth_date.required' => 'Birth Date is required. Birth Date 为必填项',
+            'birth_date.regex' => 'Birth Date is invalid. Birth Date 格式错误',
+            'sex.required' => 'Sex is required. Sex 为必填项',
+            'part_c_teacher_id.required' => 'Teacher is required. Teacher 为必填项',
         ])->validate();
+        $birthDate = Group::birthDate($request->group_id);
+        if (strtotime(str_replace('/', '-', $request->birth_date)) > strtotime($birthDate)) {
+            return back()->withErrors('Birth Date exceed limit. Birth Date 超出限定');
+        }
         if (isset($request->student_number) && !empty($request->student_number)) {
             $student = Student::where('number', '=', $request->student_number)->first();
         }
@@ -392,8 +420,20 @@ class ItemController extends Controller
     {
         $item = (new Item)->findOrFail($id);
         $group = (new Group)->findOrFail($item->group_id);
+        $sectionId = $group->section_id;
+        $section = (new Section)->findOrFail($sectionId);
+        $application = Section::findApplicationBySectionId($section->id);
         try {
             $item->delete();
+            $itemList = (new Item)->where('group_id', $group->id)->orderBy('id', 'asc')->get();
+            $i = 1;
+            foreach ($itemList as $item) {
+                $item->number = $i;
+                $item->save();
+                $i++;
+            }
+            Section::calculate($sectionId);
+            PartE::calculate($application->id);
         } catch (\Exception $e) {
             return redirect()->back();
         }

@@ -70,7 +70,7 @@ class PartDController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+[A-Za-z\s]*$/|max:255',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
             'identity_id' => 'required|max:255',
             'address_1' => 'required|max:255',
             'post_code' => 'required|max:255',
@@ -79,6 +79,16 @@ class PartDController extends Controller
             'email' => 'required|email|max:255',
             //'delivery_date' => 'required|max:255',
             'neighbour' => 'required|max:255',
+        ], [
+            'applicant_name.required' => 'Applicant Name is required. Applicant Name 为必填项',
+            'applicant_name.regex' => 'Applicant Name is invalid. Applicant Name 格式错误',
+            'identity_id.required' => 'Identity is required. Identity 为必填项',
+            'address_1.required' => 'Address is required. Address 为必填项',
+            'post_code.required' => 'Post Code is required. Post Code 为必填项',
+            'tel.required' => 'Tel is required. Tel 为必填项',
+            'email.required' => 'Email is required. Email 为必填项',
+            'email.email' => 'Email is invalid. Email 格式错误',
+            'neighbour.required' => 'Neighbour is required. Neighbour 为必填项',
         ])->validate();
         $applicant = (new Applicant)->updateOrCreate([
             'name' => $request->applicant_name,
@@ -171,7 +181,7 @@ class PartDController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+[A-Za-z\s]*$/|max:255',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
             'identity_id' => 'required|max:255',
             'address_1' => 'required|max:255',
             'post_code' => 'required|max:255',
@@ -180,6 +190,16 @@ class PartDController extends Controller
             'email' => 'required|email|max:255',
             //'delivery_date' => 'required|max:255',
             'neighbour' => 'required|max:255',
+        ], [
+            'applicant_name.required' => 'Applicant Name is required. Applicant Name 为必填项',
+            'applicant_name.regex' => 'Applicant Name is invalid. Applicant Name 格式错误',
+            'identity_id.required' => 'Identity is required. Identity 为必填项',
+            'address_1.required' => 'Address is required. Address 为必填项',
+            'post_code.required' => 'Post Code is required. Post Code 为必填项',
+            'tel.required' => 'Tel is required. Tel 为必填项',
+            'email.required' => 'Email is required. Email 为必填项',
+            'email.email' => 'Email is invalid. Email 格式错误',
+            'neighbour.required' => 'Neighbour is required. Neighbour 为必填项',
         ])->validate();
         $applicant = (new Applicant)->updateOrCreate([
             'name' => $request->applicant_name,

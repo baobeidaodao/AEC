@@ -89,6 +89,9 @@ class SectionController extends Controller
             'exam_id' => 'required',
             'number' => 'required|max:255',
             'exam_time' => 'required|regex:/^[0-2]{1}[0-0]{1}:[0-5]{1}[0-9]{1}$/|max:255',
+        ], [
+            'exam_time.required' => 'Exam Time is required. Exam Time 为必填项',
+            'exam_time.regex' => 'Exam Time is invalid. Exam Time 格式错误',
         ])->validate();
         $section = (new Section)->create([
             'exam_id' => $request->exam_id,
@@ -175,6 +178,9 @@ class SectionController extends Controller
             'exam_id' => 'required',
             'number' => 'required|max:255',
             'exam_time' => 'required|regex:/^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$/|max:255',
+        ], [
+            'exam_time.required' => 'Exam Time is required. Exam Time 为必填项',
+            'exam_time.regex' => 'Exam Time is invalid. Exam Time 格式错误',
         ])->validate();
         $section = (new Section)->findOrFail($id);
         $section->fill([
@@ -192,9 +198,18 @@ class SectionController extends Controller
     public function destroy($id)
     {
         $section = (new Section)->findOrFail($id);
+        $application = Section::findApplicationBySectionId($section->id);
         $examId = $section->exam_id;
         try {
             $section->delete();
+            $sectionList = (new Section)->where('exam_id', $examId)->orderBy('id', 'asc')->get();
+            $i = 1;
+            foreach ($sectionList as $item) {
+                $item->number = $i;
+                $item->save();
+                $i++;
+            }
+            PartE::calculate($application->id);
         } catch (\Exception $e) {
             return redirect()->back();
         }

@@ -15,7 +15,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Part E (Fees)</h3>
+                    <h3 class="card-title">Part E (Fees 费用)</h3>
                     <a href="{{url('/admin/application')}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i></a>
                 </div>
                 <div class="table-responsive">

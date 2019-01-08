@@ -70,10 +70,14 @@ class PartCTeacherController extends Controller
         Validator::make($request->all(), [
             'part_c_id' => 'required',
             //'membership_id' => 'required|max:255',
-            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+[A-Za-z\s]*$/|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
             'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
-        ],[
-            'part_c_id.required' => 'please create part C first!'
+        ], [
+            'part_c_id.required' => 'please create part C first!',
+            'given_name.required' => 'Given Name is required. Given Name 为必填项',
+            'given_name.regex' => 'Given Name is invalid. Given Name 格式错误',
+            'family_name.required' => 'Family Name is required. Family Name 为必填项',
+            'family_name.regex' => 'Family Name is invalid. Family Name 格式错误',
         ])->validate();
         $teacher = (new Teacher)->updateOrCreate([
             'membership_id' => $request->membership_id,
@@ -148,10 +152,14 @@ class PartCTeacherController extends Controller
         Validator::make($request->all(), [
             'part_c_id' => 'required',
             //'membership_id' => 'required|max:255',
-            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+[A-Za-z\s]*$/|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
             'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+$/|max:255',
-        ],[
-            'part_c_id.required' => 'please create part C first!'
+        ], [
+            'part_c_id.required' => 'please create part C first!',
+            'given_name.required' => 'Given Name is required. Given Name 为必填项',
+            'given_name.regex' => 'Given Name is invalid. Given Name 格式错误',
+            'family_name.required' => 'Family Name is required. Family Name 为必填项',
+            'family_name.regex' => 'Family Name is invalid. Family Name 格式错误',
         ])->validate();
         $teacher = (new Teacher)->updateOrCreate([
             'membership_id' => $request->membership_id,

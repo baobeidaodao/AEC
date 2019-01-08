@@ -13,7 +13,7 @@
     @include('application.nav')
     <div class="card" hidden>
         <div class="card-header">
-            <h3 class="card-title">Part C (Registered Teacher details)</h3>
+            <h3 class="card-title">Part C (Registered Teacher details 注册教师详细信息)</h3>
             <div class="btn-list ml-auto">
                 <a href="{{url('/admin/application')}}" class="btn btn-sm btn-outline-danger btn-icon"><i class="fe fe-x"></i></a>
             </div>

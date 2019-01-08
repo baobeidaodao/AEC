@@ -119,6 +119,9 @@ class GroupController extends Controller
             'level_id' => 'required|max:255',
             'exam_type_id' => 'required|max:255',
             'rest_id' => 'required|max:255',
+        ], [
+            'level_id.required' => 'Level is required. Level 为必填项',
+            'exam_type_id.required' => 'Exam Type is required. Exam Type 为必填项',
         ])->validate();
         $group = (new Group)->create([
             'section_id' => $request->section_id,
@@ -230,6 +233,9 @@ class GroupController extends Controller
             'number' => 'required|max:255',
             'level_id' => 'required|max:255',
             'exam_type_id' => 'required|max:255',
+        ], [
+            'level_id.required' => 'Level is required. Level 为必填项',
+            'exam_type_id.required' => 'Exam Type is required. Exam Type 为必填项',
         ])->validate();
         $group = (new Group)->findOrFail($id);
         $group->fill([
@@ -254,6 +260,7 @@ class GroupController extends Controller
         $group = (new Group)->findOrFail($id);
         $sectionId = $group->section_id;
         $section = (new Section)->findOrFail($sectionId);
+        $application = Section::findApplicationBySectionId($section->id);
         $examId = $section->exam_id;
         try {
             $group->delete();
@@ -264,6 +271,8 @@ class GroupController extends Controller
                 $item->save();
                 $i++;
             }
+            Section::calculate($sectionId);
+            PartE::calculate($application->id);
         } catch (\Exception $e) {
             return redirect()->back();
         }

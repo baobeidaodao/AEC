@@ -72,6 +72,12 @@ class PartAController extends Controller
             'school_name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'tel' => 'required',
+        ], [
+            'school_code.required' => 'School ID is required. School ID 为必填项',
+            'school_name.required' => 'School Name is required. School Name 为必填项',
+            'email.required' => 'Email is required. Email 为必填项',
+            'email.email' => 'Email is invalid. Email 格式错误',
+            'tel.required' => 'Tel is invalid. Tel 为必填项',
         ])->validate();
         if (isset($request->school_code) && !empty($request->school_code)) {
             $school = School::where('code', '=', $request->school_code)->first();
@@ -163,6 +169,12 @@ class PartAController extends Controller
             'school_name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'tel' => 'required|max:255',
+        ], [
+            'school_code.required' => 'School ID is required. School ID 为必填项',
+            'school_name.required' => 'School Name is required. School Name 为必填项',
+            'email.required' => 'Email is required. Email 为必填项',
+            'email.email' => 'Email is invalid. Email 格式错误',
+            'tel.required' => 'Tel is invalid. Tel 为必填项',
         ])->validate();
         if (isset($request->school_code) && !empty($request->school_code)) {
             $school = School::where('code', '=', $request->school_code)->first();
