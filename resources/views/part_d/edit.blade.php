@@ -85,7 +85,7 @@
                 <input name="email" class="form-control" placeholder="Email" value="{{ $partD['email'] or '' }}"/>
             </div>
             <div class="form-group">
-                <label class="form-label">Delivery Date</label>
+                <label class="form-label">Impossible Dates for Delivery</label>
                 @include('public.datetime_picker', ['id' => 'deliveryDate', 'name' => 'delivery_date', 'placeholder' => 'Delivery Date', 'value' => date('Y-m-d', strtotime($partD['delivery_date'])), 'datetime' => isset($partD['delivery_date']) ? $partD['delivery_date'] : '', 'format' => 'yyyy-mm-dd', ])
             </div>
             <div class="form-group">

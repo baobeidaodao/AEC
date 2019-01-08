@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\PartD;
 use App\Models\PartF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -67,7 +68,13 @@ class PartFController extends Controller
         Validator::make($request->all(), [
             'application_id' => 'required',
             'applicant_name' => 'required|max:255',
+        ],[
+            'applicant_name.required' => 'Applicant Name 为必填项'
         ])->validate();
+        $partD = PartD::where('application_id', '=', $request->application_id)->first();
+        if ($request->applicant_name != $partD->applicant_name) {
+            return back()->withErrors('');
+        }
         $partF = (new PartF)->create([
             'application_id' => $request->application_id,
             'applicant_id' => $request->applicant_id,
@@ -133,7 +140,13 @@ class PartFController extends Controller
         Validator::make($request->all(), [
             'application_id' => 'required',
             'applicant_name' => 'required|max:255',
+        ],[
+            'applicant_name.required' => 'Applicant Name 为必填项'
         ])->validate();
+        $partD = PartD::where('application_id', '=', $request->application_id)->first();
+        if ($request->applicant_name != $partD->applicant_name) {
+            return back()->withErrors('');
+        }
         $partF = (new PartF)->findOrFail($id);
         $partF->fill([
             'application_id' => $request->application_id,

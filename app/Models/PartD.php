@@ -49,7 +49,7 @@ class PartD extends Model
             isset($partD->application_id) && !empty($partD->application_id)
             && isset($partD->applicant_id) && !empty($partD->applicant_id)
             && isset($partD->applicant_name) && !empty($partD->applicant_name)
-            && isset($partD->membership_id) && !empty($partD->membership_id)
+            // && isset($partD->membership_id) && !empty($partD->membership_id)
             && isset($partD->identity_id) && !empty($partD->identity_id)
             && isset($partD->address_1) && !empty($partD->address_1)
             && isset($partD->post_code) && !empty($partD->post_code)

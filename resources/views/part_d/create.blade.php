@@ -71,7 +71,7 @@
                 <input name="email" class="form-control" placeholder="Email" value="{{ old('email') }}"/>
             </div>
             <div class="form-group">
-                <label class="form-label">Delivery Date</label>
+                <label class="form-label">Impossible Dates for Delivery</label>
                 @include('public.datetime_picker', ['id' => 'deliveryDate', 'name' => 'delivery_date', 'placeholder' => 'Delivery Date', 'value' => old('delivery_date'), 'format' => 'yyyy-mm-dd', ])
             </div>
             <div class="form-group">
