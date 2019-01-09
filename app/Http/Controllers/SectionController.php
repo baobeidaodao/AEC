@@ -88,11 +88,13 @@ class SectionController extends Controller
         Validator::make($request->all(), [
             'exam_id' => 'required',
             'number' => 'required|max:255',
-            'exam_time' => 'required|regex:/^[0-2]{1}[0-0]{1}(\:|：)[0-5]{1}[0-9]{1}$/|max:255',
+            'exam_time' => 'required|max:255',
         ], [
             'exam_time.required' => 'Exam Time is required. Exam Time 为必填项',
-            'exam_time.regex' => 'Exam Time is invalid. Exam Time 格式错误',
         ])->validate();
+        if (!preg_match('/^[0-2]{1}[0-9]{1}(:|：)[0-5]{1}[0-9]{1}$/', $request->exam_time)) {
+            return back()->withErrors('Exam Time is invalid. Exam Time 格式错误');
+        }
         $request->exam_time = str_replace('：', ':', $request->exam_time);
         $section = (new Section)->create([
             'exam_id' => $request->exam_id,
@@ -178,11 +180,13 @@ class SectionController extends Controller
         Validator::make($request->all(), [
             'exam_id' => 'required',
             'number' => 'required|max:255',
-            'exam_time' => 'required|regex:/^[0-2]{1}[0-9]{1}(\:|：)[0-5]{1}[0-9]{1}$/|max:255',
+            'exam_time' => 'required|max:255',
         ], [
             'exam_time.required' => 'Exam Time is required. Exam Time 为必填项',
-            'exam_time.regex' => 'Exam Time is invalid. Exam Time 格式错误',
         ])->validate();
+        if (!preg_match('/^[0-2]{1}[0-9]{1}(:|：)[0-5]{1}[0-9]{1}$/', $request->exam_time)) {
+            return back()->withErrors('Exam Time is invalid. Exam Time 格式错误');
+        }
         $request->exam_time = str_replace('：', ':', $request->exam_time);
         $section = (new Section)->findOrFail($id);
         $section->fill([
