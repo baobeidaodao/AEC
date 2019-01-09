@@ -93,6 +93,7 @@ class SectionController extends Controller
             'exam_time.required' => 'Exam Time is required. Exam Time 为必填项',
             'exam_time.regex' => 'Exam Time is invalid. Exam Time 格式错误',
         ])->validate();
+        $request->exam_time = str_replace('：', ':', $request->exam_time);
         $section = (new Section)->create([
             'exam_id' => $request->exam_id,
             'number' => $request->number,
@@ -182,6 +183,7 @@ class SectionController extends Controller
             'exam_time.required' => 'Exam Time is required. Exam Time 为必填项',
             'exam_time.regex' => 'Exam Time is invalid. Exam Time 格式错误',
         ])->validate();
+        $request->exam_time = str_replace('：', ':', $request->exam_time);
         $section = (new Section)->findOrFail($id);
         $section->fill([
             'exam_id' => $request->exam_id,
