@@ -54,7 +54,11 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a href="{{url('/admin/item/create?group_id=')}}{{$group['id'] or ''}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>添加考生</a>
+                                    @if(count($group['item_list']) < \App\Models\Group::limit($group['id']) && \App\Models\Group::limit($group['id']) > 0)
+                                        <a href="{{url('/admin/item/create?group_id=')}}{{$group['id'] or ''}}"
+                                           class="btn btn-outline-info btn-sm btn-icon ml-auto"><i
+                                                    class="fe fe-plus"></i>添加考生</a>
+                                    @endif
                                     <a href="{{url('/admin/group/' . $group['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto" hidden><i class="fe fe-eye"></i></a>
                                     <a href="{{url('/admin/group/' . $group['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto"><i class="fe fe-edit"></i></a>
                                     <a href="javascript:void(0)" onclick="$('#deleteGroup{{$group['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon ml-auto"><i class="fe fe-trash-2"></i></a>

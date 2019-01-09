@@ -152,6 +152,374 @@ class Group extends Model
         return $birthDate;
     }
 
+    public static function limit($id)
+    {
+        $group = Group::with(['level', 'examType',])->find($id);
+        $level = $group->level->code;
+        $type = $group->examType->code;
+        $limit = self::calculateLimit($type, $level);
+        return $limit;
+    }
+
+    public static function calculateLimit($type, $level)
+    {
+        $limit = 0;
+        switch ($type) {
+            case 'EX':
+                switch ($level) {
+                    case 'DC1':
+                        break;
+                    case 'DC2':
+                        break;
+                    case 'PPID':
+                        break;
+                    case 'PID':
+                        $limit = 4;
+                        break;
+                    case 'G1':
+                        $limit = 4;
+                        break;
+                    case 'G2':
+                        $limit = 4;
+                        break;
+                    case 'G3':
+                        $limit = 4;
+                        break;
+                    case 'G4':
+                        $limit = 4;
+                        break;
+                    case 'G5':
+                        $limit = 4;
+                        break;
+                    case 'G6':
+                        $limit = 4;
+                        break;
+                    case 'G7':
+                        $limit = 4;
+                        break;
+                    case 'G8':
+                        $limit = 4;
+                        break;
+                    case 'INTF':
+                        $limit = 4;
+                        break;
+                    case 'INT':
+                        $limit = 4;
+                        break;
+                    case 'ADVF':
+                        $limit = 4;
+                        break;
+                    case 'ADV1':
+                        $limit = 4;
+                        break;
+                    case 'ADV2':
+                        $limit = 4;
+                        break;
+                    case 'SS':
+                        $limit = 4;
+                        break;
+                    case 'R2C':
+                        $limit = 4;
+                        break;
+                    case 'R2V1':
+                        $limit = 4;
+                        break;
+                    case 'R2V2':
+                        $limit = 4;
+                        break;
+                    case 'R3C':
+                        $limit = 4;
+                        break;
+                    case 'R3V1':
+                        $limit = 4;
+                        break;
+                    case 'R3V2':
+                        $limit = 4;
+                        break;
+                    case 'R4C':
+                        $limit = 4;
+                        break;
+                    case 'R4V1':
+                        $limit = 4;
+                        break;
+                    case 'R4V2':
+                        $limit = 4;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 'DC':
+                switch ($level) {
+                    case 'DC1':
+                        $limit = 16;
+                        break;
+                    case 'DC2':
+                        $limit = 16;
+                        break;
+                    case 'PPID':
+                        break;
+                    case 'PID':
+                        break;
+                    case 'G1':
+                        break;
+                    case 'G2':
+                        break;
+                    case 'G3':
+                        break;
+                    case 'G4':
+                        break;
+                    case 'G5':
+                        break;
+                    case 'G6':
+                        break;
+                    case 'G7':
+                        break;
+                    case 'G8':
+                        break;
+                    case 'INTF':
+                        break;
+                    case 'INT':
+                        break;
+                    case 'ADVF':
+                        break;
+                    case 'ADV1':
+                        break;
+                    case 'ADV2':
+                        break;
+                    case 'SS':
+                        break;
+                    case 'R2C':
+                        break;
+                    case 'R2V1':
+                        break;
+                    case 'R2V2':
+                        break;
+                    case 'R3C':
+                        break;
+                    case 'R3V1':
+                        break;
+                    case 'R3V2':
+                        break;
+                    case 'R4C':
+                        break;
+                    case 'R4V1':
+                        break;
+                    case 'R4V2':
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 'CA':
+                switch ($level) {
+                    case 'DC1':
+                        break;
+                    case 'DC2':
+                        break;
+                    case 'PPID':
+                        $limit = 8;
+                        break;
+                    case 'PID':
+                        $limit = 8;
+                        break;
+                    case 'G1':
+                        $limit = 8;
+                        break;
+                    case 'G2':
+                        $limit = 8;
+                        break;
+                    case 'G3':
+                        $limit = 8;
+                        break;
+                    case 'G4':
+                        $limit = 8;
+                        break;
+                    case 'G5':
+                        $limit = 8;
+                        break;
+                    case 'G6':
+                        break;
+                    case 'G7':
+                        break;
+                    case 'G8':
+                        break;
+                    case 'INTF':
+                        break;
+                    case 'INT':
+                        break;
+                    case 'ADVF':
+                        break;
+                    case 'ADV1':
+                        break;
+                    case 'ADV2':
+                        break;
+                    case 'SS':
+                        break;
+                    case 'R2C':
+                        $limit = 8;
+                        break;
+                    case 'R2V1':
+                        $limit = 8;
+                        break;
+                    case 'R2V2':
+                        $limit = 8;
+                        break;
+                    case 'R3C':
+                        $limit = 8;
+                        break;
+                    case 'R3V1':
+                        $limit = 8;
+                        break;
+                    case 'R3V2':
+                        $limit = 8;
+                        break;
+                    case 'R4C':
+                        $limit = 8;
+                        break;
+                    case 'R4V1':
+                        $limit = 8;
+                        break;
+                    case 'R4V2':
+                        $limit = 8;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 'PC':
+                switch ($level) {
+                    case 'DC1':
+                        break;
+                    case 'DC2':
+                        break;
+                    case 'PPID':
+                        break;
+                    case 'PID':
+                        break;
+                    case 'G1':
+                        break;
+                    case 'G2':
+                        break;
+                    case 'G3':
+                        break;
+                    case 'G4':
+                        break;
+                    case 'G5':
+                        break;
+                    case 'G6':
+                        $limit = 8;
+                        break;
+                    case 'G7':
+                        $limit = 8;
+                        break;
+                    case 'G8':
+                        $limit = 4;
+                        break;
+                    case 'INTF':
+                        break;
+                    case 'INT':
+                        break;
+                    case 'ADVF':
+                        break;
+                    case 'ADV1':
+                        break;
+                    case 'ADV2':
+                        break;
+                    case 'SS':
+                        break;
+                    case 'R2C':
+                    case 'R2V1':
+                        break;
+                    case 'R2V2':
+                        break;
+                    case 'R3C':
+                        break;
+                    case 'R3V1':
+                        break;
+                    case 'R3V2':
+                        break;
+                    case 'R4C':
+                        break;
+                    case 'R4V1':
+                        break;
+                    case 'R4V2':
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 'SPA':
+                switch ($level) {
+                    case 'DC1':
+                        break;
+                    case 'DC2':
+                        break;
+                    case 'PPID':
+                        break;
+                    case 'PID':
+                        break;
+                    case 'G1':
+                        $limit = 4;
+                        break;
+                    case 'G2':
+                        $limit = 4;
+                        break;
+                    case 'G3':
+                        $limit = 4;
+                        break;
+                    case 'G4':
+                        $limit = 4;
+                        break;
+                    case 'G5':
+                        $limit = 4;
+                        break;
+                    case 'G6':
+                        break;
+                    case 'G7':
+                        break;
+                    case 'G8':
+                        break;
+                    case 'INTF':
+                        break;
+                    case 'INT':
+                        break;
+                    case 'ADVF':
+                        break;
+                    case 'ADV1':
+                        break;
+                    case 'ADV2':
+                        break;
+                    case 'SS':
+                        break;
+                    case 'R2C':
+                        break;
+                    case 'R2V1':
+                        break;
+                    case 'R2V2':
+                        break;
+                    case 'R3C':
+                        break;
+                    case 'R3V1':
+                        break;
+                    case 'R3V2':
+                        break;
+                    case 'R4C':
+                        break;
+                    case 'R4V1':
+                        break;
+                    case 'R4V2':
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+        return $limit;
+    }
+
     public static function minute($type, $level, $count)
     {
         $minute = 0;
