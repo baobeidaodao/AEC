@@ -88,7 +88,7 @@ class SectionController extends Controller
         Validator::make($request->all(), [
             'exam_id' => 'required',
             'number' => 'required|max:255',
-            'exam_time' => 'required|regex:/^[0-2]{1}[0-0]{1}[:：]{1}[0-5]{1}[0-9]{1}$/|max:255',
+            'exam_time' => 'required|regex:/^[0-2]{1}[0-0]{1}(:|：)[0-5]{1}[0-9]{1}$/|max:255',
         ], [
             'exam_time.required' => 'Exam Time is required. Exam Time 为必填项',
             'exam_time.regex' => 'Exam Time is invalid. Exam Time 格式错误',
@@ -178,7 +178,7 @@ class SectionController extends Controller
         Validator::make($request->all(), [
             'exam_id' => 'required',
             'number' => 'required|max:255',
-            'exam_time' => 'required|regex:/^[0-2]{1}[0-9]{1}[:：]{1}[0-5]{1}[0-9]{1}$/|max:255',
+            'exam_time' => 'required|regex:/^[0-2]{1}[0-9]{1}(:|：)[0-5]{1}[0-9]{1}$/|max:255',
         ], [
             'exam_time.required' => 'Exam Time is required. Exam Time 为必填项',
             'exam_time.regex' => 'Exam Time is invalid. Exam Time 格式错误',
