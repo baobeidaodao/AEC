@@ -133,7 +133,7 @@ class Exam extends Model
         if (isset($exam['section_list']) && is_array($exam['section_list']) && !empty($exam['section_list'])) {
             $sectionList = $exam['section_list'];
             foreach ($sectionList as $section) {
-                $sheetName = 'section_' . $section['id'];
+                $sheetName = 'section_' . $section['number'];
                 $data[$sheetName] = [];
                 $data[$sheetName][] = $head;
                 if (isset($section['group_list']) && is_array($section['group_list']) && !empty($section['group_list'])) {
