@@ -11,7 +11,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Exam;
-use App\Models\Item;
 use App\Models\PartA;
 use App\Models\PartB;
 use App\Models\PartC;
@@ -79,14 +78,18 @@ class ExportController extends Controller
         $partFData = PartF::export($partF['id']);
         $data = array_merge($data, $partFData);
 
-        $fileName = $id;
+        $fileName = 'AEC_' . $id . '_' . $partA['school_name'] . '.xlsx';
 
         $aec = resource_path('excel/aec.xlsx');
         $aec_ = resource_path('excel/aec_.xlsx');
         $part = resource_path('excel/part.xlsx');
         $exam = resource_path('excel/exam.xlsx');
 
-        Excel::load($aec_, function ($excel) use ($data) {
+        $tempPath = storage_path($fileName);
+        //$exportFile = Storage::disk('local')->copy($aec_, $tempPath);
+        copy($aec_, $tempPath);
+
+        Excel::load($tempPath, function ($excel) use ($data) {
             foreach ($data as $sheetName => $sheetData) {
                 if (in_array($sheetName, ['section_1', 'section_2', 'section_3', 'section_4', 'section_5', 'section_6', 'section_7',])) {
                     $excel->sheet($sheetName, function ($sheet) use ($sheetData) {
@@ -111,6 +114,8 @@ class ExportController extends Controller
                 }
             }
         })->export('xlsx');
+
+        unlink($tempPath);
 
     }
 
