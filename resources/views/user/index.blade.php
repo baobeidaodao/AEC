@@ -47,8 +47,10 @@
                                     <div class="btn-list">
                                         <a href="{{url('/admin/user/' . $user['id'])}}" class="btn btn-outline-success btn-sm btn-icon"><i class="fe fe-eye"></i></a>
                                         <a href="{{url('/admin/user/' . $user['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon"><i class="fe fe-edit"></i></a>
-                                        <a href="javascript:void(0)" onclick="$('#delete{{$user['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon"><i class="fe fe-trash-2"></i></a>
-                                        {!! Form::open(['id' => 'delete'.$user['id'], 'method' => 'delete', 'route' => ['user.destroy', $user['id']], ]) !!}{!! Form::close() !!}
+                                        @if($user['name']!='admin')
+                                            <a href="javascript:void(0)" onclick="$('#delete{{$user['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon"><i class="fe fe-trash-2"></i></a>
+                                            {!! Form::open(['id' => 'delete'.$user['id'], 'method' => 'delete', 'route' => ['user.destroy', $user['id']], ]) !!}{!! Form::close() !!}
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
