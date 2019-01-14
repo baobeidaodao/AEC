@@ -31,8 +31,8 @@
                     <input class="form-control" placeholder="Exam Time" value="{{ $group['exam_time'] or '' }}" readonly/>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Exam Time</label>
-                    <input class="form-control" placeholder="Exam Time" value="{{ $group['finish_time'] or '' }}" readonly/>
+                    <label class="form-label">Finish Time</label>
+                    <input class="form-control" placeholder="Finish Time" value="{{ $group['finish_time'] or '' }}" readonly/>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Level Code</label>

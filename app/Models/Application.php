@@ -95,4 +95,21 @@ class Application extends Model
         $application->save();
         return $application;
     }
+
+    public static function partCTeacherNameArray($id)
+    {
+        $partCTeacherList = PartCTeacher::join('part_c', 'part_c_teacher.part_c_id', '=', 'part_c.id')
+            ->join('application', 'part_c.application_id', '=', 'application.id')
+            ->where('application.id', '=', $id)
+            ->select(['part_c_teacher.*'])
+            ->get()
+            ->toArray();
+        $nameArray = [];
+        if (isset($partCTeacherList) && !empty($partCTeacherList)) {
+            foreach ($partCTeacherList as $partCTeacher) {
+                $nameArray[] = $partCTeacher['given_name'] . ' ' . $partCTeacher['family_name'];
+            }
+        }
+        return $nameArray;
+    }
 }

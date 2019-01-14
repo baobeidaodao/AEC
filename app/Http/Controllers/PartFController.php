@@ -74,9 +74,13 @@ class PartFController extends Controller
             'applicant_name.regex' => 'Applicant Name is invalid. Applicant Name 格式错误',
             'agree.required' => 'Agree is required. Agree 为必填项',
         ])->validate();
-        $partD = PartD::where('application_id', '=', $request->application_id)->first();
-        if ($request->applicant_name != $partD->applicant_name) {
-            return back()->withErrors('Applicant Name must be consistent with Part D. Applicant Name 必须与 Part D 中保持一致');
+//        $partD = PartD::where('application_id', '=', $request->application_id)->first();
+//        if ($request->applicant_name != $partD->applicant_name) {
+//            return back()->withErrors('Applicant Name must be consistent with Part D. Applicant Name 必须与 Part D 中保持一致');
+//        }
+        $nameArray = Application::partCTeacherNameArray($request->application_id);
+        if (!in_array($request->applicant_name, $nameArray)) {
+            return back()->withErrors('Applicant Name must be consistent with One Of Part C Teacher. Applicant Name 必须与 Part C Teacher 中的一个保持一致');
         }
         $agree = Input::get('agree', []);
         if (!isset($agree[0]) || $agree[0] != 1) {
@@ -153,9 +157,13 @@ class PartFController extends Controller
             'applicant_name.regex' => 'Applicant Name is invalid. Applicant Name 格式错误',
             'agree.required' => 'Agree is required. Agree 为必填项',
         ])->validate();
-        $partD = PartD::where('application_id', '=', $request->application_id)->first();
-        if ($request->applicant_name != $partD->applicant_name) {
-            return back()->withErrors('Applicant Name must be consistent with Part D. Applicant Name 必须与 Part D 中保持一致');
+//        $partD = PartD::where('application_id', '=', $request->application_id)->first();
+//        if ($request->applicant_name != $partD->applicant_name) {
+//            return back()->withErrors('Applicant Name must be consistent with Part D. Applicant Name 必须与 Part D 中保持一致');
+//        }
+        $nameArray = Application::partCTeacherNameArray($request->application_id);
+        if (!in_array($request->applicant_name, $nameArray)) {
+            return back()->withErrors('Applicant Name must be consistent with One Of Part C Teacher. Applicant Name 必须与 Part C Teacher 中的一个保持一致');
         }
         $agree = Input::get('agree', []);
         if (!isset($agree[0]) || $agree[0] != 1) {
