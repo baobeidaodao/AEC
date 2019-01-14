@@ -9,9 +9,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -20,7 +22,12 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $userList = User::all()->toArray();
+        $userId = Auth::id();
+        if (Permission::userHasPermission($userId, 'admin')) {
+            $userList = User::all()->toArray();
+        } else {
+            $userList = User::where('id', '=', $userId)->get()->toArray();
+        }
         $data = [];
         $data['active'] = $this->active;
         $data['userList'] = $userList;

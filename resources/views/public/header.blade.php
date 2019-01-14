@@ -56,11 +56,11 @@
                         <a href="{{url('/index')}}" class="nav-link @if(!isset($active) || $active == 'index') active @endif"><i class="fe fe-home"></i>Index 首页</a>
                     </li>
                     @endrole
-                    @permission('admin')
+                    {{--@permission('admin')--}}
                     <li class="nav-item">
                         <a href="{{url('/admin/user')}}" class="nav-link @if(isset($active) && $active == 'user') active @endif"><i class="fe fe-users"></i>User 用户</a>
                     </li>
-                    @endpermission
+                    {{--@endpermission--}}
                     @permission('admin')
                     <li class="nav-item">
                         <a href="{{url('/admin/school')}}" class="nav-link @if(isset($active) && $active == 'school') active @endif"><i class="fe fe-book-open"></i>School 注册学校</a>
