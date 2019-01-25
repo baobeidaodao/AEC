@@ -21,7 +21,7 @@
                     <table class="table card-table table-vcenter text-nowrap">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            <th></th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -32,7 +32,7 @@
                         @foreach($userList as $user)
                             <tr>
                                 <td>
-                                    <span class="text-muted">{{ $user['id'] or '' }}</span>
+                                    <span class="text-muted">{{ $loop->iterator }}</span>
                                 </td>
                                 <td>
                                     <a href="{{url('/admin/user/' . $user['id'])}}" class="text-inherit">{{ $user['name'] or '' }}</a>

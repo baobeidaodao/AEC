@@ -117,6 +117,9 @@ class UserController extends Controller
         $user = (new User)->findOrFail($id);
         // $role->perms()->detach();
         try {
+            $user->name = $user->name . '_' . time();
+            $user->email = $user->email . '_' . time();
+            $user->save();
             $user->delete();
         } catch (\Exception $e) {
             return redirect()->back();
