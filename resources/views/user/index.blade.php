@@ -32,7 +32,7 @@
                         @foreach($userList as $user)
                             <tr>
                                 <td>
-                                    <span class="text-muted">{{ $loop->iterator }}</span>
+                                    <span class="text-muted">{{ $loop->iteration }}</span>
                                 </td>
                                 <td>
                                     <a href="{{url('/admin/user/' . $user['id'])}}" class="text-inherit">{{ $user['name'] or '' }}</a>
