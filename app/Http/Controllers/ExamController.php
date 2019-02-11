@@ -92,7 +92,6 @@ class ExamController extends Controller
 
     public function show($id)
     {
-        PartE::calculate(1);
         $exam = Exam::with([
             'application' => function ($query) {
                 $query->with([
@@ -108,7 +107,7 @@ class ExamController extends Controller
                             $query->with(array_merge(Item::WITH, ['itemPartCTeacherList' => function ($query) {
                                 $query->with(['partCTeacher']);
                             }]));
-                        },]);
+                        },])->orderBy('number', 'asc');
                     },
                 ]);
             },

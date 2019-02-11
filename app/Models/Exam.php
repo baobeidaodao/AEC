@@ -121,7 +121,7 @@ class Exam extends Model
                         $query->with(array_merge(Item::WITH, ['itemPartCTeacherList' => function ($query) {
                             $query->with(['partCTeacher',]);
                         },]));
-                    },]);
+                    },])->orderBy('number', 'asc');
                 },
             ]);
         },])->find($id);
