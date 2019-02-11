@@ -83,6 +83,24 @@ class Group extends Model
         return $group;
     }
 
+    /**
+     * 组重新排序
+     * @param $sectionId
+     */
+    public static function reorder($sectionId)
+    {
+        $groupList = (new Group)->where('section_id', $sectionId)
+            ->orderBy('number', 'asc')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $i = 1;
+        foreach ($groupList as $item) {
+            $item->number = $i;
+            $item->save();
+            $i++;
+        }
+    }
+
     public static function birthDate($id)
     {
         $group = Group::with(['level'])->find($id);

@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Number</label>
-                <input name="number" class="form-control" placeholder="Number" value="{{ count($section['group_list']) + 1 }}" readonly/>
+                <input name="number" class="form-control" placeholder="Number" value="{{ count($section['group_list']) + 1 }}"/>
             </div>
             <div class="form-group">
                 <label class="form-label">Exam Time</label>

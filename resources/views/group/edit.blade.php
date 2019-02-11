@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Number</label>
-                <input name="number" class="form-control" placeholder="Number" value="{{ $group['number'] or '' }}" readonly/>
+                <input name="number" class="form-control" placeholder="Number" value="{{ $group['number'] or '' }}"/>
             </div>
             <div class="form-group">
                 <label class="form-label">Exam Time</label>

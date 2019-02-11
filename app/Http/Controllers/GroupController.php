@@ -131,6 +131,7 @@ class GroupController extends Controller
             'exam_type_id' => $request->exam_type_id,
             'rest_id' => $request->rest_id,
         ]);
+        Group::reorder($request->section_id);
         Section::calculate($request->section_id);
         $application = Section::findApplicationBySectionId($request->section_id);
         PartE::calculate($application->id);
@@ -246,6 +247,7 @@ class GroupController extends Controller
             'exam_type_id' => $request->exam_type_id,
             'rest_id' => $request->rest_id,
         ])->save();
+        Group::reorder($request->section_id);
         Section::calculate($request->section_id);
         $application = Section::findApplicationBySectionId($request->section_id);
         PartE::calculate($application->id);
@@ -263,14 +265,7 @@ class GroupController extends Controller
         $application = Section::findApplicationBySectionId($section->id);
         $examId = $section->exam_id;
         try {
-            $group->delete();
-            $groupList = (new Group)->where('section_id', $sectionId)->orderBy('id', 'asc')->get();
-            $i = 1;
-            foreach ($groupList as $item) {
-                $item->number = $i;
-                $item->save();
-                $i++;
-            }
+            Group::reorder($sectionId);
             Section::calculate($sectionId);
             PartE::calculate($application->id);
         } catch (\Exception $e) {
