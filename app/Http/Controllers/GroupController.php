@@ -265,6 +265,7 @@ class GroupController extends Controller
         $application = Section::findApplicationBySectionId($section->id);
         $examId = $section->exam_id;
         try {
+            $group->delete();
             Group::reorder($sectionId);
             Section::calculate($sectionId);
             PartE::calculate($application->id);
