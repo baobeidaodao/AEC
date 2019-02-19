@@ -201,6 +201,7 @@ class ItemController extends Controller
             'birth_date' => date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request->birth_date))),
             'sex' => $request->sex,
         ]);
+        Item::reorder($group->id);
         $itemId = $item->id;
         $partCTeacherIdArray = Input::get('part_c_teacher_id', []);
         ItemPartCTeacher::where('item_id', '=', $itemId)->update([
@@ -404,6 +405,7 @@ class ItemController extends Controller
             'birth_date' => date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request->birth_date))),
             'sex' => $request->sex,
         ])->save();
+        Item::reorder($group->id);
         $itemId = $item->id;
         $partCTeacherIdArray = Input::get('part_c_teacher_id', []);
         ItemPartCTeacher::where('item_id', '=', $itemId)->update([
@@ -433,13 +435,7 @@ class ItemController extends Controller
         $application = Section::findApplicationBySectionId($section->id);
         try {
             $item->delete();
-            $itemList = (new Item)->where('group_id', $group->id)->orderBy('id', 'asc')->get();
-            $i = 1;
-            foreach ($itemList as $item) {
-                $item->number = $i;
-                $item->save();
-                $i++;
-            }
+            Item::reorder($group->id);
             Section::calculate($sectionId);
             PartE::calculate($application->id);
         } catch (\Exception $e) {

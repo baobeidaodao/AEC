@@ -41,6 +41,20 @@ class Item extends Model
         return $this->hasMany(ItemPartCTeacher::class, 'item_id', 'id')->where('status', '=', 1);
     }
 
+    public static function reorder($groupId)
+    {
+        $itemList = (new Item)->where('group_id', $groupId)
+            ->orderBy('number', 'asc')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $i = 1;
+        foreach ($itemList as $item) {
+            $item->number = $i;
+            $item->save();
+            $i++;
+        }
+    }
+
     public static function check($id)
     {
         $item = self::find($id);

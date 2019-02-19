@@ -30,8 +30,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Number</label>
-                <input name="number" class="form-control" placeholder="Number" value="{{ $item['number'] or '' }}"
-                       readonly/>
+                <input name="number" class="form-control" placeholder="Number" value="{{ $item['number'] or '' }}"/>
             </div>
             <div class="form-group">
                 <label class="form-label">Candidate ID No</label>

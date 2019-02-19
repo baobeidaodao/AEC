@@ -36,7 +36,7 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'membership_id' => 'required|unique:teacher|max:255',
+            'membership_id' => 'required|max:255',
             'given_name' => 'required|max:255',
             'family_name' => 'required|max:255',
         ])->validate();

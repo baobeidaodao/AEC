@@ -27,8 +27,7 @@ $oldPartCTeacherId = old('part_c_teacher_id');
             </div>
             <div class="form-group">
                 <label class="form-label">Number</label>
-                <input name="number" class="form-control" placeholder="Number"
-                       value="{{ count($group['item_list']) + 1 }}" readonly/>
+                <input name="number" class="form-control" placeholder="Number" value="{{ count($group['item_list']) + 1 }}"/>
             </div>
             <div class="form-group">
                 <label class="form-label">Candidate ID No</label>
