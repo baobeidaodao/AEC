@@ -70,8 +70,8 @@ class PartCTeacherController extends Controller
         Validator::make($request->all(), [
             'part_c_id' => 'required',
             //'membership_id' => 'required|max:255',
-            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+((\s|-)[A-Z]{1}[a-z]+)*$/|max:255',
-            'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+((\s|-)[A-Z]{1}[a-z]+)*$/|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+((\s|\-)[A-Z]{1}[a-z]+)*$/|max:255',
+            'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+((\s|\-)[A-Z]{1}[a-z]+)*$/|max:255',
         ], [
             'part_c_id.required' => 'please create part C first!',
             'given_name.required' => 'Given Name is required. Given Name 为必填项',
@@ -152,8 +152,8 @@ class PartCTeacherController extends Controller
         Validator::make($request->all(), [
             'part_c_id' => 'required',
             //'membership_id' => 'required|max:255',
-            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+((\s|-)[A-Z]{1}[a-z]+)*$/|max:255',
-            'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+((\s|-)[A-Z]{1}[a-z]+)*$/|max:255',
+            'given_name' => 'required|regex:/^[A-Z]{1}[a-z]+((\s|\-)[A-Z]{1}[a-z]+)*$/|max:255',
+            'family_name' => 'required|regex:/^[A-Z]{1}[a-z]+((\s|\-)[A-Z]{1}[a-z]+)*$/|max:255',
         ], [
             'part_c_id.required' => 'please create part C first!',
             'given_name.required' => 'Given Name is required. Given Name 为必填项',
