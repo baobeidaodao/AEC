@@ -70,7 +70,7 @@ class PartDController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+([\s\-]{1}[A-Z]{1}[a-z]+)*$/|max:255',
             'identity_id' => 'required|max:255',
             'address_1' => 'required|max:255',
             'post_code' => 'required|max:255',
@@ -181,7 +181,7 @@ class PartDController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+([\s\-]{1}[A-Z]{1}[a-z]+)*$/|max:255',
             'identity_id' => 'required|max:255',
             'address_1' => 'required|max:255',
             'post_code' => 'required|max:255',

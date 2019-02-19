@@ -67,7 +67,7 @@ class PartFController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+([\s\-]{1}[A-Z]{1}[a-z]+)*$/|max:255',
             'agree' => 'required',
         ], [
             'applicant_name.required' => 'Applicant Name is required. Applicant Name 为必填项',
@@ -150,7 +150,7 @@ class PartFController extends Controller
     {
         Validator::make($request->all(), [
             'application_id' => 'required',
-            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+(\s[A-Z]{1}[a-z]+)*$/|max:255',
+            'applicant_name' => 'required|regex:/^[A-Z]{1}[a-z]+([\s\-]{1}[A-Z]{1}[a-z]+)*$/|max:255',
             'agree' => 'required',
         ], [
             'applicant_name.required' => 'Applicant Name is required. Applicant Name 为必填项',
