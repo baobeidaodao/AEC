@@ -106,7 +106,7 @@ class ExamController extends Controller
                         $query->with(['level', 'examType', 'rest', 'itemList' => function ($query) {
                             $query->with(array_merge(Item::WITH, ['itemPartCTeacherList' => function ($query) {
                                 $query->with(['partCTeacher']);
-                            }]));
+                            }]))->orderBy('number', 'asc');
                         },])->orderBy('number', 'asc');
                     },
                 ]);
