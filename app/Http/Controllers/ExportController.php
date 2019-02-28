@@ -82,12 +82,14 @@ class ExportController extends Controller
 
         $aec = resource_path('excel/aec.xlsx');
         $aec_ = resource_path('excel/aec_.xlsx');
+        $aec_1 = resource_path('excel/aec_1.xlsx');
         $part = resource_path('excel/part.xlsx');
         $exam = resource_path('excel/exam.xlsx');
 
         $tempPath = storage_path($fileName);
         //$exportFile = Storage::disk('local')->copy($aec_, $tempPath);
-        copy($aec_, $tempPath);
+        // copy($aec_, $tempPath);
+        copy($aec_1, $tempPath);
 
         Excel::load($tempPath, function ($excel) use ($data) {
             foreach ($data as $sheetName => $sheetData) {
