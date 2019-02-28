@@ -167,6 +167,10 @@ class ItemController extends Controller
         if (isset($request->student_number) && !empty($request->student_number) && in_array($request->student_number, $studentIdArray)) {
             // return back()->withErrors('Student ID conflict. Student ID 冲突');
         }
+        $levelId = $group->level_id;
+        if (!in_array($levelId, [1, 2]) && (!isset($request->student_number) || empty($request->student_number))) {
+            return back()->withErrors('Student ID required. Student ID 不可为空');
+        }
         if (isset($request->student_number) && !empty($request->student_number)) {
             $student = Student::where('number', '=', $request->student_number)->first();
         }
@@ -369,6 +373,10 @@ class ItemController extends Controller
         $studentIdArray = Exam::studentIdArray($examId, $id);
         if (isset($request->student_number) && !empty($request->student_number) && in_array($request->student_number, $studentIdArray)) {
             // return back()->withErrors('Student ID conflict. Student ID 冲突');
+        }
+        $levelId = $group->level_id;
+        if (!in_array($levelId, [1, 2]) && (!isset($request->student_number) || empty($request->student_number))) {
+            return back()->withErrors('Student ID required. Student ID 不可为空');
         }
         if (isset($request->student_number) && !empty($request->student_number)) {
             $student = Student::where('number', '=', $request->student_number)->first();
