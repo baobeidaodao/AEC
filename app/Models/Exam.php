@@ -221,7 +221,7 @@ class Exam extends Model
             foreach ($exam['section_list'] as $section) {
                 if (isset($section['group_list'])) {
                     foreach ($section['group_list'] as $group) {
-                        $second = $second + strtotime($group['finish_time']) - strtotime($group['exam_time']);
+                        $second = $second + strtotime($group['finish_time']) - strtotime($group['exam_time']) - ($group['rest']['minute'] * 60);
                     }
                 }
             }
