@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Exam;
+use App\Models\Item;
 use App\Models\PartA;
 use App\Models\PartB;
 use App\Models\PartC;
@@ -78,18 +79,23 @@ class ExportController extends Controller
         $partFData = PartF::export($partF['id']);
         $data = array_merge($data, $partFData);
 
+        $countData = self::count($id);
+        $data = array_merge($data, $countData);
+
         $fileName = 'AEC_' . $id . '_' . $partA['school_name'] . '.xlsx';
 
         $aec = resource_path('excel/aec.xlsx');
         $aec_ = resource_path('excel/aec_.xlsx');
         $aec_1 = resource_path('excel/aec_1.xlsx');
+        $aec_2 = resource_path('excel/aec_2.xlsx');
         $part = resource_path('excel/part.xlsx');
         $exam = resource_path('excel/exam.xlsx');
 
         $tempPath = storage_path($fileName);
         //$exportFile = Storage::disk('local')->copy($aec_, $tempPath);
         // copy($aec_, $tempPath);
-        copy($aec_1, $tempPath);
+        // copy($aec_1, $tempPath);
+        copy($aec_2, $tempPath);
 
         Excel::load($tempPath, function ($excel) use ($data) {
             foreach ($data as $sheetName => $sheetData) {
@@ -109,7 +115,7 @@ class ExportController extends Controller
                         }
                     });
                 }
-                if (in_array($sheetName, ['part_a', 'part_a', 'part_b', 'part_c', 'part_d', 'part_e', 'part_f',])) {
+                if (in_array($sheetName, ['part_a', 'part_a', 'part_b', 'part_c', 'part_d', 'part_e', 'part_f', 'count',])) {
                     $excel->sheet($sheetName, function ($sheet) use ($sheetData) {
                         $sheet->rows($sheetData);
                     });
@@ -119,6 +125,60 @@ class ExportController extends Controller
 
         unlink($tempPath);
 
+    }
+
+    public static function count($id)
+    {
+        $application = Application::with(Application::WITH)
+            ->where('id', '=', $id)
+            ->first()
+            ->toArray();
+        $data = [];
+        $head = [
+            0 => 'Total Fees',
+            1 => 'Total Hours',
+        ];
+        $data['count'][] = $head;
+        $partE = $application['part_e'];
+        $totalFees = PartE::fees($partE['id']);
+
+        $exam = $application['exam'];
+        $examId = $exam['id'];
+        $exam = Exam::with([
+            'application' => function ($query) {
+                $query->with([
+                    'partC' => function ($query) {
+                        $query->with(['partCTeacherList']);
+                    },
+                ]);
+            },
+            'sectionList' => function ($query) {
+                $query->with([
+                    'groupList' => function ($query) {
+                        $query->with(['level', 'examType', 'rest', 'itemList' => function ($query) {
+                            $query->with(array_merge(Item::WITH, ['itemPartCTeacherList' => function ($query) {
+                                $query->with(['partCTeacher']);
+                            }]))->orderBy('number', 'asc');
+                        },])->orderBy('number', 'asc');
+                    },
+                ]);
+            },
+        ])
+            ->find($examId);
+        if ($exam) {
+            $exam = $exam->toArray();
+        } else {
+            $exam = [];
+        }
+        // dd($exam);
+        $totalHours = Exam::totalHours($exam);
+        $exam['totalHours'] = $totalHours;
+
+        $data['count'][] = [
+            0 => $totalFees,
+            1 => $totalHours,
+        ];
+        return $data;
     }
 
 }
