@@ -79,7 +79,7 @@ class ExportController extends Controller
         $partFData = PartF::export($partF['id']);
         $data = array_merge($data, $partFData);
 
-        $countData = self::count($id);
+        $countData = self::totalCount($id);
         $data = array_merge($data, $countData);
 
         $fileName = 'AEC_' . $id . '_' . $partA['school_name'] . '.xlsx';
@@ -115,7 +115,7 @@ class ExportController extends Controller
                         }
                     });
                 }
-                if (in_array($sheetName, ['part_a', 'part_a', 'part_b', 'part_c', 'part_d', 'part_e', 'part_f', 'count',])) {
+                if (in_array($sheetName, ['part_a', 'part_a', 'part_b', 'part_c', 'part_d', 'part_e', 'part_f', 'total_count',])) {
                     $excel->sheet($sheetName, function ($sheet) use ($sheetData) {
                         $sheet->rows($sheetData);
                     });
@@ -127,7 +127,7 @@ class ExportController extends Controller
 
     }
 
-    public static function count($id)
+    public static function totalCount($id)
     {
         $application = Application::with(Application::WITH)
             ->where('id', '=', $id)
@@ -172,7 +172,6 @@ class ExportController extends Controller
         }
         // dd($exam);
         $totalHours = Exam::totalHours($exam);
-        $exam['totalHours'] = $totalHours;
 
         $data['count'][] = [
             0 => $totalFees,
