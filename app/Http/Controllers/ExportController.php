@@ -138,7 +138,7 @@ class ExportController extends Controller
             0 => 'Total Fees',
             1 => 'Total Hours',
         ];
-        $data['count'][] = $head;
+        $data['total_count'][] = $head;
         $partE = $application['part_e'];
         $totalFees = PartE::fees($partE['id']);
 
@@ -173,7 +173,7 @@ class ExportController extends Controller
         // dd($exam);
         $totalHours = Exam::totalHours($exam);
 
-        $data['count'][] = [
+        $data['total_count'][] = [
             0 => $totalFees,
             1 => $totalHours,
         ];
