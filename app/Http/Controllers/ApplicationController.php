@@ -26,6 +26,7 @@ class ApplicationController extends Controller
         if (!isset($page)) {
             $page = 1;
         }
+        $size = 20;
         $db = Application::with(['aec', 'user', 'partA', 'partB', 'partC', 'partD', 'partE', 'partF', 'exam',])
             ->where(function ($query) {
                 $userId = Auth::id();
@@ -36,7 +37,7 @@ class ApplicationController extends Controller
         $total = $db->count();
         $pagination = [];
         $pagination['page'] = $page;
-        $pagination['count'] = ceil($total / $page);
+        $pagination['count'] = ceil($total / $size);
 
         $applicationList = $db->forPage($page, 20)
             ->get()
