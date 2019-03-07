@@ -33,10 +33,10 @@ class ApplicationController extends Controller
                     $query->where('created_user_id', '=', $userId);
                 }
             });
-        $count = $db->count();
+        $total = $db->count();
         $pagination = [];
         $pagination['page'] = $page;
-        $pagination['count'] = $count;
+        $pagination['count'] = ceil($total / $page);
 
         $applicationList = $db->forPage($page, 20)
             ->get()

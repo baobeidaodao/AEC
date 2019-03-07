@@ -142,7 +142,9 @@
                 </div>
             </div>
             <div class="card">
-                @include('common.pagination', ['url' => url('admin/application/page') . '/', 'page' => $pagination['page'], 'count' => $pagination['count'],])
+                <div class="card-body">
+                    @include('common.pagination', ['url' => url('admin/application/page') . '/', 'page' => $pagination['page'], 'count' => $pagination['count'],])
+                </div>
             </div>
         </div>
     </div>
