@@ -21,20 +21,30 @@ class ApplicationController extends Controller
     private $active = 'application';
     private $nav = 'application';
 
-    public function index()
+    public function index($page = null)
     {
-        $applicationList = Application::with(['aec', 'user', 'partA', 'partB', 'partC', 'partD', 'partE', 'partF', 'exam',])
+        if (!isset($page)) {
+            $page = 1;
+        }
+        $db = Application::with(['aec', 'user', 'partA', 'partB', 'partC', 'partD', 'partE', 'partF', 'exam',])
             ->where(function ($query) {
                 $userId = Auth::id();
                 if (!Permission::userHasPermission($userId, 'admin')) {
                     $query->where('created_user_id', '=', $userId);
                 }
-            })
+            });
+        $count = $db->count();
+        $pagination = [];
+        $pagination['page'] = $page;
+        $pagination['count'] = $count;
+
+        $applicationList = $db->forPage($page, 20)
             ->get()
             ->toArray();
         $data = [];
         $data['active'] = $this->active;
         $data['nav'] = $this->nav;
+        $data['pagination'] = $pagination;
         $data['applicationList'] = $applicationList;
         return view('application.index', $data);
     }

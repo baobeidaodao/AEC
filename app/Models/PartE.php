@@ -117,6 +117,7 @@ class PartE extends Model
             ->join('section', 'section.id', '=', 'group.section_id')
             ->join('exam', 'exam.id', '=', 'section.exam_id')
             ->where('exam.application_id', '=', $applicationId)
+            ->whereNull('section.deleted_at')
             ->select(['group.*'])
             ->get();
         foreach ($groupList as $group) {
