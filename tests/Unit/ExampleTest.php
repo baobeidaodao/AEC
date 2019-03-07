@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use App\Models\Group;
 use App\Models\PartE;
+use App\Models\Permission;
+use App\Models\Role;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -49,7 +51,7 @@ class ExampleTest extends TestCase
 
         PartE::calculate($applicationId);
         $partEList = PartE::all()->toArray();
-        foreach ($partEList as $partE){
+        foreach ($partEList as $partE) {
             $applicationId = $partE['application_id'];
             PartE::calculate($applicationId);
         }

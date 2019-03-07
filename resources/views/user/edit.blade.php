@@ -37,6 +37,19 @@
                 <label class="form-label">Password</label>
                 <input name="password" class="form-control" placeholder="Password" value=""/>
             </div>
+            <div class="form-group">
+                <div class="form-label">Roles</div>
+                <div>
+                    @foreach($roles as $role)
+                        <label class="custom-control custom-checkbox custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" name="role[]"
+                                   value="{{$role['id'] or ''}}"
+                                   @if(in_array($role['id'], $userRoleIdList)) checked @endif>
+                            <span class="custom-control-label">{{$role['name'] or ''}}</span>
+                        </label>
+                    @endforeach
+                </div>
+            </div>
             <div class="form-footer text-center">
                 <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存</button>
             </div>

@@ -71,5 +71,24 @@ class PermissionTableSeeder extends Seeder
 
         // 给用户指定角色
         $user->attachRole($role);
+
+        // 以下为 二级管理员角色和权限
+        $role = (new Role)->create([
+            'name' => 'secondary_admin',
+            'display_name' => '二级管理员',
+            'description' => '二级管理员',
+        ]);
+
+        $permissions = [];
+        $permissionArray = [];
+        $permissionArray[] = ['name' => 'secondary_admin', 'display_name' => '二级管理员', 'description' => '二级管理员',];
+        foreach ($permissionArray as $permissionData) {
+            $permission = (new Permission)->create($permissionData);
+            $permissions[] = $permission;
+        }
+
+        $role->attachPermissions($permissions);
+
     }
+
 }

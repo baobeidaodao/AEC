@@ -33,6 +33,19 @@
                     <label class="form-label">Phone</label>
                     <input class="form-control" placeholder="Phone" value="{{ $user['phone'] or '' }}" readonly/>
                 </div>
+                <div class="form-group">
+                    <div class="form-label">Roles</div>
+                    <div>
+                        @foreach($roles as $role)
+                            <label class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" name="role[]"
+                                       value="{{$role['id'] or ''}}"
+                                       @if(in_array($role['id'], $userRoleIdList)) checked @endif readonly>
+                                <span class="custom-control-label">{{$role['name'] or ''}}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                </div>
             </form>
         </div>
     </div>

@@ -14,6 +14,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -36,7 +37,9 @@ class UserController extends Controller
 
     public function create()
     {
+        $roles = Role::all()->toArray();
         $data = [];
+        $data['roles'] = $roles;
         $data['active'] = $this->active;
         return view('user.create', $data);
     }
@@ -67,9 +70,16 @@ class UserController extends Controller
         } else {
             $user = [];
         }
+        $roles = Role::all()->toArray();
+        $userRoleIdList = DB::table("role_user")
+            ->where('user_id', '=', $user['id'])
+            ->pluck('role_id')
+            ->toArray();
         $data = [];
         $data['active'] = $this->active;
         $data['user'] = $user;
+        $data['roles'] = $roles;
+        $data['userRoleIdList'] = $userRoleIdList;
         return view('user.show', $data);
     }
 
@@ -81,9 +91,16 @@ class UserController extends Controller
         } else {
             $user = [];
         }
+        $roles = Role::all()->toArray();
+        $userRoleIdList = DB::table("role_user")
+            ->where('user_id', '=', $user['id'])
+            ->pluck('role_id')
+            ->toArray();
         $data = [];
         $data['active'] = $this->active;
         $data['user'] = $user;
+        $data['roles'] = $roles;
+        $data['userRoleIdList'] = $userRoleIdList;
         return view('user.edit', $data);
     }
 
