@@ -33,7 +33,7 @@
                             <th>Part</th>
                             <th>Check</th>
                             <th>Operation</th>
-                            @permission('admin', 'secondary_admin')
+                            @permission('export')
                             <th>Export</th>
                             @endpermission
                         </tr>
@@ -126,7 +126,7 @@
                                         {!! Form::open(['id' => 'delete'.$application['id'], 'method' => 'delete', 'route' => ['application.destroy', $application['id']], ]) !!}{!! Form::close() !!}
                                     </div>
                                 </td>
-                                @permission('admin', 'secondary_admin')
+                                @permission('export')
                                 <td>
                                     @if(isset($application['check']) && $application['check'] == 1)
                                         <a href="{{url('/admin/export/' . $application['id'])}}" class="btn btn-outline-success btn-sm btn-icon"><i class="fe fe-download"></i></a>

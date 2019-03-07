@@ -60,6 +60,10 @@ class PermissionTableSeeder extends Seeder
         $permissionArray[] = ['name' => 'create_user', 'display_name' => '创建用户', 'description' => '创建用户',];
         $permissionArray[] = ['name' => 'edit_user', 'display_name' => '编辑用户', 'description' => '编辑用户',];
         $permissionArray[] = ['name' => 'delete_user', 'display_name' => '删除用户', 'description' => '删除用户',];
+
+        $permissionArray[] = ['name' => 'navigation', 'display_name' => '导航', 'description' => '导航',];
+        $permissionArray[] = ['name' => 'export', 'display_name' => '导出', 'description' => '导出',];
+
         $permissions = [];
         foreach ($permissionArray as $permissionData) {
             $permission = (new Permission)->create($permissionData);
