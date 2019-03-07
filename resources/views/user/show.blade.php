@@ -33,6 +33,7 @@
                     <label class="form-label">Phone</label>
                     <input class="form-control" placeholder="Phone" value="{{ $user['phone'] or '' }}" readonly/>
                 </div>
+                @permission('admin')
                 <div class="form-group">
                     <div class="form-label">Roles</div>
                     <div>
@@ -46,6 +47,7 @@
                         @endforeach
                     </div>
                 </div>
+                @endpermission
             </form>
         </div>
     </div>

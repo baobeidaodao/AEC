@@ -37,6 +37,7 @@
                 <label class="form-label">Password</label>
                 <input name="password" class="form-control" placeholder="Password" value=""/>
             </div>
+            @permission('admin')
             <div class="form-group">
                 <div class="form-label">Roles</div>
                 <div>
@@ -50,6 +51,7 @@
                     @endforeach
                 </div>
             </div>
+            @endpermission
             <div class="form-footer text-center">
                 <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存</button>
             </div>
