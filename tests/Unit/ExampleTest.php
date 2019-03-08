@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\PartE;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -57,4 +58,11 @@ class ExampleTest extends TestCase
         }
         dd(1);
     }
+
+    public function test3()
+    {
+        $applicationId = 49;
+        PartE::calculate($applicationId);
+    }
+
 }

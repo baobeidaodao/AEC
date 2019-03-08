@@ -109,18 +109,32 @@ class PartE extends Model
         return $partE;
     }
 
+    public static function init($partE)
+    {
+        $keys = array_keys(self::FEE);
+        foreach ($keys as $key) {
+            $partE->$key = 0;
+        }
+        return $partE;
+    }
+
     public static function calculate($applicationId)
     {
         $partE = PartE::where('application_id', '=', $applicationId)->first();
+        $partE = self::init($partE);
         $columnArray = Schema::getColumnListing('part_e');
         $groupList = Group::with(['level', 'examType', 'itemList'])
             ->join('section', 'section.id', '=', 'group.section_id')
             ->join('exam', 'exam.id', '=', 'section.exam_id')
             ->where('exam.application_id', '=', $applicationId)
             ->whereNull('section.deleted_at')
+            ->whereNull('group.deleted_at')
             ->select(['group.*'])
             ->get();
         foreach ($groupList as $group) {
+            if ($group->deleted_at != null) {
+                continue;
+            }
             $attribute = strtolower($group->examType->code) . '_' . strtolower($group->level->code);
             $attributeM = '';
             if (in_array(strtolower($group->level->code), self::MEMBER_LEVEL)) {
@@ -130,7 +144,15 @@ class PartE extends Model
                 continue;
             }
             if (!in_array(strtolower($group->level->code), self::MEMBER_LEVEL)) {
-                $count = count($group->itemList);
+                // $count = count($group->itemList);
+                $count = 0;
+                foreach ($group->itemList as $item) {
+                    if ($item->deleted_at != null) {
+                        continue;
+                    } else {
+                        $count = $count + 1;
+                    }
+                }
                 $attributeCount = $attribute . 'Count';
                 if (!isset($$attributeCount)) {
                     $$attributeCount = 0;
@@ -148,6 +170,9 @@ class PartE extends Model
                     $$attributeMCount = 0;
                 }
                 foreach ($itemList as $item) {
+                    if ($item->deleted_at != null) {
+                        continue;
+                    }
                     if (isset($item->member) && $item->member == 1) {
                         $$attributeMCount = $$attributeMCount + 1;
                     } else {
