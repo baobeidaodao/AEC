@@ -13,7 +13,11 @@
             <div class="card-header">
                 <div class="card-title"><a href="{{url('/admin/section/')}}/{{$section['id'] or ''}}" class="btn btn-outline-success btn-sm btn-icon ml-auto">考试日 Section {{$section['number'] or ''}}</a></div>
                 <div class="btn-list ml-auto">
-                    <a href="{{url('/admin/group/create?section_id=')}}{{$section['id'] or ''}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>添加组 Group</a>
+                    @if($full)
+                        <a href="javascript:void(0);" class="btn btn-outline-dark btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>申请已达上限</a>
+                    @else
+                        <a href="{{url('/admin/group/create?section_id=')}}{{$section['id'] or ''}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>添加组 Group</a>
+                    @endif
                     <a href="{{url('/admin/section/' . $section['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto" hidden><i class="fe fe-eye"></i></a>
                     <a href="{{url('/admin/section/' . $section['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto"><i class="fe fe-edit"></i>修改考试日 Section {{$section['number'] or ''}}</a>
                     <a href="javascript:void(0)" onclick="$('#deleteSection{{$section['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon ml-auto"><i class="fe fe-trash-2"></i>删除考试日 Section {{$section['number'] or ''}}</a>
@@ -54,10 +58,14 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    @if(count($group['item_list']) < \App\Models\Group::limit($group['id']) && \App\Models\Group::limit($group['id']) > 0)
-                                        <a href="{{url('/admin/item/create?group_id=')}}{{$group['id'] or ''}}"
-                                           class="btn btn-outline-info btn-sm btn-icon ml-auto"><i
-                                                    class="fe fe-plus"></i>添加考生</a>
+                                    @if($full)
+                                        <a href="javascript:void(0);" class="btn btn-outline-dark btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>申请已达上限</a>
+                                    @else
+                                        @if(count($group['item_list']) < \App\Models\Group::limit($group['id']) && \App\Models\Group::limit($group['id']) > 0)
+                                            <a href="{{url('/admin/item/create?group_id=')}}{{$group['id'] or ''}}"
+                                               class="btn btn-outline-info btn-sm btn-icon ml-auto"><i
+                                                        class="fe fe-plus"></i>添加考生</a>
+                                        @endif
                                     @endif
                                     <a href="{{url('/admin/group/' . $group['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto" hidden><i class="fe fe-eye"></i></a>
                                     <a href="{{url('/admin/group/' . $group['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto"><i class="fe fe-edit"></i></a>
