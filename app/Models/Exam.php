@@ -231,4 +231,52 @@ class Exam extends Model
         return $hour . 'HOUR' . $minute . 'MIN';
     }
 
+
+    public static function countLimit($id)
+    {
+        $exam = Exam::with([
+            'sectionList' => function ($query) {
+                $query->with([
+                    'groupList' => function ($query) {
+                        $query->with([
+                            'itemList' => function ($query) {
+                                $query->whereNull('item.deleted_at');
+                            }
+                        ])->whereNull('group.deleted_at');
+                    },
+                ])->whereNull('section.deleted_at');
+            },
+        ])
+            ->find($id);
+        $sectionCount = 0;
+        $groupCount = 0;
+        $itemCount = 0;
+        $limit = 15 * 21;
+        $sectionCount += count($exam->sectionList);
+        foreach ($exam->sectionList as $section) {
+            $groupCount += count($section->groupList);
+            foreach ($section->groupList as $group) {
+                $itemCount += count($group->itemList);
+            }
+        }
+        $line = $groupCount + $itemCount;
+        $countLimit = [];
+        $countLimit['examId'] = $id;
+        $countLimit['sectionCount'] = $sectionCount;
+        $countLimit['groupCount'] = $groupCount;
+        $countLimit['itemCount'] = $itemCount;
+        $countLimit['line'] = $line;
+        $countLimit['limit'] = $limit;
+        return $countLimit;
+    }
+
+    public static function full($examId)
+    {
+        $countLimit = Exam::countLimit($examId);
+        if ($countLimit['line'] >= $countLimit['limit']) {
+            return true;
+        }
+        return false;
+    }
+
 }

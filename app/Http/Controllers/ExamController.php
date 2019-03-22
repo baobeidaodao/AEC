@@ -128,11 +128,13 @@ class ExamController extends Controller
         } else {
             $application = [];
         }
+        $full = Exam::full($id);
         $data = [];
         $data['active'] = $this->active;
         $data['nav'] = $this->nav;
         $data['application'] = $application;
         $data['exam'] = $exam;
+        $data['full'] = $full;
         return view('exam.show', $data);
     }
 
