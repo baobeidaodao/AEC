@@ -17,7 +17,7 @@
             <div class="ml-auto">Total Hours : {{$exam['totalHours'] or ''}}</div>
             <div class="btn-list ml-auto">
                 @if($full)
-                    <a href="{{url('/admin/section/create?exam_id=')}}{{$exam['id'] or ''}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>本次申请数量已达上限，请另开一次申请</a>
+                    <a href="{{url('/admin/application/copy/' . $application['id'] )}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>本次申请已达上限，点击此处，再加一次申请</a>
                 @else
                     <a href="{{url('/admin/section/create?exam_id=')}}{{$exam['id'] or ''}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i>添加考试日 Section</a>
                 @endif

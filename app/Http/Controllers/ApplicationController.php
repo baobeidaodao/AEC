@@ -30,7 +30,7 @@ class ApplicationController extends Controller
         $db = Application::with(['aec', 'user', 'partA', 'partB', 'partC', 'partD', 'partE', 'partF', 'exam',])
             ->where(function ($query) {
                 $userId = Auth::id();
-                if (!Permission::userHasPermission($userId, 'admin') && !Permission::userHasPermission($userId, 'secondary_admin') ) {
+                if (!Permission::userHasPermission($userId, 'admin') && !Permission::userHasPermission($userId, 'secondary_admin')) {
                     $query->where('created_user_id', '=', $userId);
                 }
             });
@@ -137,6 +137,11 @@ class ApplicationController extends Controller
             return redirect()->back();
         }
         return redirect('admin/application');
+    }
+
+    public function copy($id)
+    {
+        echo $id;
     }
 
 }

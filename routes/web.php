@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     /** 申请 */
     Route::resource('application', 'ApplicationController');
     Route::get('application/page/{page}', 'ApplicationController@index');
+    Route::get('application/copy/{id}', 'ApplicationController@copy');
 
     /** part A */
     Route::resource('part_a', 'PartAController');
