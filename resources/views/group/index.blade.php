@@ -55,7 +55,9 @@
                                     <div class="btn-list">
                                         <a href="{{url('/admin/group/' . $group['id'])}}" class="btn btn-outline-success btn-sm btn-icon"><i class="fe fe-eye"></i></a>
                                         <a href="{{url('/admin/group/' . $group['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon"><i class="fe fe-edit"></i></a>
+                                        @permission('edit_application')
                                         <a href="javascript:void(0)" onclick="$('#delete{{$group['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon"><i class="fe fe-trash-2"></i></a>
+                                        @endpermission
                                         {!! Form::open(['id' => 'delete'.$group['id'], 'method' => 'delete', 'route' => ['group.destroy', $group['id']], ]) !!}{!! Form::close() !!}
                                     </div>
                                 </td>

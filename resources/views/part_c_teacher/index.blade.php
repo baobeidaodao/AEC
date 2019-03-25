@@ -59,7 +59,9 @@
                                     <div class="btn-list">
                                         <a href="{{url('/admin/part_c_teacher/' . $partCTeacher['id'])}}" class="btn btn-outline-success btn-sm btn-icon"><i class="fe fe-eye"></i></a>
                                         <a href="{{url('/admin/part_c_teacher/' . $partCTeacher['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon"><i class="fe fe-edit"></i></a>
+                                        @permission('edit_application')
                                         <a href="javascript:void(0)" onclick="$('#delete{{$partCTeacher['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon"><i class="fe fe-trash-2"></i></a>
+                                        @endpermission
                                         {!! Form::open(['id' => 'delete'.$partCTeacher['id'], 'method' => 'delete', 'route' => ['part_c_teacher.destroy', $partCTeacher['id']], ]) !!}{!! Form::close() !!}
                                     </div>
                                 </td>

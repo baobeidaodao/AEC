@@ -20,7 +20,9 @@
                     @endif
                     <a href="{{url('/admin/section/' . $section['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto" hidden><i class="fe fe-eye"></i></a>
                     <a href="{{url('/admin/section/' . $section['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto"><i class="fe fe-edit"></i>修改考试日 Section {{$section['number'] or ''}}</a>
+                    @permission('edit_application')
                     <a href="javascript:void(0)" onclick="$('#deleteSection{{$section['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon ml-auto"><i class="fe fe-trash-2"></i>删除考试日 Section {{$section['number'] or ''}}</a>
+                    @endpermission
                     {!! Form::open(['id' => 'deleteSection'.$section['id'], 'method' => 'delete', 'route' => ['section.destroy', $section['id']], ]) !!}{!! Form::close() !!}
                 </div>
             </div>
@@ -69,7 +71,9 @@
                                     @endif
                                     <a href="{{url('/admin/group/' . $group['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto" hidden><i class="fe fe-eye"></i></a>
                                     <a href="{{url('/admin/group/' . $group['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto"><i class="fe fe-edit"></i></a>
+                                    @permission('edit_application')
                                     <a href="javascript:void(0)" onclick="$('#deleteGroup{{$group['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon ml-auto"><i class="fe fe-trash-2"></i></a>
+                                    @endpermission
                                     {!! Form::open(['id' => 'deleteGroup'.$group['id'], 'method' => 'delete', 'route' => ['group.destroy', $group['id']], ]) !!}{!! Form::close() !!}
                                 </td>
                             </tr>
@@ -98,7 +102,9 @@
                                             @endif
                                             <a href="{{url('/admin/item/' . $item['id'])}}" class="btn btn-outline-success btn-sm btn-icon ml-auto" hidden><i class="fe fe-eye"></i></a>
                                             <a href="{{url('/admin/item/' . $item['id'] . '/edit')}}" class="btn btn-outline-warning btn-sm btn-icon ml-auto"><i class="fe fe-edit"></i></a>
+                                            @permission('edit_application')
                                             <a href="javascript:void(0)" onclick="$('#deleteItem{{$item['id']}}').submit()" class="btn btn-outline-danger btn-sm btn-icon ml-auto"><i class="fe fe-trash-2"></i></a>
+                                            @endpermission
                                             {!! Form::open(['id' => 'deleteItem'.$item['id'], 'method' => 'delete', 'route' => ['item.destroy', $item['id']], ]) !!}{!! Form::close() !!}
                                         </td>
                                     </tr>
