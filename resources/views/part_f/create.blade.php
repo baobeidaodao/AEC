@@ -48,9 +48,9 @@
                 </div>
             </div>
             <div class="form-footer text-center">
-                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存
-                    & Next
-                </button>
+                @permission('edit_application')
+                <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存 & Next</button>
+                @endpermission
             </div>
             {!! Form::close() !!}
         </div>

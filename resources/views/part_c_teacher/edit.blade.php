@@ -47,7 +47,9 @@
                 <input name="family_name" class="form-control" placeholder="Family Name" value="{{ $partCTeacher['teacher']['family_name'] or '' }}"/>
             </div>
             <div class="form-footer text-center">
+                @permission('edit_application')
                 <button type="submit" class="btn btn-sm btn-outline-warning btn-icon"><i class="fe fe-send"></i>Save 保存</button>
+                @endpermission
             </div>
             {!! Form::close() !!}
         </div>

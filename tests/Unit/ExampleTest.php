@@ -2,10 +2,16 @@
 
 namespace Tests\Unit;
 
+use App\Models\Exam;
 use App\Models\Group;
+use App\Models\PartA;
+use App\Models\PartC;
+use App\Models\PartCTeacher;
 use App\Models\PartE;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -63,6 +69,38 @@ class ExampleTest extends TestCase
     {
         $applicationId = 49;
         PartE::calculate($applicationId);
+    }
+
+    public function test4()
+    {
+        $examList = Exam::all();
+        $count = 0;
+        $a = [];
+        foreach ($examList as $exam) {
+            $examId = $exam->id;
+            $countLimit = Exam::countLimit($examId);
+            if ($countLimit['line'] >= $countLimit['limit']) {
+                $count += 1;
+                $a[] = $countLimit;
+            }
+        }
+
+        dd($a);
+    }
+
+    public function test5()
+    {
+        $applicationId = 1;
+        $thatPartA = (new PartA)->where('application_id', $applicationId)->whereNull('deleted_at')->first();
+        $thatPartC = (new PartC)->where('application_id', $applicationId)->whereNull('deleted_at')->first();
+        $thatPartCTeacherList = (new PartCTeacher)->where('part_c_id', $thatPartC->id)->whereNull('deleted_at')->orderBy('id', 'asc')->get();
+
+        dd($thatPartCTeacherList);
+    }
+
+    public function test6()
+    {
+
     }
 
 }

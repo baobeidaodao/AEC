@@ -76,6 +76,7 @@ class PermissionTableSeeder extends Seeder
         // 给用户指定角色
         $user->attachRole($role);
 
+
         // 以下为 二级管理员角色和权限
         $role = (new Role)->create([
             'name' => 'secondary_admin',
@@ -86,6 +87,27 @@ class PermissionTableSeeder extends Seeder
         $permissions = [];
         $permissionArray = [];
         $permissionArray[] = ['name' => 'secondary_admin', 'display_name' => '二级管理员', 'description' => '二级管理员',];
+        foreach ($permissionArray as $permissionData) {
+            $permission = (new Permission)->create($permissionData);
+            $permissions[] = $permission;
+        }
+
+        $role->attachPermissions($permissions);
+
+
+        // 以下为 申请者角色和权限
+        $role = (new Role)->create([
+            'name' => 'application_admin',
+            'display_name' => '申请者',
+            'description' => '申请者',
+        ]);
+
+        $permissions = [];
+        $permissionArray = [];
+        $permissionArray[] = ['name' => 'view_application', 'display_name' => '查看申请', 'description' => '查看申请',];
+        $permissionArray[] = ['name' => 'create_application', 'display_name' => '创建申请', 'description' => '创建申请',];
+        $permissionArray[] = ['name' => 'update_application', 'display_name' => '更新申请', 'description' => '更新申请',];
+        $permissionArray[] = ['name' => 'delete_application', 'display_name' => '删除申请', 'description' => '删除申请',];
         foreach ($permissionArray as $permissionData) {
             $permission = (new Permission)->create($permissionData);
             $permissions[] = $permission;

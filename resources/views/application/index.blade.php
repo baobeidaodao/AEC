@@ -20,7 +20,9 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">List</h3>
+                    @permission('create_application')
                     <a href="{{url('/admin/application/create')}}" class="btn btn-outline-info btn-sm btn-icon ml-auto"><i class="fe fe-plus"></i></a>
+                    @endpermission
                 </div>
                 <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap">
