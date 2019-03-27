@@ -37,6 +37,9 @@ class ExampleTest extends TestCase
         $b = preg_match($pattern, $string);
         $string = 'Cheong L';
         $b = preg_match($pattern, $string);
+        $p = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
+        $s = '2019-03-217';
+        $b = preg_match($p, $s);
     }
 
     public function test2()
