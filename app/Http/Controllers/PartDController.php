@@ -77,7 +77,7 @@ class PartDController extends Controller
             'tel' => 'required|max:255',
             //'fax' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'delivery_date' => 'required|regex:/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/|max:10|min:10',
+            // 'delivery_date' => 'required|regex:/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/|max:10|min:10',
             'neighbour' => 'required|max:255',
         ], [
             'applicant_name.required' => 'Applicant Name is required. Applicant Name 为必填项',
@@ -88,9 +88,15 @@ class PartDController extends Controller
             'tel.required' => 'Tel is required. Tel 为必填项',
             'email.required' => 'Email is required. Email 为必填项',
             'email.email' => 'Email is invalid. Email 格式错误',
-            'delivery_date.regex' => 'delivery_date is invalid. delivery_date 格式错误',
+            // 'delivery_date.regex' => 'delivery_date is invalid. delivery_date 格式错误',
             'neighbour.required' => 'Neighbour is required. Neighbour 为必填项',
         ])->validate();
+        if (isset($request->delivery_date) && !empty($request->delivery_date)) {
+            $pattern = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
+            if (!preg_match($pattern, $request->delivery_date)) {
+                return back()->withErrors('Delivery Date is invalid. Delivery Date 格式错误');
+            }
+        }
         $applicant = (new Applicant)->updateOrCreate([
             'name' => $request->applicant_name,
             'membership_id' => $request->membership_id,
@@ -189,7 +195,7 @@ class PartDController extends Controller
             'tel' => 'required|max:255',
             //'fax' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'delivery_date' => 'required|regex:/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/|max:10|min:10',
+            // 'delivery_date' => 'required|regex:/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/|max:10|min:10',
             'neighbour' => 'required|max:255',
         ], [
             'applicant_name.required' => 'Applicant Name is required. Applicant Name 为必填项',
@@ -200,9 +206,15 @@ class PartDController extends Controller
             'tel.required' => 'Tel is required. Tel 为必填项',
             'email.required' => 'Email is required. Email 为必填项',
             'email.email' => 'Email is invalid. Email 格式错误',
-            'delivery_date.regex' => 'delivery_date is invalid. delivery_date 格式错误',
+            // 'delivery_date.regex' => 'delivery_date is invalid. delivery_date 格式错误',
             'neighbour.required' => 'Neighbour is required. Neighbour 为必填项',
         ])->validate();
+        if (isset($request->delivery_date) && !empty($request->delivery_date)) {
+            $pattern = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
+            if (!preg_match($pattern, $request->delivery_date)) {
+                return back()->withErrors('Delivery Date is invalid. Delivery Date 格式错误');
+            }
+        }
         $applicant = (new Applicant)->updateOrCreate([
             'name' => $request->applicant_name,
             'membership_id' => $request->membership_id,
