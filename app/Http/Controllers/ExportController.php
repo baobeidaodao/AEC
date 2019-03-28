@@ -43,6 +43,24 @@ class ExportController extends Controller
         'Z' => 17,
     ];
 
+    const SECTION_ARRAY = [
+        'section_1',
+        'section_2',
+        'section_3',
+        'section_4',
+        'section_5',
+        'section_6',
+        'section_7',
+        'section_8',
+        'section_9',
+        'section_10',
+        'section_11',
+        'section_12',
+        'section_13',
+        'section_14',
+        'section_15',
+    ];
+
     public function export($id)
     {
         $data = [];
@@ -90,6 +108,7 @@ class ExportController extends Controller
         $aec_2 = resource_path('excel/aec_2.xlsx');
         $aec_3 = resource_path('excel/aec_3.xlsx');
         $aec_4 = resource_path('excel/aec_4.xlsx');
+        $aec_5 = resource_path('excel/aec_5.xlsx');
         $part = resource_path('excel/part.xlsx');
         $exam = resource_path('excel/exam.xlsx');
 
@@ -99,11 +118,12 @@ class ExportController extends Controller
         // copy($aec_1, $tempPath);
         // copy($aec_2, $tempPath);
         // copy($aec_3, $tempPath);
-        copy($aec_4, $tempPath);
+        // copy($aec_4, $tempPath);
+        copy($aec_5, $tempPath);
 
         Excel::load($tempPath, function ($excel) use ($data) {
             foreach ($data as $sheetName => $sheetData) {
-                if (in_array($sheetName, ['section_1', 'section_2', 'section_3', 'section_4', 'section_5', 'section_6', 'section_7',])) {
+                if (in_array($sheetName, self::SECTION_ARRAY)) {
                     $excel->sheet($sheetName, function ($sheet) use ($sheetData) {
                         foreach ($sheetData as $index => $rowData) {
                             if ($index >= 1) {
